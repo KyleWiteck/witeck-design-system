@@ -1,0 +1,209 @@
+import { DataGridDemo } from '@site/src/components/DataGridDemo';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+High level table component is built to provide a smooth UX for manipulating an
+unlimited set of data. It presents information in a structured Table format of
+rows and columns. The data is displayed in a user-friendly interface for
+efficient reviewing and analysis.
+
+<DataGridDemo />
+
+## Props
+
+<PropsTable
+  hideElementProp
+  hideChildren
+  defaultElement
+  hideSprinkles
+  hideAttributes
+  hideStyles
+  defaultElement="section"
+  componentSpecificProps={[
+    {
+      name: 'data',
+      type: 'T[]',
+      default: 'undefined',
+      description: 'Generic Type, extends `Record<string, unknown>`'
+    },
+    {
+      name: 'headers',
+      type: 'DataGridHeaders<T>',
+      default: 'undefined',
+      description: 'Headers to be displayed in the data-grid'
+    },
+    {
+      name: 'sortableHeaders',
+      type: '(keyof T)[]',
+      default: 'undefined',
+      description: 'List of headers that can be sorted'
+    },
+    {
+      name: 'renderRow',
+      type: '(item: T) => ReactNode;',
+      default: 'undefined',
+      description: 'Allows for customizing rows'
+    },
+    {
+      name: 'hasActions',
+      type: 'boolean',
+      default: 'undefined',
+      description: 'When true, adds actions columns in headers'
+    },
+    {
+      name: 'size',
+      type: 'TDataSizeVariant',
+      default: 'md',
+      description: 'Table cells sizing'
+    },
+    {
+      name: 'filters',
+      type: 'ReactNode',
+      default: 'null',
+      description: 'Slot for dropdown filters'
+    },
+    {
+      name: 'searchInputPlaceholder',
+      type: 'string',
+      default: '"Search"',
+      description: 'Search input placeholder'
+    },
+    {
+      name: 'totalRecords',
+      type: 'number',
+      default: 'null',
+      description: 'Number of all available records used for Pagination'
+    },
+    {
+      name: 'defaultPageSize',
+      type: 'number',
+      default: '10',
+      description: 'Number of records per page, used for Pagination'
+    },
+    {
+      name: 'tableProps',
+      type: 'Omit<TableProps, "head" | "body">',
+      default: '{}'
+    },
+    {
+      name: 'searchParams',
+      type: 'URLSearchParams',
+      default: '{}',
+      description: 'Current search-params state from URL'
+    },
+    {
+      name: 'setSearchParams',
+      type: '(params: URLSearchParams) => void;',
+      default: '()=>{}',
+      description: 'Search-params state setter to update URL'
+    },
+    {
+      name: 'getFilterValues',
+      type: '(event: FormEvent<HTMLFormElement>) => FormFilterValues;',
+      default: '(e) => Object.fromEntries(new FormData(e.currentTarget))>',
+      description: 'Filters value state getter'
+    },
+    {
+      name: 'onResetFilters',
+      type: '(event: MouseEvent<HTMLButtonElement>) => void;',
+      default: '() => {}',
+      description: 'Reset filter value callback'
+    }
+  ]}
+/>
+
+## Features
+
+- Supports server side rendering and progressive enhancement
+- Accessible and based on Web Standards
+- State is managed via **URLSearchParams**
+- Pagination
+- Search input
+- Column sorting
+- Out of the box Loading and Empty UI
+- Allows to include dropdown filters
+
+## Usage
+
+```ts
+import { DataGrid, DataGridRow } from '@peopleticker/magnit-design/components';
+```
+
+### Simple
+
+```tsx
+<Card width="full" paddingX="4" paddingY="4">
+  <DataGrid
+    data={data}
+    headers={['id', 'name', 'username', 'email', 'phone', 'company', 'website']}
+    sortableHeaders={['id', 'name', 'email', 'phone']}
+    totalRecords={10}
+    defaultPageSize={defaultPageSize}
+    searchParams={searchParams}
+    setSearchParams={setSearchParams}
+    searchInputPlaceholder="Enter an User ID"
+    isLoading={data == null}
+  />
+</Card>
+```
+
+### Suspense fallback
+
+```tsx
+<DataGrid
+  isLoading
+  headers={['username', 'email', 'phone', 'jobTitle']}
+  sortableHeaders={['username', 'email', 'phone']}
+  searchInputPlaceholder="Enter Username, Email, First name or Job Title"
+/>
+```
+
+### Advanced
+
+:::info
+
+**Recommended** usage with Zod, React Hook Form and React Router.
+
+:::
+
+```tsx
+export default function Page({ loaderData }: Route.ComponentProps) {
+  const navigation = useNavigation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  // react-hook-form and zod URL params validation and default values
+  const [filters] = useSearchParamsForm(UserListFiltersSchema);
+
+  return (
+    <DataGrid
+      hasActions
+      data={loaderData.users}
+      totalRecords={loaderData.totalRecords}
+      isLoading={navigation.state === 'loading'}
+      headers={['username', 'email', 'phone', 'jobTitle']}
+      sortableHeaders={['username', 'email', 'phone']}
+      searchInputPlaceholder="Enter Username, Email, First name or Job Title"
+      searchParams={searchParams}
+      setSearchParams={setSearchParams}
+      getFilterValues={() => filters.getValues()}
+      onResetFilters={() => filters.reset()}
+      filters={
+        // react-hook-form provider
+        <FormProvider {...filters}>
+          <ActiveUserFilter />
+        </FormProvider>
+      }
+      renderRow={rowData => (
+        <DataGridRow
+          key={rowData.id}
+          {...rowData}
+          username={
+            <Button element={Link} variant="link" size="sm" to="/admin">
+              {rowData.username}
+            </Button>
+          }
+          actions={<UserRowActions userId={rowData.id} />}
+        />
+      )}
+    />
+  );
+}
+```

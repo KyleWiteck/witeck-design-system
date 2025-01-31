@@ -1,0 +1,65 @@
+---
+title: Sprinkles
+sidebar_position: 2
+---
+
+import { Box } from '@peopleticker/magnit-design/components';
+import {
+  ColorsTable,
+  ShortHandsTable,
+  SpacingTable,
+  SprinklesTable
+} from '@site/src/components/SprinkleDocs';
+
+They are the foundation of the Magnit Design System's styling props, providing a
+set of predefined style values and enabling TS-friendly IntelliSense.
+
+`Sprinkles` are the core building blocks of the styling system throughout the
+entire design library. They define the available style props and their values,
+providing a highly flexible and extensible approach to styling components. Since
+they are pre-defined, they also provide a type-safe environment for developers
+using TypeScript.
+
+To learn more about the design library sprinkles and how they work, you can
+refer to the
+[vanilla-extract documentation](https://vanilla-extract.style/documentation/packages/sprinkles/).
+
+:::info
+
+What you see below includes the default theme variables. Some **Sprinkles** are
+based on these theme variables. Due to this, the reflecting values can be
+altered with different css values, but the prop values will remain consistent.
+
+:::
+
+## Colors
+
+<ColorsTable />
+
+## Spacing
+
+All rem values were based on `16px` which is the standard browser default pixel
+size. (Calculation for px size: rem \* 16)
+
+<SpacingTable />
+
+## Shorthand Sprinkles props
+
+These props simplify styling by providing shorter, more intuitive names for
+commonly used CSS properties. Some shorthand props apply a value to multiple
+related CSS properties, while others are simplified aliases for single
+properties.
+
+```tsx live
+function Shorthand() {
+  return (
+    <Box paddingX="20" ratio="16:9" bg="primary" height="20" shadow="base" />
+  );
+}
+```
+
+<ShortHandsTable />
+
+## Sprinkles props
+
+<SprinklesTable />

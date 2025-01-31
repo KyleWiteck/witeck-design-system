@@ -1,0 +1,107 @@
+---
+title: Installation & Configuration
+sidebar_position: 2
+description: Learn how to install and configure Magnit Design in your projects.
+---
+
+Contact PayIntel to request access to `@peopleticker/magnit-design` GitHub
+Package Registry.
+
+## Setup Process
+
+### 1. Request Access
+
+Contact PayIntel to get repository access.
+
+### 2. Create GitHub Personal Access Token
+
+1. Go to GitHub account settings
+2. Navigate to Developer settings → Personal access tokens
+3. Click "Generate new token"
+4. Select `write:packages` scope
+5. Generate and save the token securely
+
+### 3. Configure Environment Variables
+
+**For Mac/Linux:**
+
+Zsh users:
+
+```bash
+# Add to ~/.zshrc
+export GITHUB_USERNAME=your_github_username
+export TOKEN_MAGNIT_DESIGN=your_personal_access_token
+
+# Apply changes
+source ~/.zshrc
+```
+
+Bash users:
+
+```bash
+# Add to ~/.bashrc
+export GITHUB_USERNAME=your_github_username
+export TOKEN_MAGNIT_DESIGN=your_personal_access_token
+
+# Apply changes
+source ~/.bashrc
+```
+
+**For Windows:**
+
+1. Open System Properties (Win + Pause)
+2. Click "Environment Variables"
+3. Under "User variables" click "New"
+4. Add:
+
+   ```
+   Variable: GITHUB_USERNAME
+   Value: your_github_username
+
+   Variable: TOKEN_MAGNIT_DESIGN
+   Value: your_personal_access_token
+   ```
+
+5. Click OK and restart your terminal
+
+For Windows Git Bash:
+
+```bash
+# Add to ~/.bash_profile
+export GITHUB_USERNAME=your_github_username
+export TOKEN_MAGNIT_DESIGN=your_personal_access_token
+
+# Apply changes
+source ~/.bash_profile
+```
+
+### 4. GitHub NPM Registry Authentication
+
+```bash
+npm login --registry=https://npm.pkg.github.com/
+```
+
+Use:
+
+- Username: Your GitHub username (Your handle)
+- Password: Your Personal Access Token
+- Email: Your GitHub email
+
+### 5. Installation
+
+```bash
+npm install @peopleticker/magnit-design
+```
+
+## Usage
+
+```tsx
+import { Box, Stack, Text } from '@peopleticker/magnit-design/components';
+```
+
+:::tip Getting Help If you encounter access issues:
+
+1. Confirm PayIntel has granted access
+2. Verify your token has `write:packages` scope
+3. Check environment variables are set correctly
+4. Contact PayIntel support for assistance :::

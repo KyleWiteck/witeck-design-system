@@ -1,0 +1,83 @@
+import { PropsTable } from '@site/src/components/PropsTable';
+
+Polymorphic React Component that forms the foundation of our design components.
+By default, it renders as a `div` element, making it a flexible starting point
+for designing and laying out content.
+
+## Usage
+
+You can use the `Box` component in your React applications by importing it from
+the library.
+
+```tsx
+import { Box } from '@peopleticker/magnit-design/components';
+
+<Box padding="4">{/* Content goes here */}</Box>;
+```
+
+Once imported, you can use the `Box` component to style your content with a vast
+majority of style properties out of the box.
+
+## Props
+
+<PropsTable />
+
+## Styling Basics
+
+This accepts a wide range of style properties out of the box, making it highly
+versatile for layout and design:
+
+```tsx live
+<Box padding="8" border="2px" borderColor="primary">
+  <Box backgroundColor="primary" height="20" />
+</Box>
+```
+
+Click here for more on
+[styling basics](/docs/guides/styles-and-theming/style-basics)
+
+## The element prop
+
+The `element` prop is a powerful feature that allows you to customize the type
+of HTML element rendered by a component. By default, the Box component renders a
+`<div>` tag. However, with the `element` prop, you can easily change the
+rendered element to any other valid HTML element while still retaining the
+functionality and prop styles of the component. Most components in the framework
+inherit this prop from the **Box** component, as it serves as the core building
+block for all primitive components.
+
+```tsx live
+<Box element="section" padding="8" backgroundColor="primary">
+  <Stack element="article" backgroundColor="white" padding="8">
+    <Button
+      element="a"
+      variant="outlined"
+      href="/magnit-design/docs/guides/components/box#the-element-prop"
+    >
+      Button Link
+    </Button>
+  </Stack>
+</Box>
+```
+
+By leveraging the **element** prop, you can easily control the element types
+rendered by your components, enabling you to create the desired structure and
+semantics for your web application.
+
+In addition, you can also pass components. For example, you can use the as prop
+of the `Button` component to render a
+[react-router link](https://reactrouter.com/en/main/components/link) by passing
+in a **Link** component. Please note that this approach works for components
+that return a React ElementType and support a className prop.
+
+```tsx
+import { Link } from 'react-router-dom';
+
+function HomepageLink() {
+  return (
+    <Button variant="link" element={Link} to="/">
+      This is a ReactRouter link back to home
+    </Button>
+  );
+}
+```

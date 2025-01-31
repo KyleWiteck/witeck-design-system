@@ -1,0 +1,89 @@
+import {
+  Box,
+  Button,
+  Flex,
+  Footer
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A fixed footer component with responsive padding and consistent styling.
+
+## Props
+
+<PropsTable
+  defaultElement="footer"
+  omitSprinkles={['width', 'height', 'element']}
+/>
+
+## Basic Usage
+
+```tsx live
+<Footer>
+  <Text marginBottom="0">© 2024 Company Name</Text>
+</Footer>
+```
+
+## With Navigation
+
+```tsx live
+<Footer>
+  <Flex justify="space-between" alignItems="center" width="full">
+    <Text marginBottom="0">© 2024 Company Name</Text>
+    <Flex gap="4">
+      <Button variant="text">Privacy</Button>
+      <Button variant="text">Terms</Button>
+      <Button variant="text">Contact</Button>
+    </Flex>
+  </Flex>
+</Footer>
+```
+
+## With Multiple Rows
+
+```tsx live
+<Footer>
+  <Flex direction="column" width="full" gap="2">
+    <Flex justify="space-between">
+      <Text marginBottom="0">Company Name</Text>
+      <Text marginBottom="0">Contact Us</Text>
+    </Flex>
+    <Flex justify="space-between">
+      <Text marginBottom="0">© 2024 All Rights Reserved</Text>
+      <Text marginBottom="0">Privacy Policy</Text>
+    </Flex>
+  </Flex>
+</Footer>
+```
+
+## Technical Details
+
+- Renders as `<footer>` element
+- Full width by default
+- Responsive padding
+  ([Sprinkles Spacing]('/docs/guides/styles-and-theming/sprinkles')):
+  - Mobile: 3
+  - Tablet: 6
+  - Desktop: 8
+- Fixed minimum height (13,
+  [Sprinkles Spacing]('/docs/guides/styles-and-theming/sprinkles'))
+- Top border with theme color
+- White background
+- Centered alignment
+- Best to place as the last child in the
+  [GlobalLayout]('/docs/guides/components/globalLayout) component's children
+  prop
+- By design, it's not a fixed footer since fixed footers limit the viewport
+- It's best to let the footer overflow in the page
+
+## Semantic Guidelines
+
+1. Global Level:
+
+- The `<footer>` at the global level typically contains site-wide information,
+  such as copyright notices, navigation links, or contact details.
+
+2. Section Level:
+
+- A `<footer>` inside a `<section>`, `<article>`, or `<aside>` represents footer
+  content specific to that section, such as author information, related links,
+  or a call to action.

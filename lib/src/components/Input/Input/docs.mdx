@@ -1,0 +1,197 @@
+import Link from '@docusaurus/Link';
+import {
+  CalloutMessage,
+  Flex,
+  IconsByName,
+  Input,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { FormDepCallout } from '@site/src/components/FormDepCallout';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A flexible input component that supports icons, various sizes, and states with
+full TypeScript support.
+
+<FormDepCallout />
+
+## Usage
+
+```tsx
+import { Input } from '@peopleticker/magnit-design/components';
+
+// Basic usage
+<Input placeholder="Enter text" />;
+```
+
+## Props
+
+<PropsTable
+  defaultElement="input"
+  omitSprinkles={['PaddingCSSPropertiesUnion']}
+  componentSpecificProps={[
+    {
+      name: 'variant',
+      type: '"outlined" | "ghosted" | "custom" | undefined',
+      default: 'outlined',
+      description: 'Visual style variant of the input'
+    },
+    {
+      name: 'size',
+      type: '"sm" | "md" | "lg" | "custom"',
+      default: 'md',
+      description: 'Controls input size and padding'
+    },
+    {
+      name: 'hasError',
+      type: 'boolean',
+      default: 'false',
+      description: 'Applies error styling'
+    },
+    {
+      name: 'leftIcon',
+      type: 'ReactNode',
+      default: 'undefined',
+      description: 'Icon element displayed on the left'
+    },
+    {
+      name: 'rightIcon',
+      type: 'ReactNode',
+      default: 'undefined',
+      description: 'Icon element displayed on the right'
+    },
+    {
+      name: 'leftIconContainerProps',
+      type: 'BoxProps<"div">',
+      default: 'undefined',
+      description: (
+        <Text>
+          Props for left icon container{' '}
+          <Link to="/docs/guides/components/box">More on `BoxProps`</Link>
+        </Text>
+      )
+    },
+    {
+      name: 'rightIconContainerProps',
+      type: 'BoxProps<"div">',
+      default: 'undefined',
+      description: (
+        <Text>
+          Props for right icon container{' '}
+          <Link to="/docs/guides/components/box">More on `BoxProps`</Link>
+        </Text>
+      )
+    },
+    {
+      name: 'containerElement',
+      type: 'ElementType',
+      default: 'div',
+      description: 'Element type for the container'
+    }
+  ]}
+/>
+
+## Basic Examples
+
+```tsx live
+<Flex gap="4" direction="column">
+  <Input placeholder="Default input" />
+  <Input size="sm" placeholder="Small input" />
+  <Input size="lg" placeholder="Large input" />
+  <Input disabled placeholder="Disabled input" />
+  <Input hasError placeholder="Input with error" />
+  <Input readOnly value="Read only input" />
+</Flex>
+```
+
+## With Icons
+
+```tsx live
+function InputWithIcons() {
+  return (
+    <Flex gap="4" direction="column">
+      <Input leftIcon={<IconsByName name="Search" />} placeholder="Search..." />
+      <Input
+        leftIcon={<IconsByName name="Mail" color="error" />}
+        rightIcon={<IconsByName name="Error" color="error" />}
+        hasError
+        placeholder="Invalid email"
+      />
+    </Flex>
+  );
+}
+```
+
+## Simple Form Integration
+
+```tsx live
+function FormExample() {
+  const [value, setValue] = useState('');
+
+  return (
+    <Stack
+      element="form"
+      gap="6"
+      onSubmit={() => alert('Form submitted ' + value)}
+      width="full"
+    >
+      <Stack gap="4">
+        <FormField label="Name" htmlFor="name" required>
+          <Input
+            id="name"
+            value={value}
+            onChange={e => setValue(e.target.value)}
+            placeholder="Enter your name"
+            autoComplete="name"
+            width="full"
+          />
+        </FormField>
+        <FormField label="Email" htmlFor="email" required>
+          <Input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            autoComplete="email"
+          />
+        </FormField>
+      </Stack>
+
+      <Flex justifyContent="flex-end">
+        <Button type="submit">Submit</Button>
+      </Flex>
+    </Stack>
+  );
+}
+```
+
+## Best Practices
+
+- Use appropriate size variants for different contexts
+- Include clear placeholder text
+- Apply error states for form validation
+- Use with the [FormField](/docs/guides/components/formField) component to keep
+  labeling consistent.
+- Use icons sparingly and ensure they add value
+- Maintain consistent width within forms
+- Consider mobile input types
+- Use autoComplete for better UX
+
+## Accessibility
+
+The Input component includes:
+
+- Proper ARIA attributes
+- Keyboard navigation
+- Clear focus states
+- Error state handling
+- Disabled state handling
+- Label association support
+
+## Technical Considerations
+
+- Polymorphic component support
+- Automatic padding adjustment for icons
+- Responsive width handling
+- Memory-optimized with React.memo
+- Ref forwarding support
+- TypeScript autocompletion for autoComplete values
+- Box-sizing consistency

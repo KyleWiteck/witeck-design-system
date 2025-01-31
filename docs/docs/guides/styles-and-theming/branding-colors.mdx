@@ -1,0 +1,81 @@
+---
+title: Brand Color Customization
+description: Learn how to customize brand colors in Magnit Design
+sidebar_position: 4
+---
+
+import { Box, Flex } from '@peopleticker/magnit-design/components';
+
+## Default Colors
+
+<Flex gap="2" marginX="2">
+  <Box border="1px" borderColor="neutral200" padding="2" width="80">
+    <Box background="primary" width="full" height="40" />
+    <Box marginTop="0.5">
+      <code>--primary__color</code>
+      <br />
+      <code>#293F96</code>
+    </Box>
+  </Box>
+</Flex>
+
+## Customization Methods
+
+### Static (CSS)
+
+```css
+/* styles/theme.css */
+:root {
+  --primary__color: #ff0000; /* Override default #293F96 */
+}
+```
+
+### CSS Module
+
+```css
+/* styles/theme.module.css */
+.theme {
+  --primary__color: #ff0000;
+}
+```
+
+### Runtime (JavaScript)
+
+```typescript
+// Override primary color
+document.documentElement.style.setProperty('--primary__color', '#FF0000');
+
+// Reset to default
+document.documentElement.style.removeProperty('--primary__color');
+```
+
+### React Component
+
+```tsx
+function BrandThemeProvider({ primaryColor, children }) {
+  useEffect(() => {
+    if (primaryColor) {
+      document.documentElement.style.setProperty(
+        '--primary__color',
+        primaryColor
+      );
+    }
+    return () =>
+      document.documentElement.style.removeProperty('--primary__color');
+  }, [primaryColor]);
+
+  return children;
+}
+```
+
+:::info Default Values
+
+- Primary color defaults to `#293F96` when not overridden
+- Secondary color customization is planned for future releases :::
+
+:::tip Best Practices
+
+- Use CSS files for static brand colors
+- Use JavaScript for dynamic theme changes
+- Set colors at root level
+- Test color contrast for accessibility :::

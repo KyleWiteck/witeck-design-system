@@ -1,0 +1,96 @@
+import { Flex, NumberTag } from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+The NumberTag component is a small, rounded badge used to display concise
+information, such as counts or statuses. It supports customizable styles,
+including background color and padding variants, making it ideal for
+highlighting notifications, tags, or other key data points in a compact format.
+
+## Usage
+
+Import the NumberTag component to display numbers:
+
+```tsx
+import { NumberTag } from '@peopleticker/magnit-design/components';
+
+<NumberTag>42</NumberTag>
+<NumberTag variant="slim" backgroundColor="success">7</NumberTag>
+```
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  omitSprinkles={['backgroundColor', 'color', 'borderRadius']}
+  componentSpecificProps={[
+    {
+      name: 'variant',
+      type: '"slim" | "fat" | undefined',
+      default: 'fat',
+      description:
+        'Controls the size of the tag, with options for "slim" or "fat"'
+    }
+  ]}
+/>
+
+## Variants
+
+The NumberTag component offers two variants for displaying numbers:
+
+1. **Fat (default)**: More pronounced, padded number badge
+2. **Slim**: Compact version with reduced padding
+
+```tsx live
+<Flex gap="2">
+  <NumberTag>42</NumberTag>
+  <NumberTag variant="slim">7</NumberTag>
+</Flex>
+```
+
+## Background Colors
+
+Customize the background color for your numeric badges:
+
+```tsx live
+<Flex gap="2">
+  <NumberTag>5</NumberTag>
+  <NumberTag backgroundColor="success">12</NumberTag>
+  <NumberTag backgroundColor="error">3</NumberTag>
+  <NumberTag backgroundColor="warning">9</NumberTag>
+</Flex>
+```
+
+## Typical Use Cases
+
+The NumberTag was designed to be used for displaying:
+
+- Unread notification counts
+- Pending item numbers
+- Badge counts (e.g., messages)
+- Numeric status indicators
+
+## Positioning Numeric Badges
+
+A common use is positioning the NumberTag on top of another element, such as
+displaying a count on a notifications button:
+
+```tsx live
+<Button position="relative" width="12" variant="text">
+  <Icons.Notifications color="inherit" />
+  <NumberTag
+    variant="slim"
+    position="absolute"
+    backgroundColor="error"
+    style={{ top: '0px', right: '0px' }}
+  >
+    5
+  </NumberTag>
+</Button>
+```
+
+## Best Practices
+
+- Use NumberTags to display short numeric values
+- Choose background colors that draw attention to the number
+- Ensure the number is easily readable
+- Limit to single or double-digit numbers

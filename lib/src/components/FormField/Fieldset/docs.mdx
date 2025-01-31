@@ -1,0 +1,209 @@
+import {
+  Box,
+  Button,
+  Checkbox,
+  Fieldset,
+  IconsByName,
+  Radio
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A form field grouping component that provides accessible labeling and error
+handling.
+
+## Props
+
+<PropsTable
+  defaultElement="fieldset"
+  componentSpecificProps={[
+    {
+      name: 'label',
+      required: true,
+      type: 'string',
+      default: 'undefined',
+      description: 'Legend text for the fieldset'
+    },
+    {
+      name: 'hideLabel',
+      type: 'boolean',
+      default: 'false',
+      description: 'Visually hides label while maintaining accessibility'
+    },
+    {
+      name: 'required',
+      type: 'boolean',
+      default: 'false',
+      description: 'Marks the fieldset as required'
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      default: 'false',
+      description: 'Disables all form elements within the fieldset'
+    },
+    {
+      name: 'helperText',
+      type: 'string',
+      default: 'undefined',
+      description: 'Additional help text below the label'
+    },
+    {
+      name: 'hintText',
+      type: 'string',
+      default: 'undefined',
+      description: 'Hint text displayed below the form elements'
+    },
+    {
+      name: 'errorMessage',
+      type: 'string',
+      default: 'undefined',
+      description: 'Error message to display'
+    },
+    {
+      name: 'labelRightSideContent',
+      type: 'ReactNode',
+      default: 'undefined',
+      description: 'Content to display on the right side of the label'
+    },
+    {
+      name: 'disableErrorScrolling',
+      type: 'boolean',
+      default: 'false',
+      description: 'Disables automatic scrolling to error messages'
+    }
+  ]}
+/>
+
+## Basic Example
+
+```tsx
+import { Fieldset, Flex, Radio } from '@peopleticker/magnit-design/components';
+
+<Fieldset
+  label="Preferred Contact Method"
+  required
+  helperText="Select how you would like to be contacted"
+>
+  <Flex direction="column" gap="2">
+    <Radio name="contact" value="email" label="Email" />
+    <Radio name="contact" value="phone" label="Phone" />
+    <Radio name="contact" value="mail" label="Mail" />
+  </Flex>
+</Fieldset>;
+```
+
+## With Checkboxes
+
+```tsx live
+<Fieldset
+  label="Notification Preferences"
+  helperText="Choose which notifications you'd like to receive"
+>
+  <Flex direction="column" gap="2">
+    <Checkbox name="notifications" value="email" label="Email updates" />
+    <Checkbox name="notifications" value="sms" label="SMS alerts" />
+    <Checkbox name="notifications" value="push" label="Push notifications" />
+  </Flex>
+</Fieldset>
+```
+
+## With Error State
+
+```tsx live
+<Fieldset
+  label="Delivery Options"
+  required
+  errorMessage="Please select a delivery method"
+>
+  <Flex direction="column" gap="2">
+    <Radio
+      name="delivery"
+      value="standard"
+      label="Standard Shipping (3-5 days)"
+    />
+    <Radio
+      name="delivery"
+      value="express"
+      label="Express Shipping (1-2 days)"
+    />
+    <Radio name="delivery" value="overnight" label="Overnight Delivery" />
+  </Flex>
+</Fieldset>
+```
+
+## With Custom Label Content
+
+```tsx live
+<Fieldset
+  label="Privacy Settings"
+  labelRightSideContent={<IconsByName name="Gear" marginLeft="2" />}
+>
+  <Flex direction="column" gap="2">
+    <Checkbox name="privacy" value="profile" label="Public profile" />
+    <Checkbox name="privacy" value="email" label="Show email" />
+    <Checkbox
+      name="privacy"
+      value="activity"
+      label="Activity visible to others"
+    />
+  </Flex>
+</Fieldset>
+```
+
+## Disabled State
+
+```tsx live
+<Fieldset
+  label="Account Type"
+  disabled
+  helperText="Contact admin to change account type"
+>
+  <Flex direction="column" gap="2">
+    <Radio name="account" value="basic" label="Basic" />
+    <Radio name="account" value="pro" label="Professional" />
+    <Radio name="account" value="enterprise" label="Enterprise" />
+  </Flex>
+</Fieldset>
+```
+
+## Technical Details
+
+### Accessibility
+
+- Uses semantic `<fieldset>` and `<legend>` HTML elements
+- Supports screen readers through proper ARIA attributes
+- Maintains keyboard navigation
+- Provides error messaging support
+- Allows visually hidden labels
+
+### Best Practices
+
+1. Use for Related Controls
+
+   - Group related radio buttons
+   - Group related checkboxes
+   - Do not use for unrelated form controls
+
+2. Clear Labels
+
+   - Use descriptive legend text
+   - Include helper text when needed
+   - Make error messages actionable
+
+3. Form Structure
+
+   - Maintain consistent spacing
+   - Use appropriate gap between controls
+   - Consider mobile viewports
+
+4. Error Handling
+   - Display clear error messages
+   - Use error states appropriately
+   - Consider error message placement
+
+### CSS Styling
+
+- Removes default fieldset border
+- Maintains consistent spacing
+- Handles responsive layouts
+- Manages disabled states

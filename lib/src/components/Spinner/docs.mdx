@@ -1,0 +1,103 @@
+import Link from '@docusaurus/Link';
+import {
+  Card,
+  Center,
+  Flex,
+  Spinner,
+  Stack,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+Loading indicator component with customizable size and color variants. Built for
+consistent loading states across the application. Best used when `Skeleton`
+component is not a good use case.
+
+## Usage
+
+```tsx
+import { Spinner } from '@peopleticker/magnit-design/components';
+
+<Spinner size="md" color="primary" />;
+```
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  hideElementProp
+  componentSpecificProps={[
+    {
+      name: 'size',
+      type: '"sm" | "md" | "lg" | "xl" | "custom" | undefined',
+      default: 'md',
+      description: 'Spinner size variant'
+    },
+    {
+      name: 'color',
+      type: 'string',
+      default: 'primary',
+      description: 'Spinner color'
+    }
+  ]}
+/>
+
+## Size Variants
+
+```tsx live
+function SpinnerSizes() {
+  return (
+    <Flex gap="4" alignItems="center">
+      <Spinner size="sm" />
+      <Spinner size="md" />
+      <Spinner size="lg" />
+    </Flex>
+  );
+}
+```
+
+## Color Variants
+
+```tsx live
+function SpinnerColors() {
+  return (
+    <Flex gap="4" alignItems="center">
+      <Spinner color="primary" />
+      <Spinner color="success" />
+      <Spinner color="error" />
+      <Spinner color="warning" />
+    </Flex>
+  );
+}
+```
+
+## Load Screen
+
+```tsx live
+function SpinnerColors() {
+  return (
+    <Box width="full" height="100">
+      <Center height="full" width="full" gap="4" backgroundColor="neutral100">
+        <Stack margin="auto" height="fitContent" width="fitContent">
+          <Spinner size="lg" margin="auto" />
+          <Text textAlign="center">Loading...</Text>
+        </Stack>
+      </Center>
+    </Box>
+  );
+}
+```
+
+## Best Practices
+
+- Use consistent sizes within similar contexts
+- Match spinner color to surrounding elements
+- Provide loading text for accessibility
+- Maintain balanced spacing
+
+## Technical Details
+
+- CSS animation-based rotation
+- Center component alignment
+- Accessible loading state
+- Minimal performance impact

@@ -1,0 +1,108 @@
+import {
+  Box,
+  Drawer,
+  FullHeightFixedContainer,
+  PageContainer
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A container component that maintains full viewport height minus a fixed header,
+with support for inline drawers.
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  omitSprinkles={['HeightCSSProperties', 'OverflowCSSPropertiesUnion']}
+  componentSpecificProps={[
+    {
+      name: 'headerHeight',
+      type: 'number',
+      default: '72',
+      description: 'Height of the fixed header in pixels'
+    },
+    {
+      name: 'inlineDrawer',
+      type: 'ReactNode',
+      default: 'undefined',
+      description:
+        'Content for inline drawer, typically used with inlinePageExpandToggle variant'
+    }
+  ]}
+/>
+
+## Basic Usage
+
+```tsx
+import { FullHeightFixedContainer } from '@peopleticker/magnit-design/components';
+
+<FullHeightFixedContainer>
+  <PageContainer padding="4">Content</PageContainer>
+</FullHeightFixedContainer>;
+```
+
+## With Custom Header Height
+
+```tsx live
+<FullHeightFixedContainer headerHeight={100}>
+  <PageContainer padding="4" backgroundColor="neutral200">
+    Content with 100px header height
+  </PageContainer>
+</FullHeightFixedContainer>
+```
+
+## With Inline Drawer
+
+```tsx live
+function DrawerExample() {
+  const disclosure = useDisclosure();
+
+  return (
+    <FullHeightFixedContainer
+      inlineDrawer={
+        <Drawer variant="inlinePageExpandToggle" width={300} {...disclosure}>
+          Drawer Content
+        </Drawer>
+      }
+    >
+      <PageContainer padding="4">Main Content</PageContainer>
+    </FullHeightFixedContainer>
+  );
+}
+```
+
+## With Scrollable Content
+
+```tsx live
+<FullHeightFixedContainer>
+  <PageContainer padding="4">
+    {Array.from({ length: 20 }).map((_, i) => (
+      <Box
+        key={i + 1}
+        padding="4"
+        backgroundColor="neutral500"
+        marginBottom="4"
+      >
+        Scrollable Content {i + 1}
+      </Box>
+    ))}
+  </PageContainer>
+</FullHeightFixedContainer>
+```
+
+## Technical Details
+
+- Calculates height using `calc(100vh - headerHeight)`
+- Maintains scrollable content area
+- Handles overflow automatically
+- Supports inline drawer placement
+- Full width by default
+- Preserves nested component layout
+
+## Best Practices
+
+- Set appropriate header height
+- Handle content overflow correctly
+- Use with fixed headers
+- Consider mobile viewports
+- Manage drawer transitions properly

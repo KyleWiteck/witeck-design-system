@@ -1,0 +1,341 @@
+import {
+  Button,
+  ButtonDropdownWrapper,
+  Chip,
+  Fieldset,
+  Flex,
+  Icons,
+  Stack
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+# Chip Component
+
+A versatile chip component that supports multiple variants, states, and
+interactive features. Chips can be used to display compact information, tags,
+filters, or interactive elements with optional count badges and removal
+capabilities.
+
+## Usage
+
+Import the Chip component from the library:
+
+```tsx
+import { Chip } from '@peopleticker/magnit-design/components';
+
+// Basic usage
+<Chip>Basic Chip</Chip>;
+```
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  omitSprinkles={[
+    'backgroundColor',
+    'color',
+    'borderRadius',
+    'variant',
+    'borderColor',
+    'border',
+    'element',
+    'ref',
+    'PaddingCSSPropertiesUnion'
+  ]}
+  componentSpecificProps={[
+    {
+      name: 'variant',
+      type: '"slim" | "default"',
+      default: 'default',
+      description: 'Controls the size and padding of the chip.'
+    },
+    {
+      name: 'colorVariant',
+      type: '"default" | "yellow" | "red" | "cyan" | "indigo" | "green" | "custom"',
+      default: 'default',
+      description: 'Determines the color scheme of the chip.'
+    },
+    {
+      name: 'checked',
+      type: 'boolean',
+      default: 'false',
+      description: 'Shows a checkmark icon when true.'
+    },
+    {
+      name: 'removable',
+      type: 'boolean',
+      default: 'false',
+      description:
+        'Converts the Chip to a button component. Requires onClick prop.'
+    },
+    {
+      name: 'count',
+      type: 'number | string',
+      default: 'undefined',
+      description: 'Displays a count badge.'
+    },
+    {
+      name: 'hasError',
+      type: 'boolean',
+      default: 'false',
+      description: 'Applies error styling.'
+    },
+    {
+      name: 'isActive',
+      type: 'boolean',
+      default: 'false',
+      description: 'Applies active state styling.'
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      default: 'false',
+      description: 'Disables the chip and applies disabled styling.'
+    },
+    {
+      name: 'isButton',
+      type: 'boolean',
+      default: 'false',
+      description: 'Forces button styling even without onClick.'
+    },
+    {
+      name: 'postCountIcon',
+      type: 'ReactNode',
+      default: 'undefined',
+      description: 'Icon displayed after the count badge.'
+    }
+  ]}
+/>
+
+## Basic Examples
+
+```tsx live
+<Flex gap="2" flexWrap="wrap">
+  <Chip>Default Chip</Chip>
+  <Chip variant="slim">Slim Chip</Chip>
+  <Chip checked>Checked Chip</Chip>
+  <Chip disabled>Disabled Chip</Chip>
+  <Chip isActive>Active Chip</Chip>
+  <Chip hasError>Error Chip</Chip>
+</Flex>
+```
+
+## Interactive Chips
+
+```tsx live
+function InteractiveChips() {
+  const [selected, setSelected] = useState<string[]>(['Software Engineer']);
+
+  const toggleChip = (value: string) => {
+    setSelected(prev =>
+      prev.includes(value) ? prev.filter(v => v !== value) : [...prev, value]
+    );
+  };
+
+  return (
+    <Flex gap="2" flexWrap="wrap">
+      {['Software Engineer', 'Nurse', 'Analyst'].map(jobTitle => (
+        <Chip
+          key={jobTitle}
+          onClick={() => toggleChip(jobTitle)}
+          checked={selected.includes(jobTitle)}
+          isActive={selected.includes(jobTitle)}
+        >
+          {jobTitle}
+        </Chip>
+      ))}
+    </Flex>
+  );
+}
+```
+
+## With Count Badge
+
+```tsx live
+<Flex gap="2" flexWrap="wrap">
+  <Chip count={5}>New Items</Chip>
+  <Chip count="99+" isActive>
+    Active Items
+  </Chip>
+  <Chip count={3} hasError>
+    Error Items
+  </Chip>
+  <Chip count={8} disabled>
+    Disabled Items
+  </Chip>
+</Flex>
+```
+
+## Removable Chips
+
+```tsx live
+function RemovableChips() {
+  const defaults = ['Tag 1', 'Tag 2', 'Tag 3'];
+  const [chips, setChips] = useState(defaults);
+
+  return (
+    <Flex gap="2" flexWrap="wrap">
+      {chips.length !== defaults.length && (
+        <Button variant="text" onClick={() => setChips(defaults)}>
+          Restore
+        </Button>
+      )}
+      {chips.map(chip => (
+        <Chip
+          key={chip}
+          removable
+          onClick={() => setChips(prev => prev.filter(c => c !== chip))}
+        >
+          {chip}
+        </Chip>
+      ))}
+    </Flex>
+  );
+}
+```
+
+## As Radio Buttons
+
+```tsx live
+function FilterChips() {
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+  return (
+    <Flex gap="2" flexWrap="wrap">
+      {['All', 'Active', 'Completed'].map(filter => (
+        <Chip
+          key={filter}
+          onClick={() =>
+            setActiveFilter(filter === activeFilter ? null : filter)
+          }
+          isActive={filter === activeFilter}
+          variant="slim"
+        >
+          {filter}
+        </Chip>
+      ))}
+    </Flex>
+  );
+}
+```
+
+## As Radio Buttons
+
+```tsx live
+function FilterChips() {
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+  return (
+    <Flex gap="2" flexWrap="wrap">
+      {['All', 'Active', 'Completed'].map(filter => (
+        <Chip
+          key={filter}
+          onClick={() =>
+            setActiveFilter(filter === activeFilter ? null : filter)
+          }
+          isActive={filter === activeFilter}
+          variant="slim"
+        >
+          {filter}
+        </Chip>
+      ))}
+    </Flex>
+  );
+}
+```
+
+## As dropdown filter Buttons
+
+```tsx live
+function FilterChips() {
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  console.log('activeFilter', activeFilter);
+
+  return (
+    <ButtonDropdownWrapper
+      button={
+        <Chip
+          removeArrow
+          isButton
+          isActive={!!activeFilter}
+          removable={!!activeFilter}
+          flexDirection="row"
+          postCountIcon={!activeFilter && <Icons.ArrowDropDown boxSize="2" />}
+          variant="slim"
+          gap="3"
+        >
+          Sort by
+        </Chip>
+      }
+      dropdownProps={{ paddingX: '0.5' }}
+      dropdownContent={
+        <Stack minWidth="40" paddingX="3" padding="1">
+          <Fieldset label="Options">
+            {['Option 1', 'Option 2', 'Option 3'].map(option => (
+              <Radio
+                key={option}
+                id={option}
+                name="filter"
+                value={option}
+                checked={selectedOption === option}
+                onChange={() => setSelectedOption(option)}
+                label={option}
+              />
+            ))}
+          </Fieldset>
+          <Flex gap="2" justifyContent="space-between">
+            <Button
+              variant="text"
+              size="sm"
+              onClick={() => {
+                setSelectedOption(null);
+                setActiveFilter(null);
+              }}
+            >
+              Clear filter
+            </Button>
+            <Button size="sm" onClick={() => setActiveFilter(selectedOption)}>
+              Apply Filter
+            </Button>
+          </Flex>
+        </Stack>
+      }
+    />
+  );
+}
+```
+
+## Best Practices
+
+- Use consistent variants within the same context
+- Provide clear click handlers for interactive chips
+- Consider mobile touch targets when using slim variant
+- Use count badges sparingly and only when meaningful
+- Maintain adequate spacing between multiple chips
+- Use appropriate color variants for different states
+- Ensure removable chips have proper error handling
+
+## Accessibility
+
+The Chip component includes several accessibility features:
+
+- Proper role attribution (button when interactive)
+- Keyboard navigation support
+- Disabled state handling
+- Clear visual states
+- Adequate contrast ratios
+- Proper focus management
+- Touch-friendly target sizes
+
+## Technical Considerations
+
+- Requires onClick when removable is true
+- Automatically handles cursor styles
+- Supports polymorphic elements
+- Memoized for performance
+- Proper overflow handling
+- Consistent spacing with gap utility
+- Flexible width handling
+- Proper icon alignment
+- Supports forwarded refs

@@ -1,0 +1,105 @@
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A collapsible panel that helps organize content into sections. It is
+**accessible, animated, and customizable**, making it ideal for **FAQs, settings
+panels, and content toggles**.
+
+It supports:
+
+- Dynamic expansion/collapse with animation
+- Keyboard accessibility
+- Customizable sizes and title elements
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  componentSpecificProps={[
+    {
+      name: 'title',
+      required: true,
+      type: 'ReactNode',
+      description: 'The clickable heading of the accordion.'
+    },
+    {
+      name: 'size',
+      default: '"base"',
+      type: '"base" | "small"',
+      description: 'Adjusts title, padding, and icon size.'
+    },
+    {
+      name: 'defaultOpen',
+      default: 'false',
+      type: 'boolean',
+      description: 'Whether the accordion starts open.'
+    },
+    {
+      name: 'titleElement',
+      default: '"h3"',
+      type: '"h2" | "h3" | "h4" | "h5"',
+      description: 'Sets the HTML element for the title.'
+    },
+    {
+      name: 'buttonProps',
+      default: '{}',
+      type: 'ButtonProps',
+      description: 'Props passed to the trigger button.'
+    },
+
+]} />
+
+## How to Use
+
+### Basic Example
+
+By default, the **content is hidden** and expands when clicked, To start with an
+**expanded section**, use `defaultOpen`.
+
+Accordions function independently, allowing users to **open multiple sections**.
+
+```tsx live
+<Accordion title="Accordion Base">
+  <Stack gap="6">
+    <Text>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur itaque
+      aut inventore recusandae perspiciatis unde ab modi minus hic quam ducimus,
+      aliquam nam doloremque eius explicabo consectetur odit porro aperiam.
+    </Text>
+    <Text>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur itaque
+      aut inventore recusandae perspiciatis unde ab modi minus hic quam ducimus,
+      aliquam nam doloremque eius explicabo consectetur odit porro aperiam.
+    </Text>
+  </Stack>
+</Accordion>
+```
+
+### Custom Styling
+
+```tsx live
+<Accordion
+  title="Custom Styling"
+  size="small"
+  backgroundColor="neutral100"
+  borderColor="border2"
+>
+  <Text>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur itaque aut
+    inventore recusandae perspiciatis unde ab modi minus hic quam ducimus,
+    aliquam nam doloremque eius explicabo consectetur odit porro aperiam.
+  </Text>
+</Accordion>
+```
+
+## Keyboard & Accessibility Features
+
+- **Enter / Space**: Toggles the accordion.
+- **Tab Key**: Navigate between multiple accordions.
+- **ARIA Attributes** ensure screen reader support.
+
+## Best Practices
+
+- Use meaningful `title` labels.
+- Maintain logical heading structure with `titleElement`.
+- Avoid nesting accordions within each other.
+- Keep content concise inside the accordion.

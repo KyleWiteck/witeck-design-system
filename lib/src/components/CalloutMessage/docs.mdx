@@ -1,0 +1,187 @@
+import Link from '@docusaurus/Link';
+import {
+  Button,
+  CalloutMessage,
+  Flex,
+  IconsByName,
+  Stack,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A versatile alert component that provides contextual feedback messages with
+different variants for error, warning, info, and success states. Each variant
+includes an appropriate icon and background color, with optional close
+functionality.
+
+## Usage
+
+Import the CalloutMessage component from the library:
+
+```tsx
+import { CalloutMessage } from '@peopleticker/magnit-design/components';
+
+// Basic usage
+<CalloutMessage>This is an info message</CalloutMessage>;
+```
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  omitSprinkles={[
+    'backgroundColor',
+    'color',
+    'borderRadius',
+    'children',
+    'onClick',
+    'cursor',
+    'PaddingCSSPropertiesUnion'
+  ]}
+  componentSpecificProps={[
+    {
+      name: 'variant',
+      type: '"error" | "warning" | "info" | "success" | undefined',
+      default: 'info',
+      description:
+        'Determines the visual style and icon of the callout message.'
+    },
+    {
+      name: 'iconProps',
+      type: 'Omit<IconProps, "color"> | undefined',
+      default: 'undefined',
+      description: (
+        <Text element="span" variant="inherit">
+          Props to customize the status icon appearance (except color).{' '}
+          <Link to="/guides/components/icons">More on IconProps</Link>
+        </Text>
+      )
+    },
+    {
+      name: 'onCloseClick',
+      type: '() => void | undefined',
+      default: 'undefined',
+      description:
+        'A callback function that is triggered when the close button is clicked. If this function is provided, a close button will be displayed in the callout message, and clicking it will invoke the function.'
+    }
+  ]}
+/>
+
+## Variants
+
+All available CalloutMessage variants:
+
+```tsx live
+<Stack>
+  <CalloutMessage variant="info">
+    This is an informational message
+  </CalloutMessage>
+
+  <CalloutMessage variant="success">
+    Operation completed successfully
+  </CalloutMessage>
+
+  <CalloutMessage variant="warning">
+    Please review before proceeding
+  </CalloutMessage>
+
+  <CalloutMessage variant="error">
+    An error occurred while processing your request
+  </CalloutMessage>
+</Stack>
+```
+
+## With Close Button
+
+Add a close button with the onCloseClick prop:
+
+```tsx live
+function ClosableExample() {
+  const [isVisible, setIsVisible] = useState(true);
+
+  if (!isVisible) return null;
+
+  return (
+    <CalloutMessage variant="info" onCloseClick={() => setIsVisible(false)}>
+      Click the X to dismiss this message
+    </CalloutMessage>
+  );
+}
+```
+
+## Custom Icon Sizing
+
+Customize the icon size using iconProps:
+
+<CalloutMessage variant="warning">
+  Not recommended. When going against design systems base styles. It is always
+  best to check with the design team first.
+</CalloutMessage>
+####
+
+```tsx live
+<Flex direction="column" gap="4">
+  <CalloutMessage variant="success" iconProps={{ boxSize: '6' }}>
+    Message with larger icon
+  </CalloutMessage>
+
+  <CalloutMessage variant="warning" iconProps={{ boxSize: '2' }}>
+    Message with smaller icon
+  </CalloutMessage>
+</Flex>
+```
+
+## With Rich Content
+
+CalloutMessage supports rich content including links and formatting:
+
+```tsx live
+<CalloutMessage variant="info">
+  <Flex direction="column" gap="2">
+    <Text fontWeight="bold">Important Update</Text>
+    <Text>
+      Please review our updated{' '}
+      <Button
+        element="a"
+        href="https://magnitglobal.com/"
+        variant="link"
+        target="_blank"
+        rel="noopener noreferrer"
+        textProps={{ variant: 'caption' }}
+      >
+        terms of service
+      </Button>
+    </Text>
+    <Text fontSize="xs">Effective from: January 1, 2024</Text>
+  </Flex>
+</CalloutMessage>
+```
+
+## Best Practices
+
+- Use appropriate variants to match the message context
+- Keep messages clear and concise
+- Include actionable information when relevant
+- Use consistent styling across your application
+- Consider mobile responsiveness when adding rich content
+
+## Accessibility
+
+The CalloutMessage component includes several accessibility features:
+
+- Uses semantic HTML with appropriate ARIA roles
+- Includes `role="alert"` for important messages
+- Uses `aria-live="assertive"` for screen readers
+- Maintains sufficient color contrast for all variants
+- Close button includes aria-label
+- Interactive elements are keyboard accessible
+
+## Technical Considerations
+
+- Component is memoized for performance
+- Supports forwarded refs
+- Automatically handles icon colors based on variant
+- Supports custom styling through Box props
+- Maintains consistent padding and spacing
+- Hover effects only applied when closable
+- Minimum width enforced for better readability

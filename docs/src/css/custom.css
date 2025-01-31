@@ -1,0 +1,131 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #293e96;
+  --ifm-color-primary-dark: #253887;
+  --ifm-color-primary-darker: #233580;
+  --ifm-color-primary-darkest: #1d2b69;
+  --ifm-color-primary-light: #2d44a5;
+  --ifm-color-primary-lighter: #2f47ad;
+  --ifm-color-primary-lightest: #3551c3;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.2);
+  --ifm-code-font-size: 100%;
+  --ifm-table-cell-padding: 0.5rem 1.5rem;
+}
+
+main {
+  background-color: #fcfcfc;
+}
+
+table.sprinkles-table > tbody > tr {
+  background-color: transparent;
+}
+
+table {
+  width: fit-content;
+  border-right: var(--ifm-table-border-width) solid var(--ifm-table-border-color);
+  border-left: var(--ifm-table-border-width) solid var(--ifm-table-border-color);
+  border-bottom: var(--ifm-table-border-width) solid var(--ifm-table-border-color);
+}
+
+table tr td,
+table tr th {
+  border: none;
+}
+
+table.sprinkles-table table {
+  width: 100%;
+  margin: 0;
+  border: none;
+}
+
+table.sprinkles-table table tbody {
+  display: table;
+  width: 100%;
+  border-left: var(--ifm-table-border-width) solid var(--ifm-table-border-color);
+}
+
+table.sprinkles-table table tbody tr:first-child {
+  border-top: none;
+}
+
+table.sprinkles-table tbody tr td.border-right {
+  border-right: var(--ifm-table-border-width) solid var(--ifm-table-border-color);
+}
+
+main .markdown p code,
+main .markdown ul code,
+main .markdown ol code {
+  background-color: var(--ifm-color-primary);
+  padding: 3px 6px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  font-size: 90%;
+}
+
+main .markdown a {
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+}
+
+article .breadcrumbs .breadcrumbs__link {
+  background-color: white;
+  border: 1px solid #e3e5e8;
+}
+
+article .markdown pre code,
+article .markdown pre code span {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace !important;
+}
+
+.navbar__title {
+  color: #293e96;
+}
+
+.navbar__logo img {
+  width: 30px;
+  height: 30px;
+}
+
+.navbar__logo {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  align-items: center;
+}
+
+.navbar__link {
+  color: #293e96;
+}
+
+.navbar__link:hover {
+  color: #1d2b69;
+}
+
+.callout p {
+  margin: 0;
+}
+
+/* Used to prevent docs adding margins to live preview Text components*/
+[class*='playgroundContainer'] p,
+[class*='playgroundContainer'] h1,
+[class*='playgroundContainer'] h2,
+[class*='playgroundContainer'] h3,
+[class*='playgroundContainer'] h4,
+[class*='playgroundContainer'] h5,
+[class*='playgroundContainer'] h6,
+[class*='playgroundContainer'] span {
+  margin: 0;
+}
+
+.drawer-floating-toggle-button {
+  z-index: 1;
+}
+
+@import '@peopleticker/magnit-design/global.css';

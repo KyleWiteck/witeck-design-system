@@ -1,0 +1,145 @@
+Provides a **radio-group** style selection where users can choose a single
+option from a set. It is **accessible, keyboard-friendly, and customizable**,
+making it ideal for **switching between mutually exclusive options** such as
+file formats, display modes, or filters.
+
+It consists of:
+
+- **`ToggleButtonGroup`**: Wraps the buttons, ensuring correct behavior and
+  accessibility.
+- **`ToggleButton`**: Represents an individual toggle option within the group.
+
+## How to Use
+
+### Basic Example
+
+```tsx live
+<ToggleButtonGroup name="basic" size="md">
+  <ToggleButton value="excel" defaultChecked>
+    Microsoft Excel
+  </ToggleButton>
+  <ToggleButton value="csv">Comma Separated Values</ToggleButton>
+</ToggleButtonGroup>
+```
+
+Here, **one button is always selected**, ensuring a clear and enforced choice.If
+you don't need to manage state externally, `defaultChecked` ensures an initial
+selection.
+
+### Controlled Toggle Group
+
+For external state management, use the `checked` prop and `onChange` handler:
+
+```tsx live
+function Demo() {
+  const [selectedFormat, setSelectedFormat] = useState('excel');
+  return (
+    <ToggleButtonGroup name="controlled">
+      <ToggleButton
+        checked={selectedFormat === 'excel'}
+        onChange={() => setSelectedFormat('excel')}
+      >
+        Microsoft Excel
+      </ToggleButton>
+      <ToggleButton
+        checked={selectedFormat === 'csv'}
+        onChange={() => setSelectedFormat('csv')}
+      >
+        CSV
+      </ToggleButton>
+    </ToggleButtonGroup>
+  );
+}
+```
+
+This allows **dynamic state updates** and can be **linked to external
+controls**.
+
+### Dynamic Toggle Options
+
+Generate options dynamically from an array:
+
+```tsx live
+function Demo() {
+  const fileTypes = [
+    { id: 'excel', label: 'Microsoft Excel' },
+    { id: 'csv', label: 'CSV' }
+  ];
+
+  return (
+    <ToggleButtonGroup name="dynamic">
+      {fileTypes.map(({ id, label }, idx) => (
+        <ToggleButton key={id} value={id} defaultChecked={idx === 1}>
+          {label}
+        </ToggleButton>
+      ))}
+    </ToggleButtonGroup>
+  );
+}
+```
+
+This simplifies **scalability** and **code maintenance**.
+
+## Props Overview
+
+### ToggleButtonGroup
+
+Defines a container for multiple `ToggleButton` components.
+
+| Prop        | Type                                                                | Description                                     |
+| ----------- | ------------------------------------------------------------------- | ----------------------------------------------- |
+| `name`      | `string`                                                            | Unique group name (required for accessibility). |
+| `size`      | `'sm' \| 'md'`                                                      | Adjusts button padding and text size.           |
+| `fullWidth` | `boolean` _(default: false)_                                        | Expands buttons to fit container width.         |
+| `disabled`  | `boolean` _(optional)_                                              | Disables all buttons in the group.              |
+| `onChange`  | `(event: React.ChangeEvent<HTMLInputElement>) => void` _(optional)_ | Fires when a selection changes.                 |
+
+### ToggleButton
+
+Represents an interactive option inside `ToggleButtonGroup`.
+
+| Prop             | Type                                                                | Description                                     |
+| ---------------- | ------------------------------------------------------------------- | ----------------------------------------------- |
+| `checked`        | `boolean` _(optional)_                                              | Controls button selection state.                |
+| `defaultChecked` | `boolean` _(optional)_                                              | Sets initial selection for uncontrolled groups. |
+| `onChange`       | `(event: React.ChangeEvent<HTMLInputElement>) => void` _(optional)_ | Fires when clicked.                             |
+| `name`           | `string` _(optional)_                                               | Overrides inherited group name.                 |
+| `disabled`       | `boolean` _(optional)_                                              | Disables individual button.                     |
+
+## Disabling Buttons
+
+Disable the entire group:
+
+```tsx
+<ToggleButtonGroup name="format" disabled>
+  <ToggleButton checked>PDF</ToggleButton>
+  <ToggleButton>DOCX</ToggleButton>
+</ToggleButtonGroup>
+```
+
+Or disable specific options:
+
+```tsx
+<ToggleButtonGroup name="format">
+  <ToggleButton checked>PDF</ToggleButton>
+  <ToggleButton disabled>DOCX (Unavailable)</ToggleButton>
+</ToggleButtonGroup>
+```
+
+This prevents users from selecting **restricted options**.
+
+## Keyboard Navigation
+
+- **Arrow keys (`←`, `→`, `↑`, `↓`)**: Navigate between buttons.
+- **Enter/Space**: Selects the focused option.
+
+This ensures full **keyboard accessibility**.
+
+## Best Practices
+
+- Always provide a `name` for accessibility.
+- Ensure one option is **always selected**.
+- Prefer `checked` for **controlled** state management.
+- Use `defaultChecked` for simpler **uncontrolled** groups.
+- Implement `onChange` to update external states.
+- Dynamically generate options where possible.

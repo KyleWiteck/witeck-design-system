@@ -1,0 +1,159 @@
+import Link from '@docusaurus/Link';
+import {
+  Button,
+  IconsByName,
+  ReactNodeStringHandler,
+  Stack
+} from '@peopleticker/magnit-design/components';
+import { FormDepCallout } from '@site/src/components/FormDepCallout';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+Select component offering traditional dropdown functionality with enhanced
+features like multi-select, custom option rendering, and keyboard navigation.
+Built on Input primitives with full ARIA support and portal-based positioning.
+
+<FormDepCallout />
+
+## Usage
+
+```tsx
+import { Select } from '@peopleticker/magnit-design/components';
+
+<Select
+  options={options}
+  optionIdKey="id"
+  onSelect={handleSelect}
+  renderOptionLabel={option => option.label}
+/>;
+```
+
+## Props
+
+<PropsTable
+  defaultElement="button"
+  componentSpecificProps={[
+    {
+      name: 'options',
+      type: 'SelectOption[]',
+      description: 'Available selection options'
+    },
+    {
+      name: 'optionIdKey',
+      type: 'string',
+      required: true,
+      description: 'Unique identifier key for options'
+    },
+    {
+      name: 'isMultiSelectable',
+      type: 'boolean',
+      default: 'false',
+      description: 'Enable multiple selection support'
+    },
+    {
+      name: 'onSelect',
+      type: '(option: SelectOption) => void',
+      required: true,
+      description: 'Selection handler'
+    },
+    {
+      name: 'onRemove',
+      type: '(option: SelectOption) => void',
+      description: 'Removal handler for multi-select'
+    },
+    {
+      name: 'renderOptionLabel',
+      type: '(option: SelectOption, props: TextProps) => ReactNode',
+      required: true,
+      description: 'Option renderer'
+    },
+    {
+      name: 'value',
+      type: 'SelectOption | SelectOption[]',
+      description: 'Selected value(s)'
+    },
+    {
+      name: 'selectButtonProps',
+      type: 'SelectTriggerProps<"button">',
+      description: 'Props for select button element'
+    }
+  ]}
+/>
+
+## Single Select Example
+
+```tsx live
+function SingleSelectExample() {
+  const [selected, setSelected] = useState(null);
+
+  const options = [
+    { id: '1', name: 'Option 1' },
+    { id: '2', name: 'Option 2' },
+    { id: '3', name: 'Option 3' }
+  ];
+
+  return (
+    <FormField label="Select Option">
+      <Select
+        value={selected}
+        options={options}
+        optionIdKey="id"
+        placeholder="Choose an option"
+        onSelect={setSelected}
+        renderOptionLabel={option => (
+          <SelectOptionLabel>{option.name}</SelectOptionLabel>
+        )}
+      />
+    </FormField>
+  );
+}
+```
+
+## Multi-Select Example
+
+```tsx live
+function MultiSelectExample() {
+  const [selected, setSelected] = useState([]);
+
+  const categories = [
+    { id: '1', name: 'Electronics', count: 45 },
+    { id: '2', name: 'Books', count: 32 },
+    { id: '3', name: 'Games', count: 21 }
+  ];
+
+  return (
+    <FormField label="Select Categories">
+      <Select
+        value={selected}
+        options={categories}
+        optionIdKey="id"
+        isMultiSelectable
+        placeholder="Choose categories"
+        onSelect={cat => setSelected([...selected, cat])}
+        onRemove={cat => setSelected(selected.filter(c => c.id !== cat.id))}
+        renderOptionLabel={cat => (
+          <SelectOptionLabel display="flex" justifyContent="space-between">
+            <span>{cat.name}</span>
+            <Chip variant="slim">{cat.count}</Chip>
+          </SelectOptionLabel>
+        )}
+      />
+    </FormField>
+  );
+}
+```
+
+## Best Practices
+
+- Use meaningful optionIdKey values
+- Handle multi-select state appropriately
+- Provide clear placeholder text
+- Ensure keyboard navigation
+- Consider mobile interactions
+
+## Technical Details
+
+- Built on Input component
+- React Portal for dropdown
+- ARIA compliant
+- Focus management
+- Keyboard navigation

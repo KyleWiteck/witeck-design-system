@@ -1,0 +1,188 @@
+import Link from '@docusaurus/Link';
+import {
+  Button,
+  Flex,
+  IconsByName,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A highly flexible, polymorphic button component that supports multiple variants,
+sizes, and customization options. It provides built-in support for loading
+states, icons, and adaptive styling across different use cases.
+
+## Usage
+
+Import the Button component from the library:
+
+```tsx
+import { Button } from '@peopleticker/magnit-design/components';
+
+// Basic button
+<Button>Click me</Button>
+
+// Button with variant and size
+<Button variant="primary" size="lg">Large Button</Button>
+```
+
+## Props
+
+<PropsTable
+  defaultElement="button"
+  omitSprinkles={['padding']}
+  componentSpecificProps={[
+    {
+      name: 'variant',
+      type: '"error" | "primary" | "link" | "nav" | "text" | "outlined" | "custom" | "errorText" | "errorOutlined" | "subNav" | undefined',
+      default: 'primary',
+      description:
+        'Use to apply a specific predefined visual styles to the button, such as different colors and borders.'
+    },
+    {
+      name: 'disabled',
+      type: 'boolean | undefined',
+      default: 'false',
+      description: 'Use to disable the button'
+    },
+    {
+      name: 'isLoading',
+      type: 'boolean | undefined',
+      default: 'false',
+      description: 'Use to show a loader on the button'
+    },
+    {
+      name: 'textProps',
+      type: 'Omit<ReactNodeStringHandlerProps, "element"> | undefined',
+      default: 'false',
+      description: (
+        <Text element="span" variant="inherit">
+          Provides custom styles and settings for the button's text content.{' '}
+          <Link to="/guides/components/reactNodeStringHandler">
+            More on ReactNodeStringHandlerProps
+          </Link>
+        </Text>
+      )
+    },
+    {
+      name: 'icon',
+      type: 'ReactNode | undefined',
+      default: 'undefined',
+      description: "Displays an icon alongside the button's text content."
+    },
+    {
+      name: 'isHighlighted',
+      type: 'boolean | undefined',
+      default: 'undefined',
+      description:
+        'Highlights the button if set to true, applying specific styles.'
+    },
+    {
+      name: 'loadingText',
+      type: 'string | undefined',
+      default: 'undefined',
+      description: 'Text displayed when the button is in a loading state.'
+    }
+  ]}
+/>
+
+## Variants
+
+The Button component supports different visual styles and sizes:
+
+```tsx live
+<Flex gap="2" alignItems="center" flexWrap="wrap">
+  <Button variant="primary">Primary</Button>
+  <Button variant="outlined">Outlined</Button>
+  <Button variant="text">Text</Button>
+  <Button variant="errortext">Error Text</Button>
+  <Button variant="error">Error</Button>
+  <Button variant="errorOutlined">Error Outlined</Button>
+  <Button variant="nav">Nav</Button>
+  <Button variant="subNav">Sub Nav</Button>
+  <Button variant="link">Link</Button>
+</Flex>
+```
+
+## Sizes
+
+Available button sizes:
+
+```tsx live
+<Flex gap="2" alignItems="center">
+  <Button size="sm">Small</Button>
+  <Button size="md">Medium</Button>
+  <Button size="lg">Large</Button>
+  <Button size="square">Square</Button>
+</Flex>
+```
+
+## Loading State
+
+Buttons can show a loading state with optional loading text:
+
+```tsx live
+<Flex gap="2" alignItems="center">
+  <Button isLoading>Loading</Button>
+  <Button isLoading loadingText="Processing...">
+    With Loading Text
+  </Button>
+</Flex>
+```
+
+## Icons
+
+Easily add icons to buttons:
+
+```tsx live
+<Flex gap="2">
+  <Button icon={<Icons.ArrowRight />}>With Left Icon</Button>
+  <Button icon={<Icons.ArrowRight />} flexDirection="row-reverse">
+    With Right Icon
+  </Button>
+</Flex>
+```
+
+## Polymorphic Capabilities
+
+The Button can render as different HTML elements:
+
+```tsx live
+<Button
+  element="a"
+  href="https://magnitglobal.com/"
+  variant="link"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Link Button
+</Button>
+```
+
+## Disabled State
+
+```tsx live
+<Flex gap="2" alignItems="center">
+  <Button disabled>Disabled Button</Button>
+  <Button disabled isLoading>
+    Disabled Loading
+  </Button>
+</Flex>
+```
+
+## Best Practices
+
+- Use appropriate variants for different contexts
+- Use icons to help enhance Visual UX.
+  [Recommended External Icons](https://fonts.google.com/icons)
+- Maintain consistent sizing across your application
+- Use loading states to provide feedback during async actions
+- Leverage the polymorphic nature for semantic HTML
+- Be consistent with icon placement and sizing, Recomended to use
+  [Sprinkles prop `boxSize`](/docs/guides/styles-and-theming/sprinkles#spacing)
+  (keeps `height` and `width` in sync) of `4` or `5` depending on the icon.
+
+## Accessibility
+
+- Automatically handles `disabled` state
+- Supports `type` prop for form interactions
+- Maintains proper cursor and pointer events

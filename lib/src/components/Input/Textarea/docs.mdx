@@ -1,0 +1,122 @@
+import {
+  CalloutMessage,
+  Flex,
+  IconsByName,
+  Textarea
+} from '@peopleticker/magnit-design/components';
+import { FormDepCallout } from '@site/src/components/FormDepCallout';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A versatile textarea component with support for multiple variants and states.
+
+<FormDepCallout />
+
+## Usage
+
+```tsx
+import { Textarea } from '@peopleticker/magnit-design/components';
+
+// Basic usage
+<Textarea placeholder="Enter text" />;
+```
+
+## Props
+
+<PropsTable
+  defaultElement="textarea"
+  hideElementProp
+  hideChildren
+  omitSprinkles={['PaddingCSSPropertiesUnion']}
+  componentSpecificProps={[
+    {
+      name: 'variant',
+      type: '"outlined" | "ghosted" | "custom"',
+      default: 'outlined',
+      description: 'Visual style variant of the textarea'
+    },
+    {
+      name: 'size',
+      type: '"sm" | "md" | "lg" | "custom"',
+      default: 'md',
+      description: 'Controls textarea size and padding'
+    },
+    {
+      name: 'hasError',
+      type: 'boolean',
+      default: 'false',
+      description: 'Applies error styling'
+    }
+  ]}
+/>
+
+## Basic Examples
+
+```tsx live
+<Flex gap="4" direction="column">
+  <Textarea placeholder="Default textarea" />
+  <Textarea size="sm" placeholder="Small textarea" />
+  <Textarea size="lg" placeholder="Large textarea" />
+  <Textarea disabled placeholder="Disabled textarea" />
+  <Textarea hasError placeholder="Textarea with error" />
+  <Textarea readOnly value="Read only textarea" />
+</Flex>
+```
+
+## Form Integration
+
+```tsx live
+function FormExample() {
+  const [value, setValue] = useState('');
+
+  return (
+    <Stack
+      element="form"
+      gap="6"
+      onSubmit={() => alert('Form submitted ' + value)}
+      width="full"
+    >
+      <FormField label="Message" htmlFor="message" required>
+        <Textarea
+          id="message"
+          value={value}
+          onChange={e => setValue(e.target.value)}
+          placeholder="Enter your message"
+          rows={4}
+        />
+      </FormField>
+
+      <Flex justifyContent="flex-end">
+        <Button type="submit">Submit</Button>
+      </Flex>
+    </Stack>
+  );
+}
+```
+
+## Best Practices
+
+- Use appropriate size variants for different contexts
+- Include clear placeholder text
+- Apply error states for form validation
+- Use with the [FormField](/docs/guides/components/formField) component to keep
+- Consider rows/cols attributes for initial sizing
+- Maintain consistent width within forms
+- Use resize property when needed
+
+## Accessibility
+
+- Proper ARIA attributes
+- Keyboard navigation
+- Clear focus states
+- Error state announcements
+- Disabled state handling
+- Label association support
+
+## Technical Considerations
+
+- Automatic padding adjustment based on size
+- Memory-optimized with React.memo
+- Ref forwarding support
+- Box-sizing consistency
+- Line height optimization
+- Full-width by default

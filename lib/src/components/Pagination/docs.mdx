@@ -1,0 +1,126 @@
+import Link from '@docusaurus/Link';
+import {
+  Card,
+  Flex,
+  Footer,
+  PageContainer,
+  Stack,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+Navigation component for handling data pagination with two variants: simple and
+standard.
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  componentSpecificProps={[
+    {
+      name: 'variant',
+      type: '"simple" | "standard"',
+      default: 'standard',
+      description: 'Determines pagination UI style'
+    },
+    {
+      name: 'totalItems',
+      type: 'number | string',
+      required: true,
+      description: 'Total number of items'
+    },
+    {
+      name: 'itemsPerPage',
+      type: 'number | string',
+      required: true,
+      description: 'Items shown per page'
+    },
+    {
+      name: 'currentPage',
+      type: 'number',
+      required: true,
+      description: 'Current active page'
+    },
+    {
+      name: 'onPageChange',
+      type: '(newPage: number) => void',
+      required: true,
+      description: 'Page change handler'
+    },
+    {
+      name: 'itemsPerPageOptions',
+      type: 'number[]',
+      default: '[10, 20, 30, 50, 100]',
+      description: 'Available page size options (standard variant only)'
+    },
+    {
+      name: 'onItemsPerPageChange',
+      type: '(itemsPerPage: number) => void',
+      description: 'Page size change handler (standard variant only)'
+    },
+    {
+      name: 'selectSize',
+      type: 'SelectProps["size"]',
+      required: true,
+      description: 'Size of select elements'
+    }
+  ]}
+/>
+
+## Simple Variant
+
+```tsx live
+function SimplePagination() {
+  const [page, setPage] = useState(1);
+
+  return (
+    <Pagination
+      variant="simple"
+      currentPage={page}
+      totalItems={100}
+      itemsPerPage={10}
+      selectSize="md"
+      onPageChange={setPage}
+    />
+  );
+}
+```
+
+## Standard Variant
+
+```tsx live
+function StandardPagination() {
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
+  return (
+    <Pagination
+      currentPage={page}
+      totalItems={100}
+      itemsPerPage={pageSize}
+      selectSize="md"
+      onPageChange={setPage}
+      onItemsPerPageChange={setPageSize}
+      itemsPerPageOptions={[10, 20, 50]}
+    />
+  );
+}
+```
+
+## Best Practices
+
+- Use `simple` variant for basic navigation needs
+- Use `standard` for advanced control with page size options
+- Keep `itemsPerPageOptions` reasonable (3-5 choices)
+- Ensure `totalItems` reflects actual data count
+- Handle loading states appropriately
+- Consider mobile viewport constraints
+
+## Technical Details
+
+- Calculates page counts automatically
+- Handles string/number type conversion
+- Validates page boundaries
+- Memoizes calculations for performance
+- Supports keyboard navigation
+- RTL-compatible arrow controls

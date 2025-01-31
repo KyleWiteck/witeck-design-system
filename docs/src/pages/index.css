@@ -1,0 +1,15 @@
+/* Override global-css from theme */
+
+.hero * {
+  margin: 0;
+}
+
+.hero a.primary:hover {
+  text-decoration: unset;
+  color: white;
+}
+
+.hero a.outlined:hover {
+  text-decoration: unset;
+  color: var(--ifm-color-primary);
+}

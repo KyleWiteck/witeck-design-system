@@ -1,0 +1,77 @@
+import {
+  Button,
+  Center,
+  Flex,
+  Header,
+  IconsByName,
+  Stack,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { IconsDemo } from '@site/src/components/IconsDemo';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A set of icons that are used internally in the design system and exposed for use
+in external applications. It is based around the
+[Box< 'svg' >](/docs/guides/components/box) component.
+
+## Usage
+
+Our icons are built with ES Modules, so it's completely tree-shakable.
+
+Each icon can be imported as a React component, which renders an inline SVG
+element. This way, only the icons that are imported into your project are
+included in the final bundle. The rest of the icons are tree-shaken away.
+
+:::warning
+
+`Icons` and `IconsByName` are deprecated and will be removed in a future
+release.
+
+:::
+
+```tsx
+import { UserIcon } from '@peopleticker/magnit-design/icons';
+
+function Example() {
+  return (
+    <Stack>
+      // boxSize combines height and width into a single prop
+      <UserIcon boxSize="5" />
+    </Stack>
+  );
+}
+```
+
+## Props
+
+<PropsTable defaultElement="svg" omitSprinkles={['element']} />
+
+## All Available Icons
+
+<IconsDemo />
+
+## Styling an Icon
+
+```tsx live
+<NotificationsIcon
+  color="primary"
+  width={{ mobile: '22', desktop: '36' }}
+  height={{ mobile: 'auto', desktop: 'full' }}
+  role="img"
+  alt="Notifications"
+/>
+```
+
+## Technical Details
+
+- Leverages `forwardRef` to handle forwarded refs in on the icons.
+- Loads multiple SVG icons as React components from a defined folder structure.
+- Supports customizable `height`, `width`, and `boxSize` (defaults to
+  [Sprinkles Spacing](/docs/guides/styles-and-theming/sprinkles#Spacing) of `5`)
+  props. Also supports all
+  [Sprinkles](/docs/guides/styles-and-theming/sprinkles) that the
+  [Box](/docs/guides/components/box) component support as an `svg` element.
+- All icons are built with ES Modules, so it's completely tree-shakable.
+- Ensures icons inherit colors using `currentColor` and removes fixed SVG
+  dimensions.
+- Implements custom types for icon properties and components.

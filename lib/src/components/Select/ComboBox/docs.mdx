@@ -1,0 +1,250 @@
+import Link from '@docusaurus/Link';
+import {
+  Card,
+  Chip,
+  ComboBox,
+  Flex,
+  FormField,
+  IconsByName,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { FormDepCallout } from '@site/src/components/FormDepCallout';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+Searchable select component with single/multi-select support, customizable
+option rendering, and keyboard navigation. Features built-in search filtering,
+placeholder management, and clear selection controls.
+
+<FormDepCallout />
+
+## Usage
+
+```tsx
+import { ComboBox } from '@peopleticker/magnit-design/components';
+
+<ComboBox
+  options={options}
+  optionIdKey="id"
+  onSelect={handleSelect}
+  onFilterChange={handleFilter}
+  renderOptionLabel={option => option.label}
+/>;
+```
+
+## Props
+
+<PropsTable
+  defaultElement="input"
+  componentSpecificProps={[
+    {
+      name: 'options',
+      type: 'SelectOption[]',
+      description: 'Available selection options'
+    },
+    {
+      name: 'optionIdKey',
+      type: 'string',
+      required: true,
+      description: 'Unique identifier key for options'
+    },
+    {
+      name: 'isMultiSelectable',
+      type: 'boolean',
+      default: 'false',
+      description: 'Enable multiple selection support'
+    },
+    {
+      name: 'onSelect',
+      type: '(option: SelectOption) => void',
+      required: true,
+      description: 'Selection handler'
+    },
+    {
+      name: 'onRemove',
+      type: '(option: SelectOption) => void',
+      description: 'Removal handler for multi-select'
+    },
+    {
+      name: 'onFilterChange',
+      type: '(value: string) => void',
+      required: true,
+      description: 'Search input handler'
+    },
+    {
+      name: 'renderOptionLabel',
+      type: '(option: SelectOption, props: TextProps) => ReactNode',
+      required: true,
+      description: 'Option renderer'
+    },
+    {
+      name: 'value',
+      type: 'SelectOption | SelectOption[]',
+      description: 'Selected value(s)'
+    },
+    {
+      name: 'hasMultiSelectScrollBox',
+      type: 'boolean',
+      description: 'Enables scrollable selected items container'
+    },
+    {
+      name: 'portalElementOverride',
+      type: 'Element | DocumentFragment | null',
+      description: 'Custom portal container'
+    }
+  ]}
+/>
+
+## Tag Selection Example
+
+```tsx live
+function TagSelectExample() {
+  const [selected, setSelected] = useState([]);
+  const [search, setSearch] = useState('');
+
+  const tags = [
+    { id: '1', name: 'Engineering' },
+    { id: '2', name: 'Design' },
+    { id: '3', name: 'Product' }
+  ];
+
+  return (
+    <FormField label="Select Tags" htmlFor="tags">
+      <ComboBox
+        id="tags"
+        value={selected}
+        optionIdKey="id"
+        options={tags.filter(tag =>
+          tag.name.toLowerCase().includes(search.toLowerCase())
+        )}
+        isMultiSelectable
+        onSelect={tag => setSelected([...selected, tag])}
+        onRemove={tag => setSelected(selected.filter(t => t.id !== tag.id))}
+        onFilterChange={setSearch}
+        placeholder="Search tags..."
+        renderOptionLabel={tag => (
+          <SelectOptionLabel>
+            <Chip variant="slim">{tag.name}</Chip>
+          </SelectOptionLabel>
+        )}
+      />
+    </FormField>
+  );
+}
+```
+
+## Location Select with Async Search Example
+
+```tsx live
+function LocationSelectExample() {
+  const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [selected, setSelected] = useState(null);
+  const [locations, setLocations] = useState([
+    { id: '1', name: 'New York', countryCode: 'US' },
+    { id: '2', name: 'London', countryCode: 'GB' },
+    { id: '3', name: 'Tokyo', countryCode: 'JP' }
+  ]);
+
+  const handleSearch = async value => {
+    console.log(value);
+
+    setLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setLocations(prev =>
+      prev.filter(loc => loc.name.toLowerCase().includes(value.toLowerCase()))
+    );
+    setLoading(false);
+  };
+
+  return (
+    <ComboBox
+      value={selected}
+      options={locations}
+      optionIdKey="id"
+      isLoading={loading}
+      placeholder="Search locations..."
+      onSelect={setSelected}
+      onFilterChange={handleSearch}
+      renderOptionLabel={location => (
+        <SelectOptionLabel gap="2">{location.name}</SelectOptionLabel>
+      )}
+    />
+  );
+}
+```
+
+## Multi-Select with Validation Example
+
+```tsx live
+function SkillsSelectExample() {
+  const [selected, setSelected] = useState([]);
+  const jobTitles = [
+    { id: '1', title: 'Frontend Developer', level: 'Mid-Level' },
+    { id: '2', title: 'Full-Stack Engineer', level: 'Junior' },
+    { id: '3', title: 'UI/UX Designer', level: 'Senior' },
+    { id: '4', title: 'Backend Developer', level: 'Mid-Level' },
+    { id: '5', title: 'DevOps Engineer', level: 'Senior' }
+  ];
+
+  const handleSelect = skill => {
+    if (selected.length < 3) {
+      setSelected([...selected, skill]);
+    }
+  };
+
+  return (
+    <FormField
+      label="Select Job Titles"
+      helperText="Select up to 3 job titles"
+      hasError={selected.length >= 3}
+      errorMessage={
+        selected.length >= 3 ? 'Length must be greater then 2' : undefined
+      }
+    >
+      <ComboBox
+        value={selected}
+        options={jobTitles}
+        optionIdKey="id"
+        isMultiSelectable
+        hasError={selected.length >= 3}
+        placeholder="Search job titles..."
+        onSelect={handleSelect}
+        onRemove={jobTitles =>
+          setSelected(selected.filter(s => s.id !== jobTitles.id))
+        }
+        hasMultiSelectScrollBox
+        renderOptionLabel={jobTitles => (
+          <SelectOptionLabel
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <span>{jobTitles.title}</span>
+            <Chip variant="slim">{jobTitles.level}</Chip>
+          </SelectOptionLabel>
+        )}
+      />
+    </FormField>
+  );
+}
+```
+
+## Best Practices
+
+- Implement debounced search for large datasets
+- Handle asynchronous loading states
+- Provide clear error messages and no-results state
+- Use consistent optionIdKey across related selects
+- Ensure keyboard navigation support
+- Cache filtered results when possible
+- Test with screen readers
+
+## Technical Details
+
+- Built on Popper.js for positioning
+- Uses React Portals for dropdown
+- Supports custom option rendering
+- Full keyboard navigation
+- Automatic state management
+- ARIA compliant
+- Performant filtering

@@ -1,0 +1,158 @@
+import Link from '@docusaurus/Link';
+import {
+  Box,
+  Button,
+  Flex,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A utility component that centers its children both horizontally and vertically
+using Flexbox. This polymorphic component simplifies layout management by
+automatically applying centering styles while supporting custom element types.
+
+## Usage
+
+Import the Center component from the library:
+
+```tsx
+import { Center } from '@peopleticker/magnit-design/components';
+
+// Basic usage
+<Center>
+  <Text>Centered content</Text>
+</Center>;
+```
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  omitSprinkles={['display', 'alignItems', 'justifyContent']}
+/>
+
+The Center component accepts all Box props except for `display`, `alignItems`,
+and `justifyContent` which are used internally for centering.
+
+## Basic Example
+
+```tsx live
+<Center height="40" backgroundColor="neutral200">
+  <Text>Centered Content</Text>
+</Center>
+```
+
+## With Different Elements
+
+```tsx live
+<Flex direction="column" gap="4">
+  <Center
+    element="section"
+    height="40"
+    width="full"
+    backgroundColor="primary100"
+  >
+    <Text>As a section element</Text>
+  </Center>
+
+  <Center element="article" height="40" width="full" backgroundColor="success">
+    <Text>As an article element</Text>
+  </Center>
+</Flex>
+```
+
+## Centering Multiple Items
+
+```tsx live
+<Center height="40" gap="4" backgroundColor="neutral200">
+  <Button variant="primary">Button 1</Button>
+  <Button variant="outlined">Button 2</Button>
+  <Button variant="text">Button 3</Button>
+</Center>
+```
+
+## With Custom Dimensions
+
+```tsx live
+<Center width="full" height="60" backgroundColor="primary100">
+  <Box width="40" height="40" backgroundColor="white" />
+</Center>
+```
+
+## Responsive Example
+
+```tsx live
+<Center
+  width="full"
+  height={{
+    mobile: '36',
+    tablet: '48'
+  }}
+  backgroundColor="neutral200"
+>
+  <Text>Responsive centered content</Text>
+</Center>
+```
+
+## As Interactive Element
+
+```tsx live
+<Center
+  element="button"
+  onClick={() => alert('Clicked!')}
+  height="40"
+  width="fitContent"
+  padding="2"
+  backgroundColor="primary100"
+  cursor="pointer"
+>
+  <Text element="span">Click me!</Text>
+</Center>
+```
+
+## Nested Centers
+
+```tsx live
+<Center height="60" backgroundColor="neutral200">
+  <Center width="full" height="40" backgroundColor="white" boxShadow="base">
+    <Text>Nested centered content</Text>
+  </Center>
+</Center>
+```
+
+## Best Practices
+
+- Use for simple centering needs where equal spacing is desired
+- Provide explicit heights when centering vertically
+- Keep content structure simple within Center components
+- Use semantic HTML elements when appropriate
+- Consider mobile viewports when setting dimensions
+
+## Accessibility
+
+The Center component supports accessibility through:
+
+- Polymorphic element support for semantic HTML
+- Preserving content structure
+- Maintaining proper spacing
+- Supporting ARIA attributes
+- Keyboard interaction support when used as interactive elements
+
+## Technical Considerations
+
+- Uses Flexbox for reliable centering
+- Memoized for performance optimization
+- Supports forwarded refs
+- Maintains proper content flow
+- Works with the lib's spacing scale
+- Compatible with responsive style props
+- Preserves child component layout properties
+
+## Common Use Cases
+
+- Centering modal content
+- Creating centered hero sections
+- Building symmetrical layouts
+- Positioning loading indicators
+- Centering form elements
+- Creating centered card layouts

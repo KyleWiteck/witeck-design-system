@@ -1,0 +1,17 @@
+node_modules
+.DS_Store
+.stats
+.turbo
+.rollup.cache
+
+# React Lib
+.rollup.cache
+yarn-error.log
+dist
+
+*.tsbuildinfo
+
+# auto-generated docs
+docs/docs/api
+
+

@@ -1,0 +1,100 @@
+import Link from '@docusaurus/Link';
+import {
+  Button,
+  IconsByName,
+  ReactNodeStringHandler,
+  Stack
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+ReactNodeStringHandler is a flexible component for handling text and component
+composition.It is used mainly for internal handling, but exposed for external
+use. It automatically wraps string content in a Text component while preserving
+ReactNode structure, with support for pre/post elements like icons or badges.
+Useful for consistent text styling and layout when dealing with mixed content
+types.
+
+## Props
+
+<PropsTable
+  defaultElement="span"
+  componentSpecificProps={[
+    {
+      name: 'preTextNode',
+      type: 'ReactNode',
+      description: 'Content rendered before the main children'
+    },
+    {
+      name: 'postTextNode',
+      type: 'ReactNode',
+      description: 'Content rendered after the main children'
+    },
+    {
+      name: 'children',
+      type: 'ReactNode',
+      description: 'Main content to render'
+    }
+  ]}
+/>
+
+## Usage
+
+```tsx
+// String content
+<ReactNodeStringHandler
+  preTextNode={<IconsByName name="Drag" />}
+  postTextNode={<IconsByName name="Info" />}
+>
+  Hello World
+</ReactNodeStringHandler>
+
+// ReactNode content
+<ReactNodeStringHandler
+  preTextNode={<IconsByName name="Mail" />}
+  postTextNode={<IconsByName name="Notifications" />}
+>
+  <CustomComponent />
+</ReactNodeStringHandler>
+```
+
+## Examples
+
+```tsx live
+function HandlerExample() {
+  return (
+    <Stack gap="4">
+      <Flex gap="2" alignItems="center">
+        <ReactNodeStringHandler
+          preTextNode={<IconsByName name="Info" boxSize="5" />}
+        >
+          String with icons
+        </ReactNodeStringHandler>
+      </Flex>
+      <Flex gap="2" alignItems="center">
+        <ReactNodeStringHandler preTextNode="Pre:" postTextNode="!!">
+          <Text marginY="auto">Some text use vase passed in as child</Text>
+        </ReactNodeStringHandler>
+      </Flex>
+    </Stack>
+  );
+}
+```
+
+## Best Practices
+
+- Use for consistent text styling when mixing strings and components with
+  passthrough children
+- Prefer preTextNode/postTextNode over string concatenation when consistency is
+  needed
+- Keep pre/post nodes lightweight (icons, badges, small UI elements)
+- Avoid nesting ReactNodeStringHandlers
+- Use element prop to maintain semantic HTML structure
+- Pass style modifications through `TextProps` instead of wrapping
+- Consider accessibility when adding decorative pre/post nodes
+
+## Technical Notes
+
+- Automatically wraps string content in Text component
+- Preserves ReactNode children structure
+- Inherits Text component props
+- Type-safe pre/post node handling

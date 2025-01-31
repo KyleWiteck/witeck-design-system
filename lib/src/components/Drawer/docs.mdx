@@ -1,0 +1,223 @@
+import Link from '@docusaurus/Link';
+import {
+  Box,
+  Button,
+  Container,
+  Drawer,
+  Flex,
+  PageContainer,
+  Stack,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { useDisclosure } from '@peopleticker/magnit-design/hooks';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A versatile drawer component supporting overlay and inline variants with
+customizable widths, animations, and toggle behaviors.
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  omitSprinkles={[
+    'width',
+    'minWidth',
+    'style',
+    'backgroundColor',
+    'borderColor',
+    'borderRadius',
+    'borderRight',
+    'element'
+  ]}
+  componentSpecificProps={[
+    {
+      name: 'variant',
+      type: '"overlaySlideIn" | "inlineNavExpand" | "inlinePageExpandToggle"',
+      default: 'overlaySlideIn',
+      description: 'Determines drawer behavior and animation style'
+    },
+    {
+      name: 'width',
+      type: 'number',
+      default: '270',
+      description: 'Width when drawer is open'
+    },
+    {
+      name: 'minWidth',
+      type: 'keyof typeof themeValues.space',
+      default: '0',
+      description: (
+        <Text>
+          Minimum width when drawer is closed.{' '}
+          <Link to="/docs/guides/styles-and-theming/sprinkles#spacing">
+            More on `themeValues.space`
+          </Link>
+        </Text>
+      )
+    },
+    {
+      name: 'headerHeight',
+      type: 'string',
+      default: '72px',
+      description:
+        'Adjusts drawer position relative to header. Is subtracted from 100vh'
+    },
+    {
+      name: 'childrenContainerProps',
+      type: 'BoxProps',
+      default: 'undefined',
+      description: (
+        <Text>
+          Props passed to the children container.{' '}
+          <Link to="/docs/guides/components/box">More on Box props</Link>
+        </Text>
+      )
+    }
+  ]}
+/>
+
+## Variants
+
+### Overlay Slide-In
+
+```tsx live
+function OverlayExample() {
+  const disclosure = useDisclosure();
+
+  return (
+    <>
+      <Button onClick={disclosure.onToggle}>Toggle Drawer</Button>
+
+      <Drawer variant="overlaySlideIn" headerHeight="60px" {...disclosure}>
+        <Button onClick={disclosure.onToggle}>Toggle Drawer</Button>
+        <Text padding="4">Overlay Drawer Content</Text>
+      </Drawer>
+    </>
+  );
+}
+```
+
+### Inline Nav Expand
+
+```tsx live
+function InlineNavExample() {
+  const disclosure = useDisclosure();
+
+  return (
+    <Stack spacing="0">
+      <Header
+        position="relative"
+        padding="4"
+        onMenuToggle={disclosure.onToggle}
+        menuIsOpen={disclosure.isOpen}
+      />
+      <Drawer variant="inlineNavExpand" {...disclosure}>
+        <Text width="fitContent">Navigation Content (inlineNavExpand)</Text>
+      </Drawer>
+    </Stack>
+  );
+}
+```
+
+### Inline Page Toggle
+
+```tsx live
+function InlinePageExample() {
+  const disclosure = useDisclosure();
+
+  return (
+    <Flex height="40">
+      <Drawer variant="inlinePageExpandToggle" {...disclosure} width={300}>
+        <Text width="60">Toggle Sidebar</Text>
+      </Drawer>
+      <PageContainer flex="1">Main Content Area</PageContainer>
+    </Flex>
+  );
+}
+```
+
+### Combined Inline Example
+
+This example demonstrates how to use both inline variants together - combining
+the nav expand and page toggle functionalities. In most cases, the
+`inlineNavExpand` would be used for navigation where the
+`inlinePageExpandToggle` is used as a collapsable aside.
+
+```tsx live
+function CombinedInlineExample() {
+  const navDisclosure = useDisclosure(true);
+  const pageDisclosure = useDisclosure(true);
+
+  return (
+    <Stack spacing="0">
+      <Header
+        flex="1"
+        padding="4"
+        onMenuToggle={navDisclosure.onToggle}
+        menuIsOpen={navDisclosure.isOpen}
+        position="relative"
+        zIndex="base"
+      />
+      <Flex>
+        <Drawer variant="inlineNavExpand" {...navDisclosure}>
+          <Stack spacing="4" padding="4">
+            <Text fontWeight="semibold">Navigation Menu</Text>
+            <Text>Menu Item 1</Text>
+            <Text>Menu Item 2</Text>
+            <Text>Menu Item 3</Text>
+          </Stack>
+        </Drawer>
+
+        <Flex flex="1">
+          <Drawer
+            variant="inlinePageExpandToggle"
+            element="aside"
+            {...pageDisclosure}
+            width={300}
+          >
+            <Stack spacing="4" padding="4">
+              <Text fontWeight="semibold">Page Sidebar</Text>
+              <Text>Sidebar Content 1</Text>
+              <Text>Sidebar Content 2</Text>
+              <Text>Sidebar Content 3</Text>
+            </Stack>
+          </Drawer>
+          <PageContainer flex="1">
+            <Text>Main Content Area</Text>
+          </PageContainer>
+        </Flex>
+      </Flex>
+    </Stack>
+  );
+}
+```
+
+## Technical Details
+
+- Uses portals for overlay variant
+- Smooth animations via CSS transitions
+- Handles click-outside closing
+- Supports keyboard navigation
+- Maintains scroll position
+- Responsive design support
+- Z-index management
+- Backdrop blur effect
+
+## Accessibility
+
+- Proper focus management
+- Keyboard interaction support
+- ARIA attributes
+- Screen reader compatibility
+- Focus trap in overlay mode
+
+## Best Practices
+
+- Use overlay for modal contexts
+- Inline variants for persistent navigation
+- Consider mobile viewports
+- Maintain consistent widths
+- Handle content overflow
+- Provide clear toggle controls
+- Use set widths on drawer content to keep content widths fixed when closing the
+  drawer

@@ -1,0 +1,113 @@
+import { PropsTable } from '@site/src/components/PropsTable';
+
+Error components provide a structured way to display error messages with a
+headline, optional message, image, and configurable action buttons. They are
+designed for both basic and advanced use cases, supporting two layout variants:
+
+- `base`: A larger, centered layout for major error states.
+- `small`: A compact, inline version for minor errors.
+
+To streamline development, predefined error components handle common scenarios
+such as "Not Found" or "Forbidden Access."
+
+## Props
+
+<PropsTable
+  hideElementProp
+  hideChildren
+  defaultElement
+  hideSprinkles
+  hideAttributes
+  hideStyles
+  defaultElement="section"
+  componentSpecificProps={[
+    {
+      name: 'variant',
+      type: '"base" | "small"',
+      default: '"base"',
+      description: 'Layout variants, large and compact versions'
+    },
+    {
+      name: 'headline',
+      type: 'string',
+      default: 'string',
+      description: 'Dynamic title based on error provided.'
+    },
+    {
+      name: 'message',
+      type: 'ReactNode',
+      default: 'string',
+      description: 'Dynamic message based on error provided.'
+    },
+    {
+      name: 'containerProps',
+      type: 'CenterProps',
+      default: '{}'
+    },
+    {
+      name: 'primaryAction',
+      type: 'NoVariantButtonProps',
+      default: '<Button/>'
+    },
+    {
+      name: 'secondaryActions',
+      type: 'NoVariantButtonProps',
+      default: 'null'
+    },
+    {
+      name: 'noMessage',
+      type: 'boolean',
+      default: 'false',
+      description: 'When true, no error message is displayed'
+    },
+    {
+      name: 'noActions',
+      type: 'boolean',
+      default: 'false',
+      description: 'When true, no actions are displayed'
+    },
+
+]} />
+
+## How to Use
+
+Each predefined error component comes with a default headline, message, and
+image, reducing the need for manual setup.
+
+- **NotFoundUI**: Displays "No Data Found" with a default message and a missing
+  records image.
+- **ForbiddenUI**: Displays "Forbidden Access", indicating a user lacks
+  permissions.
+- **NotAuthenticatedUI**: Displays "Authentication Required" when a user is not
+  logged in.
+- **UnknownErrorUI**: Displays a generic error message for unexpected failures.
+
+### Import
+
+```tsx
+import {
+  ForbiddenUI,
+  NotAuthenticatedUI,
+  NotFoundUI,
+  UnknownErrorUI
+} from '@peopleticker/magnit-design/components';
+```
+
+### Base variant
+
+```tsx live
+<Card>
+  <NotFoundUI />
+</Card>
+```
+
+### Small varinnt
+
+```tsx live
+<Card>
+  <UnknownErrorUI
+    variant="small"
+    primaryAction={props => <Button {...props}>Go back</Button>}
+  />
+</Card>
+```

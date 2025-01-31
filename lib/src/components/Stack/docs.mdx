@@ -1,0 +1,107 @@
+import {
+  Box,
+  Button,
+  Card,
+  Chip,
+  Flex,
+  Icons,
+  Stack,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+The Stack component is a layout utility for stacking elements vertically in a
+column with customizable gaps, alignment, and justification.
+
+## Usage
+
+```tsx
+import { Stack } from '@peopleticker/magnit-design/components';
+
+<Stack spacing="4">
+  <Text>Item 1</Text>
+  <Text>Item 2</Text>
+</Stack>;
+```
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  componentSpecificProps={[
+    {
+      name: 'SprinklesProps["gap"]',
+      type: 'string',
+      default: '2',
+      description: 'Gap between items'
+    },
+    {
+      name: 'direction',
+      type: 'SprinklesProps["flexDirection"]',
+      default: 'column',
+      description: 'Flex direction'
+    },
+    {
+      name: 'align',
+      type: 'SprinklesProps["alignItems"]',
+      default: 'stretch',
+      description: 'Cross-axis alignment'
+    },
+    {
+      name: 'justify',
+      type: 'SprinklesProps["justifyContent"]',
+      default: 'flex-start',
+      description: 'Main-axis alignment'
+    }
+  ]}
+/>
+
+## Vertical Stack
+
+```tsx live
+function VerticalStack() {
+  return (
+    <Stack spacing="4">
+      <Card padding="4">Item 1</Card>
+      <Card padding="4">Item 2</Card>
+      <Card padding="4">Item 3</Card>
+    </Stack>
+  );
+}
+```
+
+## Nested Stacks
+
+```tsx live
+function NestedStacks() {
+  return (
+    <Stack spacing="6">
+      <Flex spacing="4" justify="space-between">
+        <Text fontWeight="bold">Section 1</Text>
+        <Button variant="outlined" size="sm">
+          Edit
+        </Button>
+      </Flex>
+      <Stack spacing="2">
+        <Text>Content Item 1</Text>
+        <Text>Content Item 2</Text>
+      </Stack>
+    </Stack>
+  );
+}
+```
+
+## Best Practices
+
+- Use consistent spacing within related sections
+- Add extra spacing between sections
+- Maintain semantic HTML structure
+- Set appropriate alignment for content type
+
+## Technical Details
+
+- Built on Box component
+- Flex-based layout system
+- Responsive spacing support
+- Polymorphic elements
+- RTL compatible

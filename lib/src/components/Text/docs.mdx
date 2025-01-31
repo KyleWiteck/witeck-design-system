@@ -1,0 +1,146 @@
+import { Stack, Text } from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+The Text component is a fundamental typography element that provides consistent
+text styling with support for various styles, weights, and alignments.
+
+## Usage
+
+```tsx
+import { Text } from '@peopleticker/magnit-design/components';
+
+<Text variant="h1" element="h1">Heading</Text>
+<Text variant="body1" color="gray-600">Body text</Text>
+```
+
+## Props
+
+<PropsTable
+  defaultElement="p"
+  componentSpecificProps={[
+    {
+      name: 'variant',
+      type: '"inherit" | "display" | "caption" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "label" | "custom" | "subtitle1" | "subtitle2" | "body1" | "body2" | "micro" | undefined',
+      default: 'body1',
+      description: 'Typography variant preset'
+    },
+    {
+      name: 'align',
+      type: 'SprinklesProps["textAlign"]',
+      default: 'left',
+      description: 'Text alignment'
+    },
+    {
+      name: 'weight',
+      type: 'SprinklesProps["fontSize"]',
+      default: 'normal',
+      description: 'Font weight'
+    }
+  ]}
+/>
+
+## Typography Variants
+
+```tsx live
+function TypographyVariants() {
+  return (
+    <Stack spacing="4">
+      <Text variant="display">
+        Display - The quick brown fox jumps over the lazy dog
+      </Text>
+      <Text variant="h1" element="h1">
+        Heading 1 - The quick brown fox jumps over the lazy dog
+      </Text>
+      <Text variant="h2" element="h2">
+        Heading 2 - The quick brown fox jumps over the lazy dog
+      </Text>
+      <Text variant="h3" element="h3">
+        Heading 3 - The quick brown fox jumps over the lazy dog
+      </Text>
+      <Text variant="h4" element="h4">
+        Heading 4 - The quick brown fox jumps over the lazy dog
+      </Text>
+      <Text variant="h5" element="h5">
+        Heading 5 - The quick brown fox jumps over the lazy dog
+      </Text>
+      <Text variant="h6" element="h6">
+        Heading 6 - The quick brown fox jumps over the lazy dog
+      </Text>
+      <Text variant="subtitle1">
+        Subtitle 1 - The quick brown fox jumps over the lazy dog
+      </Text>
+      <Text variant="subtitle2">
+        Subtitle 2 - The quick brown fox jumps over the lazy dog
+      </Text>
+      <Text variant="body1">
+        Body 1 - The quick brown fox jumps over the lazy dog
+      </Text>
+      <Text variant="body2">
+        Body 2 - The quick brown fox jumps over the lazy dog
+      </Text>
+      <Text variant="caption">
+        Caption - The quick brown fox jumps over the lazy dog
+      </Text>
+      <Text variant="label" element="label">
+        Label - The quick brown fox jumps over the lazy dog
+      </Text>
+      <Text variant="micro">
+        Micro - The quick brown fox jumps over the lazy dog
+      </Text>
+      <Box fontSize="lg" color="primary" fontWeight="medium">
+        <Text variant="inherit">
+          Inherit - The quick brown fox jumps over the lazy dog
+        </Text>
+      </Box>
+    </Stack>
+  );
+}
+```
+
+## Text Weights
+
+```tsx live
+function TextWeights() {
+  return (
+    <Stack spacing="2">
+      <Text weight="normal">Normal weight text</Text>
+      <Text weight="medium">Medium weight text</Text>
+      <Text weight="bold">Bold weight text</Text>
+    </Stack>
+  );
+}
+```
+
+## Custom Styling
+
+```tsx live
+function CustomStyling() {
+  return (
+    <Text
+      variant="custom"
+      color="primary"
+      align="center"
+      textDecoration="underline"
+      fontStyle="italic"
+    >
+      Custom styled text
+    </Text>
+  );
+}
+```
+
+## Best Practices
+
+- Use semantic variants for proper document hierarchy
+- Use the correct element for proper semantic markup.
+- Maintain consistent styling within related content
+- Apply appropriate text alignment for content context
+- Consider color contrast for accessibility.
+  [Color Contrast Checker](https://coolors.co/contrast-checker/112a46-acc8e5)
+
+## Technical Details
+
+- Built on Box component
+- Polymorphic component support
+- RTL compatible
+- Accessible by default

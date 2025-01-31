@@ -1,0 +1,214 @@
+import Link from '@docusaurus/Link';
+import {
+  Button,
+  ButtonDropdownWrapper,
+  CalloutMessage,
+  Flex,
+  IconsByName,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A flexible dropdown menu component built on Radix UI's Popover primitive that
+provides an accessible, customizable button trigger with dropdown content
+support. It handles keyboard navigation, focus management, and various styling
+options out of the box.
+
+## Usage
+
+Import the ButtonDropdownWrapper component from the library:
+
+```tsx
+import { ButtonDropdownWrapper } from '@peopleticker/magnit-design/components';
+
+// Basic usage
+<ButtonDropdownWrapper
+  button={<Button>Click me</Button>}
+  dropdownContent={<div>Dropdown content</div>}
+/>;
+```
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  hideElementProp
+  omitSprinkles={['PaddingCSSPropertiesUnion', 'button', 'padding', 'gap']}
+  componentSpecificProps={[
+    {
+      name: 'button',
+      required: true,
+      type: 'ReactElement | ((props: ButtonProps & DisclosureProps) => ReactElement)',
+      default: 'undefined',
+      description:
+        'The button element or render function that triggers the dropdown.'
+    },
+    {
+      name: 'dropdownContent',
+      required: true,
+      type: 'ReactNode | ((disclosure: DisclosureProps) => ReactNode)',
+      default: 'undefined',
+      description:
+        'Content to be displayed in the dropdown. Can be elements or a render function.'
+    },
+    {
+      name: 'disclosure',
+      type: 'ReturnType<typeof useDisclosure> | undefined',
+      default: 'undefined',
+      description:
+        'External disclosure control for managing the dropdown state.'
+    },
+    {
+      name: 'removeArrow',
+      type: 'boolean',
+      default: 'false',
+      description: 'When true, removes the default arrow icon from the button.'
+    },
+    {
+      name: 'arrowProps',
+      type: 'Omit<ComponentProps<typeof Icons.ArrowDropDown>, "boxSize">',
+      default: 'undefined',
+      description: 'Props to customize the arrow icon appearance.'
+    },
+    {
+      name: 'dropdownProps',
+      type: `Omit<CardProps, "paddingTop"
+      | "paddingRight"
+      | "paddingBottom"
+      | "paddingLeft"
+      | "boxShadow"
+      | "className"
+      | "ref"
+      | "maxWidth"
+      | "position"
+      >`,
+      default: 'undefined',
+      description: 'Props to customize the dropdown card component.'
+    }
+  ]}
+/>
+
+## Basic Example
+
+```tsx live
+<ButtonDropdownWrapper
+  button={<Button>Open Menu</Button>}
+  dropdownProps={{ paddingX: '0.5' }}
+  dropdownContent={
+    <Flex direction="column" gap="2" padding="2" minWidth="40">
+      <Button variant="text" width="full">
+        Option 1
+      </Button>
+      <Button variant="text" width="full">
+        Option 2
+      </Button>
+      <Button variant="text" width="full">
+        Option 3
+      </Button>
+    </Flex>
+  }
+/>
+```
+
+## Controlled Example
+
+Use the useDisclosure hook to control the dropdown state externally:
+
+```tsx live
+function ControlledExample() {
+  const disclosure = useDisclosure();
+
+  return (
+    <ButtonDropdownWrapper
+      disclosure={disclosure}
+      button={({ isOpen, onToggle, onOpen, onClose, ...requiredProps }) => (
+        <Button variant={isOpen ? 'primary' : 'outlined'} {...requiredProps}>
+          {isOpen ? 'Close Menu' : 'Open Menu'}
+        </Button>
+      )}
+      dropdownContent={({ onClose }) => (
+        <Flex direction="column" gap="2" padding="2" minWidth="40">
+          <Button variant="text" width="full">
+            Option 1
+          </Button>
+          <Button variant="text" width="full">
+            Option 2
+          </Button>
+          <Button variant="text" width="full">
+            Option 3
+          </Button>
+        </Flex>
+      )}
+    />
+  );
+}
+```
+
+## Custom Arrow Example
+
+Customize or remove the dropdown arrow:
+
+```tsx live
+<Flex gap="4">
+  <ButtonDropdownWrapper
+    removeArrow
+    button={<Button>No Arrow</Button>}
+    dropdownContent={<Text padding="2">Content</Text>}
+  />
+
+  <ButtonDropdownWrapper
+    button={<Button>Custom Arrow</Button>}
+    dropdownContent={<Text padding="2">Content</Text>}
+  />
+</Flex>
+```
+
+## Custom Styling
+
+Apply custom styles to the dropdown:
+
+```tsx live
+<ButtonDropdownWrapper
+  button={<Button>Styled Dropdown</Button>}
+  dropdownProps={{
+    backgroundColor: 'neutral500',
+    padding: '6',
+    width: '200'
+  }}
+  dropdownContent={
+    <Flex direction="column" gap="3">
+      <Text>Custom Header</Text>
+      <Text variant="caption">Dropdown content with custom styling</Text>
+    </Flex>
+  }
+/>
+```
+
+## Best Practices
+
+- Use clear and descriptive button labels
+- Provide appropriate feedback for loading or disabled states
+- Maintain consistent dropdown widths across similar components
+- Consider mobile interactions, keyboard controls and touch targets
+- Use semantic HTML within dropdown content
+- Keep dropdown content focused and organized
+
+## Accessibility
+
+The ButtonDropdownWrapper includes several accessibility features:
+
+- WAI-ARIA compliant dropdown implementation
+- Keyboard navigation support:
+  - `Escape` closes the dropdown
+  - `Tab` cycles through focusable elements
+  - Arrow keys for navigation (when implemented in content)
+- Focus management and trapping
+- Screen reader announcements
+- Proper ARIA attributes for states and roles
+
+## Technical Considerations
+
+- Dropdown position is automatically adjusted based on viewport
+- Focus is automatically managed when opening/closing
+- Z-index handling is built-in with customization options
+- Supports nested dropdowns through proper z-index management

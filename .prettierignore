@@ -1,0 +1,8 @@
+.next
+node_modules
+public
+dist
+build
+.docusaurus
+docs/docs/api
+lib/src/icons/index.tsx

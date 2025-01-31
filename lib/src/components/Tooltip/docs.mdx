@@ -1,0 +1,100 @@
+import { PropsTable } from '@site/src/components/PropsTable';
+
+Provides a **hover-based pop-up message** for additional context. It is built
+using **Radix UI**, ensuring accessibility, smooth animations, and custom
+styling.
+
+It supports:
+
+- Customizable colors (light or dark themes)
+- Delay before appearing (200ms default)
+- Automatic positioning and portal rendering
+
+## How to Use
+
+### Basic Example
+
+When hovering over the **button**, the tooltip appears.
+
+```tsx live
+<Tooltip content="This is a tooltip" />
+```
+
+### Custom Trigger
+
+If no `children` are provided, it defaults to an **Info Icon**.
+
+```tsx live
+<Tooltip content="Info tooltip">
+  <Text>Hover me</Text>
+</Tooltip>
+```
+
+## Props
+
+<PropsTable
+  hideSprinkles
+  hideElementProp
+  hideStyles
+  hideAttributes
+  componentSpecificProps={[
+    {
+      name: 'content',
+      type: 'ReactNode',
+      required: true,
+      description: 'The text or element to be displayed inside the tooltip.'
+    },
+    {
+      name: 'shade',
+      type: '"light" | "dark"',
+      default: '"dark"',
+      description: 'Sets the background color theme of the tooltip.',
+    },
+    {
+      name: 'boxSize',
+      type: 'SprinklesProps["boxSize"]',
+      description:
+        'Defines the size of the default InfoIcon if no children are provided.',
+    },
+    {
+      name: 'zIndex',
+      type: 'number',
+      description: 'Manually controls the stacking order of the tooltip.',
+    },
+    {
+      name: 'contentContainerProps',
+      type: 'BoxProps<"span">',
+      description: 'Additional props for styling the tooltip container.',
+    },
+    {
+      name: 'defaultOpen',
+      type: 'boolean',
+      default: 'false',
+      description: 'The open state of the tooltip when it is initially rendered. Use when you do not need to control its open state.'
+    },
+    {
+      name: 'open',
+      type: 'boolean',
+      default: 'undefined',
+      description: 'The controlled open state of the tooltip. Must be used in conjunction with **onOpenChange**.',
+    },
+    {
+      name: 'onOpenChange',
+      type: 'function',
+      default: 'undefined',
+      description: 'Event handler called when the open state of the tooltip changes.'
+    },
+  ]}
+
+/>
+
+## Accessibility & Behavior
+
+- **Keyboard-friendly**: Works with focusable elements.
+- **Delayed display**: Appears after **200ms** for better UX.
+- **ARIA role**: Includes `role="tooltip"` for screen readers.
+
+## Best Practices
+
+- Use for **short, helpful messages** (avoid long descriptions).
+- Avoid tooltips on **clickable** elements unless necessary.

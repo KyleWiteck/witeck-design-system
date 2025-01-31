@@ -1,0 +1,154 @@
+These components provide a structured way to organize content into separate
+views, allowing users to navigate between them efficiently. It is designed to be
+**flexible, accessible, and customizable**, making it suitable for both simple
+and advanced use cases.
+
+It includes the following key components:
+
+- **`TabProvider`**: Manages the state of the selected tab, either controlled or
+  uncontrolled.
+- **`TabList`**: Acts as a wrapper for all tab buttons, ensuring proper layout.
+- **`Tab`**: Represents an individual tab, supporting labels and optional
+  badges.
+- **`TabPanel`**: Displays content associated with a specific tab when selected.
+
+## How to Use
+
+### Basic Example
+
+```tsx
+<TabProvider>
+  <TabList>
+    <Tab id="tab1" panelId="panel1" label="Tab 1" />
+    <Tab id="tab2" panelId="panel2" label="Tab 2" />
+  </TabList>
+
+  <TabPanel tabId="tab1" id="panel1">
+    Content for Tab 1
+  </TabPanel>
+  <TabPanel tabId="tab2" id="panel2">
+    Content for Tab 2
+  </TabPanel>
+</TabProvider>
+```
+
+This setup initializes an **uncontrolled** tab state, where the first tab is
+selected by default. If you need to define an initial selected tab while keeping
+the state internal, use `defaultSelectedTabId`:
+
+### Controlled Tabs
+
+For cases where the selected tab should be controlled externally (e.g., based on
+user interaction or URL state), use the `controlledTabId` and
+`setControlledTabId` props in `TabProvider`:
+
+```tsx
+const [selectedTab, setSelectedTab] = useState<string>('tab1');
+
+<TabProvider controlledTabId={selectedTab} setControlledTabId={setSelectedTab}>
+  <TabList>
+    <Tab id="tab1" panelId="panel1" label="Tab 1" />
+    <Tab id="tab2" panelId="panel2" label="Tab 2" />
+  </TabList>
+
+  <TabPanel tabId="tab1" id="panel1">
+    Content for Tab 1
+  </TabPanel>
+  <TabPanel tabId="tab2" id="panel2">
+    Content for Tab 2
+  </TabPanel>
+</TabProvider>;
+```
+
+Here, `selectedTab` is controlled by the parent component, allowing external
+manipulation.
+
+### Tabs with Dynamic Content
+
+If tabs are dynamically generated from an array, you can map over the data to
+create tabs and panels dynamically:
+
+```tsx
+const tabs = [
+  {
+    id: 'overview',
+    panelId: 'panel-overview',
+    label: 'Overview',
+    content: <OverviewContent />
+  },
+  {
+    id: 'details',
+    panelId: 'panel-details',
+    label: 'Details',
+    content: <DetailsContent />
+  }
+];
+
+<TabProvider>
+  <TabList>
+    {tabs.map(tab => (
+      <Tab key={tab.id} {...tab} />
+    ))}
+  </TabList>
+
+  {tabs.map(tab => (
+    <TabPanel key={tab.id} tabId={tab.id} id={tab.panelId}>
+      {tab.content}
+    </TabPanel>
+  ))}
+</TabProvider>;
+```
+
+This ensures a **scalable** and **maintainable** implementation when working
+with dynamic datasets.
+
+## Props Overview
+
+### TabProvider
+
+Handles tab selection state and provides context to child components.
+
+| Prop                   | Type                      | Description                                    |
+| ---------------------- | ------------------------- | ---------------------------------------------- |
+| `defaultSelectedTabId` | `string`                  | Initial selected tab in uncontrolled mode.     |
+| `controlledTabId`      | `string`                  | Manually controls which tab is active.         |
+| `setControlledTabId`   | `(tabId: string) => void` | Callback triggered when tab selection changes. |
+
+### TabList
+
+A container for `Tab` components, ensuring structure and layout.
+
+| Prop       | Type                   | Description                               |
+| ---------- | ---------------------- | ----------------------------------------- |
+| `...props` | `ComponentProps<'ul'>` | Additional props for styling or behavior. |
+
+### Tab
+
+Represents an interactive tab button inside `TabList`.
+
+| Prop       | Type                                             | Description                              |
+| ---------- | ------------------------------------------------ | ---------------------------------------- |
+| `id`       | `string`                                         | Unique identifier for the tab.           |
+| `panelId`  | `string`                                         | The ID of the corresponding `TabPanel`.  |
+| `label`    | `string` _(optional)_                            | The text displayed in the tab.           |
+| `badge`    | `string \| number \| null \| false` _(optional)_ | Additional badge content (e.g., counts). |
+| `...props` | `ButtonProps`                                    | Additional properties for customization. |
+
+### TabPanel
+
+Displays the content associated with a tab when selected.
+
+| Prop    | Type     | Description                     |
+| ------- | -------- | ------------------------------- |
+| `tabId` | `string` | The ID of the associated `Tab`. |
+| `id`    | `string` | Unique panel ID.                |
+
+## Best Practices
+
+- Use `TabProvider` to manage state and ensure proper behavior.
+- Always provide a unique `id` and `panelId` for each `Tab`.
+- Prefer **controlled mode** (`controlledTabId`) for complex state management.
+- Use `defaultSelectedTabId` for simpler uncontrolled implementations.
+- Dynamically generate tabs from an array when possible to improve
+  maintainability.
+- Customize with `badge` to indicate notifications or updates.

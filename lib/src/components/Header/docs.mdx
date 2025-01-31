@@ -1,0 +1,163 @@
+import {
+  Button,
+  Center,
+  Header,
+  IconsByName,
+  Stack,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A fixed-position header component that provides consistent navigation structure
+with optional menu toggle and logo.
+
+## Basic Usage
+
+```tsx
+import { Header } from '@peopleticker/magnit-design/components';
+import { useDisclosure } from '@peopleticker/magnit-design/hooks';
+
+function Example() {
+  const menu = useDisclosure();
+
+  return (
+    <Header
+      menuIsOpen={menu.isOpen}
+      onMenuToggle={menu.onToggle}
+      logo={<img src="/logo.svg" alt="Logo" />}
+    >
+      <Stack direction="row" spacing="4">
+        <Button variant="nav">Profile</Button>
+        <Button variant="nav">Settings</Button>
+      </Stack>
+    </Header>
+  );
+}
+```
+
+## Props
+
+<PropsTable
+  defaultElement="header"
+  omitSprinkles={['width', 'height', 'element']}
+  componentSpecificProps={[
+    {
+      name: 'headerHeight',
+      type: 'string',
+      default: '72px',
+      description: 'Custom height for header'
+    },
+    {
+      name: 'onMenuToggle',
+      type: 'ReturnType<typeof useDisclosure>["onToggle"]',
+      description: 'Menu toggle callback function'
+    },
+    {
+      name: 'menuIsOpen',
+      type: 'ReturnType<typeof useDisclosure>["isOpen"]',
+      description: 'Menu open state'
+    },
+    {
+      name: 'hideMenuButton',
+      type: 'boolean',
+      default: 'false',
+      description: 'Hide the menu toggle button'
+    },
+    {
+      name: 'logo',
+      type: 'ReactNode',
+      description: 'Logo element to display'
+    }
+  ]}
+/>
+
+## Recommended Basic Example
+
+```tsx live
+<Header
+  menuIsOpen={false}
+  onMenuToggle={() => {}}
+  logo={
+    <Center height="fitContent">
+      <Button
+        element="a"
+        variant="custom"
+        size="custom"
+        paddingX="0"
+        aria-label="Home"
+        alignItems="center"
+      >
+        <IconsByName
+          name="MagnitFullLogo"
+          color="magnitPrimary"
+          width={{ mobile: '28', tablet: '36' }}
+          height={{ mobile: 'auto', tablet: 'full' }}
+          role="img"
+          alt="magnit logo"
+        />
+        <Text
+          element="span"
+          variant="micro"
+          color="error"
+          marginBottom="0"
+          marginTop="7"
+          style={{ marginLeft: '-20px' }}
+        >
+          App Name
+        </Text>
+      </Button>
+    </Center>
+  }
+  // `position` is used to keep this demonstration in its container.
+  // By default the position is set to fixed.
+  position="relative"
+>
+  <Button variant="text">
+    <IconsByName name="Notifications" />
+  </Button>
+</Header>
+```
+
+## With Custom Height
+
+```tsx live
+<Header
+  headerHeight="80px"
+  // `position` is used to keep this demonstration in its container.
+  // By default the position is set to fixed.
+  position="relative"
+  logo={
+    <IconsByName
+      name="MagnitFullLogo"
+      color="magnitPrimary"
+      width={{ mobile: '28', tablet: '36' }}
+      height={{ mobile: 'auto', tablet: 'full' }}
+      role="img"
+      alt="magnit logo"
+    />
+  }
+/>
+```
+
+## Technical Details
+
+- Fixed position at top of viewport
+- Responsive padding based on viewport size
+- Flexible content layout with logo and actions
+- Built-in menu toggle button with aria attributes
+- White background and border by default
+- Best to be used with the
+  [GlobalLayout component]('/docs/guides/components/globalLayout) header prop
+
+## Layout Structure
+
+```
+|--Menu--|--Logo--|------------Actions-----------|
+```
+
+The header component uses a flexible layout:
+
+- Menu button (optional) on the far left
+- Logo/branding is to the right of the menu button if used. Otherwise it is the
+  far most left element.
+- Action items aligned to the right and their container is set to `Flex="1"`

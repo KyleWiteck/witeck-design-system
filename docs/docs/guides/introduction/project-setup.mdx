@@ -1,0 +1,84 @@
+---
+title: Project Setup
+description: Learn how to setup magnit-design in your project.
+sidebar_position: 3
+---
+
+import { CalloutMessage } from '@peopleticker/magnit-design/components';
+
+:::note Prerequisites Complete the Installation steps before proceeding. :::
+
+## Basic Setup
+
+1. Import required files:
+
+```ts
+import '@peopleticker/magnit-design/global.css';
+import { themeClass } from '@peopleticker/magnit-design/theme';
+```
+
+2. Add theme class to body:
+
+**Next.js/SSR:**
+
+```tsx
+function RootLayout({ children }) {
+  return (
+    <html>
+      <body className={themeClass}>{children}</body>
+    </html>
+  );
+}
+```
+
+**SPA/Client-side:**
+
+```ts
+document.body.classList.add(themeClass);
+```
+
+## Advanced Setup Example
+
+For applications using React Router, Relay, and other common patterns:
+
+```tsx
+import { GlobalLayout } from '@peopleticker/magnit-design/components';
+import '@peopleticker/magnit-design/global.css';
+import { themeClass } from '@peopleticker/magnit-design/theme';
+import { StrictMode, Suspense } from 'react';
+import ReactDOM from 'react-dom/client';
+import { RelayEnvironmentProvider } from 'react-relay';
+import { RouterProvider } from 'react-router-dom';
+
+// Add theme class
+document.body.classList.add(themeClass);
+
+// Root setup
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('Failed to find root element');
+const root = ReactDOM.createRoot(rootElement);
+
+// Loading fallback
+const Fallback = (
+  <GlobalLayout header={null} headerHeight={0}>
+    <LoadingScreen id="global-spinner" />
+  </GlobalLayout>
+);
+
+// App render
+root.render(
+  <StrictMode>
+    <RelayEnvironmentProvider environment={environment}>
+      <Suspense fallback={Fallback}>
+        <RouterProvider router={router} fallbackElement={Fallback} />
+      </Suspense>
+    </RelayEnvironmentProvider>
+  </StrictMode>
+);
+```
+
+## Custom Theming
+
+<CalloutMessage status="warning" width="full">
+  Custom theming is not currently supported.
+</CalloutMessage>

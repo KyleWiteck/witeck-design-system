@@ -1,0 +1,258 @@
+import Link from '@docusaurus/Link';
+import {
+  Button,
+  Checkbox,
+  Flex,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A customizable checkbox component built on top of Radix UI's Checkbox primitive.
+It provides controlled and uncontrolled behavior, multiple sizes, label support,
+and proper accessibility features.
+
+## Usage
+
+Import the Checkbox component from the library:
+
+```tsx
+import { Checkbox } from '@peopleticker/magnit-design/components';
+
+// Basic usage
+<Checkbox label="Accept terms" />;
+```
+
+## Props
+
+<PropsTable
+  defaultElement="button"
+  hideSprinkles
+  hideElementProp
+  hideChildren
+  componentSpecificProps={[
+    {
+      name: 'checked',
+      type: 'boolean | "indeterminate"',
+      default: 'undefined',
+      description: 'Controls the checked state in controlled mode.'
+    },
+    {
+      name: 'defaultChecked',
+      type: 'boolean | "indeterminate"',
+      default: 'undefined',
+      description: 'Initial checked state for uncontrolled mode.'
+    },
+    {
+      name: 'onChange',
+      type: '(event: ChangeEvent<HTMLInputElement>) => void',
+      default: 'undefined',
+      description:
+        'Callback for uncontrolled behavior. Does not support indeterminate state.'
+    },
+    {
+      name: 'onControlledChange',
+      type: '(checked: boolean | "indeterminate") => void',
+      default: 'undefined',
+      description: 'Callback for controlled behavior.'
+    },
+    {
+      name: 'size',
+      type: '"sm" | "md" | "lg"',
+      default: 'md',
+      description: 'Size of the checkbox.'
+    },
+    {
+      name: 'label',
+      type: 'ReactNode',
+      default: 'undefined',
+      description: 'Label content rendered in a Text component.'
+    },
+    {
+      name: 'labelProps',
+      type: 'TextProps<"label">',
+      default: '{}',
+      description: (
+        <Text>
+          Props passed to the label Text component. The element type is set to
+          label by default.{' '}
+          <Link to="/docs/guides/components/text">More on TextProps</Link>
+        </Text>
+      )
+    },
+    {
+      name: 'iconProps',
+      type: 'IconProps',
+      default: '{}',
+      description: (
+        <Text>
+          Props passed to the checkbox icon.{' '}
+          <Link to="/docs/guides/components/icons">More on IconProps</Link>
+        </Text>
+      )
+    },
+    {
+      name: 'wrapperProps',
+      type: 'FlexProps',
+      default: '{}',
+      description: (
+        <Text>
+          Props passed to the wrapper Flex component.{' '}
+          <Link to="/docs/guides/components/flex">More on FlexProps</Link>
+        </Text>
+      )
+    },
+    {
+      name: 'hasError',
+      type: 'boolean',
+      default: 'false',
+      description: 'Shows error styling when true.'
+    },
+    {
+      name: 'required',
+      type: 'boolean',
+      default: 'undefined',
+      description: 'Makes the checkbox required in forms.'
+    }
+  ]}
+/>
+
+## Basic Examples
+
+```tsx live
+<Flex direction="column" gap="4">
+  <Checkbox label="Basic checkbox" />
+
+  <Checkbox label="Required checkbox" required />
+
+  <Checkbox label="Disabled checkbox" disabled />
+
+  <Checkbox label="Error state" hasError />
+</Flex>
+```
+
+## Sizes
+
+```tsx live
+<Flex direction="column" gap="4">
+  <Checkbox size="sm" label="Small checkbox" />
+
+  <Checkbox size="md" label="Medium checkbox" />
+
+  <Checkbox size="lg" label="Large checkbox" />
+</Flex>
+```
+
+## Controlled Example
+
+```tsx live
+function ControlledCheckbox() {
+  const [checked, setChecked] = useState<boolean | 'indeterminate'>(false);
+
+  return (
+    <Flex direction="column" gap="4">
+      <Checkbox
+        label="Controlled checkbox"
+        checked={checked}
+        onControlledChange={setChecked}
+      />
+
+      <Button
+        onClick={() =>
+          setChecked(state =>
+            state === 'indeterminate'
+              ? false
+              : state === true
+                ? 'indeterminate'
+                : true
+          )
+        }
+      >
+        Toggle State
+      </Button>
+
+      <Text>Current state: {String(checked)}</Text>
+    </Flex>
+  );
+}
+```
+
+## With Form Integration
+
+```tsx live
+function CheckboxForm() {
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    alert(`Agreed: ${formData.get('terms')}`);
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
+      <Flex direction="column" gap="4">
+        <Checkbox
+          name="terms"
+          required
+          label="I agree to the terms and conditions"
+        />
+        <Button type="submit">Submit</Button>
+      </Flex>
+    </form>
+  );
+}
+```
+
+## Custom Styling
+
+```tsx live
+<Checkbox
+  label="Custom styled checkbox"
+  wrapperProps={{
+    backgroundColor: 'neutral200',
+    padding: '4'
+  }}
+  labelProps={{
+    color: 'primary',
+    fontWeight: 'bold'
+  }}
+/>
+```
+
+## Best Practices
+
+- Always provide clear, descriptive labels
+- Use consistent sizes within the same form
+- Consider using required prop for mandatory fields
+- Handle both controlled and uncontrolled states appropriately
+- Maintain proper spacing between checkbox groups
+- Use error states to indicate validation issues
+- Consider mobile touch targets when choosing sizes
+
+## Accessibility
+
+The Checkbox component includes several accessibility features:
+
+- Built on Radix UI's accessible checkbox primitive
+- Proper label association using htmlFor
+- Support for keyboard navigation
+- ARIA attributes for states and roles
+- Required field indication
+- Disabled state handling
+- Focus management
+- Screen reader support
+
+## Technical Considerations
+
+- Supports both controlled and uncontrolled modes
+- Handles indeterminate state
+- Integrates with React Hook Form
+- Memoized for performance
+- Supports forwarded refs
+- Maintains proper label alignment
+- Handles custom icon sizing
+- Supports custom wrapper styling
+- Provides proper form integration
+
+## Known Issues
+
+- Indeterminate state is not supported in uncontrolled mode with onChange
+- Custom styling might need adjustment for different sizes

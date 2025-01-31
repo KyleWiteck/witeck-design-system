@@ -1,0 +1,113 @@
+import Link from '@docusaurus/Link';
+import {
+  Card,
+  Flex,
+  Footer,
+  PageContainer,
+  Stack,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A layout component that provides consistent page structure with optional footer
+support and responsive container sizing.
+
+## Usage
+
+```tsx
+import { PageContainer } from '@peopleticker/magnit-design/components';
+
+<PageContainer footer={<Footer />}>
+  <Content />
+</PageContainer>;
+```
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  omitSprinkles={['HeightCSSProperties', 'OverflowCSSPropertiesUnion']}
+  componentSpecificProps={[
+    {
+      name: 'footer',
+      type: 'ReactNode',
+      description: 'Footer element rendered below the main content'
+    },
+    {
+      name: 'wrapperStackProps',
+      type: 'Omit<StackProps, "gap" | "minHeight" | "width" | "backgroundColor">',
+      description: (
+        <Text>
+          Props passed to the wrapper Stack component{' '}
+          <Link to="/docs/guides/components/stack">More on `StackProps`</Link>
+        </Text>
+      )
+    },
+    {
+      name: 'size',
+      type: 'ContainerProps["size"]',
+      description: (
+        <Text>
+          Controls maximum width of the container{' '}
+          <Link to="/docs/guides/components/container">
+            More on `StackProps`
+          </Link>
+        </Text>
+      )
+    }
+  ]}
+/>
+
+## Basic Layout
+
+```tsx live
+<PageContainer border="1px">
+  <Text>Main content area</Text>
+</PageContainer>
+```
+
+## With Footer
+
+```tsx live
+function PageWithFooter() {
+  return (
+    <PageContainer border="1px" footer={<Footer />}>
+      <Stack gap="4">
+        <Text>Main content</Text>
+        <Text>Scrollable area</Text>
+      </Stack>
+    </PageContainer>
+  );
+}
+```
+
+### Custom Container Size
+
+```tsx live
+<PageContainer size="lg" border="1px">
+  <Card>
+    <Text>Constrained width content</Text>
+  </Card>
+</PageContainer>
+```
+
+## Best Practices
+
+- Set a specific size prop for content width constraints instead of handling
+  widths in children
+- Use `wrapperStackProps` for layout adjustments rather than wrapping in
+  additional containers
+- Maintain consistent vertical padding across pages using the default `paddingY`
+  value
+- Place sticky elements (navigation, toolbars) outside `PageContainer` to
+  prevent scroll conflicts
+- Consider mobile viewport heights when implementing footers
+
+## Technical Considerations
+
+- Full viewport height layout
+- Automatic content scrolling
+- Footer pinned to bottom
+- Responsive padding
+- Polymorphic component support
+- Memoized for performance

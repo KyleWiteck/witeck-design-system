@@ -1,0 +1,236 @@
+import Link from '@docusaurus/Link';
+import {
+  Card,
+  Flex,
+  Skeleton,
+  Stack,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+Loading indicator component with customizable size and color variants. Built for
+consistent loading states across the application.
+
+## Usage
+
+```tsx
+import { Skeleton } from '@peopleticker/magnit-design/components';
+
+// Basic usage
+<Skeleton height="20" width="full" />;
+
+// Image variant
+<Skeleton variant="image" boxSize="32" />;
+```
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  hideChildren
+  hideSprinkles
+  hideAttributes
+  hideStyles
+  hideElementProp
+  componentSpecificProps={[
+    {
+      name: 'variant',
+      type: '"base" | "text" | "round" | "image" | undefined',
+      default: 'text',
+      description: 'Visual style of skeleton'
+    },
+    {
+      name: 'shade',
+      type: '"light" | "dark"',
+      default: 'light',
+      description: 'Color intensity'
+    },
+    {
+      name: 'height',
+      type: 'Sprinkles Spacing',
+      description: (
+        <Text>
+          Height value{' '}
+          <Link to="/docs/guides/styles-and-theming/sprinkles#spacing">
+            More on `Spacing`
+          </Link>
+        </Text>
+      )
+    },
+    {
+      name: 'minHeight',
+      type: 'Sprinkles Spacing',
+      description: (
+        <Text>
+          minHeight value{' '}
+          <Link to="/docs/guides/styles-and-theming/sprinkles#spacing">
+            More on `Spacing`
+          </Link>
+        </Text>
+      )
+    },
+    {
+      name: 'maxHeight',
+      type: 'Sprinkles Spacing',
+      description: (
+        <Text>
+          maxHeight value{' '}
+          <Link to="/docs/guides/styles-and-theming/sprinkles#spacing">
+            More on `Spacing`
+          </Link>
+        </Text>
+      )
+    },
+    {
+      name: 'width',
+      type: 'Sprinkles Spacing',
+      description: (
+        <Text>
+          Width value{' '}
+          <Link to="/docs/guides/styles-and-theming/sprinkles#spacing">
+            More on `Spacing`
+          </Link>
+        </Text>
+      )
+    },
+    {
+      name: 'maxWidth',
+      type: 'Sprinkles Spacing',
+      description: (
+        <Text>
+          maxWidth value{' '}
+          <Link to="/docs/guides/styles-and-theming/sprinkles#spacing">
+            More on `Spacing`
+          </Link>
+        </Text>
+      )
+    },
+    {
+      name: 'minWidth',
+      type: 'Sprinkles Spacing',
+      description: (
+        <Text>
+          minWidth value{' '}
+          <Link to="/docs/guides/styles-and-theming/sprinkles#spacing">
+            More on `Spacing`
+          </Link>
+        </Text>
+      )
+    },
+    {
+      name: 'boxSize',
+      type: 'Sprinkles Spacing',
+      description: (
+        <Text>
+          A shorthand for both width and height{' '}
+          <Link to="/docs/guides/styles-and-theming/sprinkles#spacing">
+            More on `Spacing`
+          </Link>
+        </Text>
+      )
+    },
+    {
+      name: 'borderRadius',
+      type: 'Sprinkles["borderRadius"]',
+      description: (
+        <Text>
+          Border radius value{' '}
+          <Link to="/docs/guides/styles-and-theming/sprinkles#sprinkles-props">
+            More on `Spacing`
+          </Link>{' '}
+          (Scroll to borderRadius)
+        </Text>
+      )
+    }
+  ]}
+/>
+
+## Card Loading
+
+```tsx live
+function CardLoading() {
+  return (
+    <Card padding="4" width="full" minHeight="60">
+      <Stack gap="4">
+        <Flex gap="4">
+          <Skeleton variant="image" boxSize="16" />
+          <Stack gap="2" flex="1">
+            <Skeleton height="6" width="3/4" />
+            <Skeleton height="4" width="1/2" />
+          </Stack>
+        </Flex>
+        <Skeleton height="4" width="full" />
+        <Skeleton height="4" width="full" />
+        <Skeleton height="4" width="2/3" />
+      </Stack>
+    </Card>
+  );
+}
+```
+
+## Text Content Loading
+
+```tsx live
+function TextLoading() {
+  return (
+    <Stack
+      gap="6"
+      padding="4"
+      width="full"
+      minHeight="60"
+      backgroundColor="white"
+    >
+      <Stack gap="2">
+        <Skeleton height="8" width="2/3" />
+        <Skeleton height="4" width="1/3" />
+      </Stack>
+      <Stack gap="2">
+        <Skeleton height="4" width="full" />
+        <Skeleton height="4" width="full" />
+        <Skeleton height="4" width="4/5" />
+      </Stack>
+    </Stack>
+  );
+}
+```
+
+## Dark Mode
+
+```tsx live
+function DarkLoading() {
+  return (
+    <Box padding="4">
+      <Flex gap="3">
+        <Skeleton
+          variant="image"
+          boxSize="12"
+          shade="dark"
+          borderRadius="full"
+        />
+        <Stack gap="2" flex="1">
+          <Skeleton height="5" width="1/3" shade="dark" />
+          <Skeleton height="4" width="2/3" shade="dark" />
+        </Stack>
+      </Flex>
+    </Box>
+  );
+}
+```
+
+## Best Practices
+
+- Match skeleton dimensions as close to actual content, this improves UX.
+- Use consistent spacing between skeleton elements
+- Apply appropriate shade based on background color (dark is secondary)
+- Maintain content hierarchy in skeleton layout
+- Consider mobile viewport loading states
+
+## Technical Details
+
+- Built on `Center` component
+- Customizable animation timing
+- ARIA busy state management
+- SVG-based image placeholders
+- Responsive dimension support
+- RTL layout compatible
+- Minimal re-renders with memo

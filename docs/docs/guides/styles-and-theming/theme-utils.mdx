@@ -1,0 +1,140 @@
+---
+title: Theme Utilities
+sidebar_position: 3
+---
+
+Provided utilities for theming your application using the Vanilla Extract
+library.
+
+It exports various properties that can be used to define and customize the
+appearance of your components. By leveraging these utilities, you can create a
+consistent and visually appealing design system for your application.
+
+```ts
+import {
+  accessiblyHidden,
+  expandRecipe,
+  rotate180Recipe,
+  shimmer,
+  themeClass,
+  varsContract
+} from '@peopleticker/magnit-design/theme';
+```
+
+## themeClass
+
+This property provides a class name that can be applied to the root element of
+your application. It is how the entire design system is applied to your
+application. Without this class name, your application will not be styled when
+using the `@magnit/design` library.
+
+More information can be found in the
+[Builtin theme setup](/docs/guides/introduction/project-setup#builtin-theme-setup)
+guide.
+
+## varsContract
+
+This property is used to define the theme variables that can be used to
+customize the appearance of your application. It serves as a contract to adhere
+to when defining theme variables.
+
+You can find more information on how this could be used in the
+[Custom theme setup](/docs/guides/introduction/project-setup#custom-theme-setup)
+guide.
+
+## rotate180Recipe
+
+A recipe function from **vanilla-extract** that defines a style for rotating an
+element 180 degrees. This recipe provides a transition effect for the
+**transform** property, allowing smooth rotation when the `isOpen` variant
+changes.
+
+### Structure
+
+- **Base Styles**:
+
+  - `transition: 'transform 300ms ease'`: Applies a 300ms ease transition to the
+    **transform** property. This ensures smooth animations when the element is
+    rotated.
+
+- **Variants**:
+
+  - `isOpen`: A variant that controls the rotation of the element.
+    - `true`: Applies `transform: rotate(180deg)`, rotating the element 180
+      degrees.
+    - `false`: Applies `transform: rotate(0deg)`, keeping the element in its
+      original orientation.
+
+- **Default Variants**:
+  - `isOpen: false`: By default, the element does not rotate (`rotate(0deg)`).
+
+### Example Usage
+
+```tsx
+import { rotate180Recipe } from '@peopleticker/magnit-design/theme';
+
+const MyComponent = ({ isOpen }) => (
+  <div className={rotate180Recipe({ isOpen })}>{/* Content goes here */}</div>
+);
+```
+
+In this example, when `isOpen` is `true`, the element rotates 180 degrees. When
+`isOpen` is `false`, it returns to its original orientation.
+
+## expandRecipe
+
+A recipe function from **vanilla-extract** that defines styles for expanding and
+collapsing an element with customizable transition durations. This recipe
+manages both visibility and size, making it useful for creating expandable
+sections like accordions or dropdowns.
+
+- **Variants**:
+
+  - `ms`: Transition duration.
+  - `isOpen`: Controls expansion.
+    - `true`: Expands the element (visible, no height restriction).
+    - `false`: Collapses the element (hidden, zero height).
+
+- **Defaults**:
+  - `isOpen: false` (collapsed)
+  - `ms: 300` (300ms transition)
+
+### Example
+
+```tsx
+<div className={expandRecipe({ isOpen, ms: 200 })}>{/* Content */}</div>
+```
+
+## shimmer
+
+The **shimmer** keyframe defines a shimmering effect by animating the
+background's position from left to right.
+
+- **Animation**:
+  - `0%`: Starts with background moving from `-100%`.
+  - `100%`: Ends with background moving to `100%`.
+  - Background color remains consistent (`hsl(200, 20%, 80%)`).
+
+### Example
+
+```tsx
+<div style={{ animation: `${shimmer} 2s infinite` }}>{/* Content */}</div>
+```
+
+---
+
+## accessiblyHidden
+
+The **accessiblyHidden** style hides an element visually while keeping it
+accessible to screen readers.
+
+- **Styles**:
+  - Positions element off-screen (`absolute`, `clip`, `clipPath`).
+  - Reduces size and removes visual impact (`width`, `height`, `margin`,
+    `padding`, `border`).
+
+### Example
+
+```tsx
+<div className={accessiblyHidden}>{/* Hidden but accessible content */}</div>
+```

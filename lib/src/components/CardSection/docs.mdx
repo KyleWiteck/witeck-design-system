@@ -1,0 +1,83 @@
+import Link from '@docusaurus/Link';
+import { Box, Flex, Text } from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+Customizable card for presenting structured content section. This CardSection
+component provides flexibility for creating structured, accessible card layouts
+with optional loading states, ideal for dashboards, profile cards, or similar UI
+use cases.
+
+## Props
+
+<PropsTable
+  defaultElement="section"
+  componentSpecificProps={[
+    {
+      name: 'variant',
+      type: '"row" | "column"',
+      default: 'column',
+      description: 'Heading flex layout.'
+    },
+    {
+      name: 'title',
+      type: 'ReactNode',
+      default: 'null'
+    },
+    {
+      name: 'titleVariant',
+      type: 'TextProps["variant"]',
+      default: '"h2"'
+    },
+    {
+      name: 'titleElement',
+      type: 'TextProps["element"]',
+      default: '"h1"'
+    },
+    {
+      name: 'subtitle',
+      type: 'ReactNode',
+      default: 'null'
+    },
+    {
+      name: 'subtitleVariant',
+      type: 'TextProps["variant"]',
+      default: '"caption"'
+    },
+    {
+      name: 'actions',
+      type: 'ReactNode',
+      default: 'null',
+      description: 'Content actions such as Buttons'
+    },
+    {
+      name: 'secondaryActions',
+      type: 'ReactNode',
+      default: 'null',
+      description: 'Content secondary actions such as Links'
+    }
+  ]}
+/>
+
+## Usage
+
+Import the `CardSection` component and use it in your application with the
+desired props.
+
+```tsx
+import { CardSection } from '@peopleticker/magnit-design/components';
+
+<CardSection
+  title="Heading Title"
+  subtitle="Section's subtitle"
+  actions={<Button size="sm">Primary Action</Button>}
+  variant="column"
+>
+  <Text>This is the content of the card.</Text>
+</CardSection>;
+```
+
+## Technical Considerations
+
+- Padding is added automatically when variant is set to 'column'.
+- Adjusts the layout dynamically based on the variant or isLoading state.
+- Uses Skeleton components to display placeholders when isLoading is true.

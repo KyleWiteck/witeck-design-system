@@ -1,0 +1,57 @@
+{
+  "name": "docusaurus",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "dev": "docusaurus start --port 3001",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.4.0",
+    "@docusaurus/preset-classic": "3.4.0",
+    "@docusaurus/theme-live-codeblock": "3.4.0",
+    "@easyops-cn/docusaurus-search-local": "^0.46.1",
+    "@mdx-js/mdx": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
+    "@peopleticker/magnit-design": "*",
+    "clsx": "^2.1.1",
+    "docusaurus-plugin-typedoc": "1.0.4",
+    "prism-react-renderer": "^2.4.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typedoc": "^0.26.5",
+    "typedoc-plugin-markdown": "4.2.3",
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.4.0",
+    "@docusaurus/tsconfig": "3.4.0",
+    "@docusaurus/types": "3.4.0",
+    "@vanilla-extract/webpack-plugin": "^2.3.15",
+    "typedoc-plugin-mark-react-functional-components": "^0.2.2",
+    "typescript": "~5.2.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0"
+  }
+}

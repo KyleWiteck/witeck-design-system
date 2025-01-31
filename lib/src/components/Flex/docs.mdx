@@ -1,0 +1,159 @@
+import Link from '@docusaurus/Link';
+import { Box, Flex, Text } from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A polymorphic flexbox container component that simplifies common layout
+patterns.
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  componentSpecificProps={[
+    {
+      name: 'direction',
+      type: 'SprinklesProps["flexDirection"]',
+      default: 'row',
+      description: (
+        <Text>
+          Sets flex-direction.{' '}
+          <Link to="/docs/guides/styles-and-theming/sprinkles">
+            More on SprinklesProps
+          </Link>
+        </Text>
+      )
+    },
+    {
+      name: 'align',
+      type: 'SprinklesProps["alignItems"]',
+      default: 'flex-start',
+      description: (
+        <Text>
+          Sets align-items.{' '}
+          <Link to="/docs/guides/styles-and-theming/sprinkles">
+            More on SprinklesProps
+          </Link>
+        </Text>
+      )
+    },
+    {
+      name: 'justify',
+      type: 'SprinklesProps["justifyContent"]',
+      default: 'flex-start',
+      description: (
+        <Text>
+          Sets justify-content.{' '}
+          <Link to="/docs/guides/styles-and-theming/sprinkles">
+            More on SprinklesProps
+          </Link>
+        </Text>
+      )
+    }
+  ]}
+/>
+
+## Basic Usage
+
+```tsx live
+<Flex gap="4">
+  <Box padding="4" backgroundColor="primary100">
+    Item 1
+  </Box>
+  <Box padding="4" backgroundColor="primary100">
+    Item 2
+  </Box>
+  <Box padding="4" backgroundColor="primary100">
+    Item 3
+  </Box>
+</Flex>
+```
+
+## Direction
+
+```tsx live
+<Flex direction="column" gap="4">
+  <Box padding="4" backgroundColor="primary100">
+    Column 1
+  </Box>
+  <Box padding="4" backgroundColor="primary100">
+    Column 2
+  </Box>
+  <Box padding="4" backgroundColor="primary100">
+    Column 3
+  </Box>
+</Flex>
+```
+
+## Alignment
+
+```tsx live
+<Flex
+  align="center"
+  justify="space-between"
+  height="80"
+  backgroundColor="neutral100"
+>
+  <Box padding="4" backgroundColor="primary100">
+    Start
+  </Box>
+  <Box padding="4" backgroundColor="primary100">
+    Center
+  </Box>
+  <Box padding="4" backgroundColor="primary100">
+    End
+  </Box>
+</Flex>
+```
+
+## Responsive Layout
+
+```tsx live
+<Flex
+  direction={{ mobile: 'column', tablet: 'row' }}
+  align={{ mobile: 'stretch', tablet: 'center' }}
+  gap="4"
+>
+  <Box flex="1" padding="4" backgroundColor="primary100">
+    Responsive Item 1
+  </Box>
+  <Box flex="1" padding="4" backgroundColor="primary100">
+    Responsive Item 2
+  </Box>
+</Flex>
+```
+
+## As Different Elements
+
+```tsx live
+<Flex
+  element="nav"
+  justify="space-between"
+  padding="4"
+  backgroundColor="neutral100"
+>
+  <Box>Logo</Box>
+  <Flex element="ul" gap="4" as="ul">
+    <Box as="li">Home</Box>
+    <Box as="li">About</Box>
+    <Box as="li">Contact</Box>
+  </Flex>
+</Flex>
+```
+
+## Technical Considerations
+
+- Inherits all Box props
+- Supports responsive values
+- Maintains proper spacing with gap utility
+- Handles nested flex containers
+- Preserves proper HTML semantics
+- Polymorphic element support
+- Defaults to `flexDirection: 'row'`
+
+## Best Practices
+
+- Use semantic HTML elements when appropriate
+- Consider mobile-first responsive layouts
+- Maintain consistent spacing patterns
+- Use gap instead of margins for spacing
+- Consider flex-wrap for responsive content

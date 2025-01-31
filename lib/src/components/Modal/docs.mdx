@@ -1,0 +1,321 @@
+import Link from '@docusaurus/Link';
+import {
+  Button,
+  Flex,
+  FormField,
+  Input,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  Stack,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+import { partialDisclosureProps } from '@site/src/utils/const';
+
+A robust modal dialog system using Radix UI primitives for accessibility and
+customization. Features composable components (Header, Body, Footer) with
+built-in responsive design, keyboard navigation, focus management, and ARIA
+support. Ideal for confirmations, forms, and complex dialogs requiring
+structured content organization.
+
+## Usage
+
+```tsx
+import {
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader
+} from '@peopleticker/magnit-design/components';
+
+<Modal
+  ariaTitle="Example Modal"
+  ariaDescription="Modal description"
+  trigger={<Button>Open Modal</Button>}
+>
+  <ModalHeader>Modal Title</ModalHeader>
+  <ModalBody>Content here</ModalBody>
+  <ModalFooter
+    primaryButton={({ disclosure, ...props }) => (
+      <Button {...props} onClick={disclosure?.onClose}>
+        Confirm
+      </Button>
+    )}
+    secondaryButton={({ disclosure, ...props }) => (
+      <Button {...props} onClick={disclosure?.onClose}>
+        Cancel
+      </Button>
+    )}
+  />
+</Modal>;
+```
+
+## Modal Props
+
+<PropsTable
+  defaultElement="div"
+  omitSprinkles={[
+    'PaddingCSSPropertiesUnion' | 'as' | 'children' | 'marginTop'
+  ]}
+  componentSpecificProps={[
+    {
+      name: 'variant',
+      type: '"sm" | "md" | "lg" | "custom" | undefined',
+      default: 'default',
+      description: 'Visual style variant'
+    },
+    {
+      name: 'topAlign',
+      type: 'boolean',
+      default: 'false',
+      description: 'Aligns modal to top of viewport'
+    },
+    {
+      name: 'ariaTitle',
+      type: 'string',
+      required: true,
+      description: 'Accessible title'
+    },
+    {
+      name: 'ariaDescription',
+      type: 'string',
+      required: true,
+      description: 'Accessible description'
+    },
+    {
+      name: 'disclosure',
+      type: 'Partial<ReturnType<typeof useDisclosure>>',
+      description: (
+        <Text>
+          Control modal state externally{' '}
+          <Link to="/docs/hooks-api#usedisclosure">
+            More on `useDisclosure`
+          </Link>
+          Note: disclosure can not be used with trigger
+        </Text>
+      )
+    },
+    {
+      name: 'trigger',
+      type: 'ReactNode',
+      description:
+        'Element that triggers the modal. Note: trigger can not be used with disclosure'
+    }
+  ]}
+/>
+
+## ModalHeader Props
+
+<PropsTable
+  defaultElement="div"
+  hideElementProp
+  hideAttributes
+  hideSprinkles
+  hideStyles
+  componentSpecificProps={[
+    {
+      name: 'status',
+      type: '"warning" | "error"',
+      description: 'Shows status icon'
+    },
+    ...partialDisclosureProps.filter(({ name }) => name === 'onClose')
+  ]}
+/>
+
+## ModalBody Props
+
+<PropsTable
+  defaultElement="div"
+  omitSprinkles={['overflow' | 'width' | 'paddingX']}
+  hideChildren
+  componentSpecificProps={[
+    {
+      name: 'children',
+      type: 'ReactNode | ((disclosure: Partial<ReturnType<typeof useDisclosure>>) => ReactNode)',
+      description: 'Body content'
+    }
+  ]}
+/>
+
+## ModalFooter Props
+
+<PropsTable
+  defaultElement="div"
+  hideAttributes
+  hideElementProp
+  hideChildren
+  hideStyles
+  hideSprinkles
+  componentSpecificProps={[
+    {
+      name: 'primaryButton',
+      type: `Omit<ButtonProps<'button'>, 'variant'> | ((requireProps: {variant: ButtonProps<"button">["variant"]; width: ButtonProps<"button">["width"]; disclosure: Partial<ReturnType<typeof useDisclosure>>}) => ReactNode)`,
+      required: true,
+      description: 'Primary action button'
+    },
+    {
+      name: 'secondaryButton',
+      type: `Omit<ButtonProps<'button'>, 'variant'> | ((requireProps: {variant: ButtonProps<"button">["variant"]; width: ButtonProps<"button">["width"]; disclosure: Partial<ReturnType<typeof useDisclosure>>}) => ReactNode)`,
+      description: 'Secondary action button'
+    },
+    {
+      name: 'tertiary1Button',
+      type: `Omit<ButtonProps<'button'>, 'variant'> | ((requireProps: {variant: ButtonProps<"button">["variant"]; width: ButtonProps<"button">["width"]; disclosure: Partial<ReturnType<typeof useDisclosure>>}) => ReactNode)`,
+      description: 'First tertiary action button'
+    },
+    {
+      name: 'tertiary2Button',
+      type: `Omit<ButtonProps<'button'>, 'variant'> | ((requireProps: {variant: ButtonProps<"button">["variant"]; width: ButtonProps<"button">["width"]; disclosure: Partial<ReturnType<typeof useDisclosure>>}) => ReactNode)`,
+      description: 'Second tertiary action button'
+    },
+    {
+      name: 'contentOverride',
+      type: 'ReactNode',
+      description:
+        'Override default footer layout. Should be used sparingly and for rare cases.'
+    },
+    {
+      name: 'removePaddingX',
+      type: 'boolean',
+      description: 'Removes horizontal padding'
+    }
+  ]}
+/>
+
+## Basic Example
+
+```tsx live
+function BasicModal() {
+  return (
+    <Modal
+      ariaTitle="Example Modal"
+      ariaDescription="Basic modal example"
+      trigger={<Button>Open Modal</Button>}
+    >
+      <ModalHeader>Modal Title</ModalHeader>
+      <ModalBody>
+        <Text>This is the modal content.</Text>
+      </ModalBody>
+      <ModalFooter
+        primaryButton={({ disclosure, ...props }) => (
+          <Button {...props} onClick={disclosure?.onClose}>
+            Confirm
+          </Button>
+        )}
+        secondaryButton={({ disclosure, ...props }) => (
+          <Button {...props} onClick={disclosure?.onClose}>
+            Cancel
+          </Button>
+        )}
+      />
+    </Modal>
+  );
+}
+```
+
+## External Control Form Example
+
+```tsx live
+function ExternalControlModal() {
+  const disclosure = useDisclosure();
+  const [formData, setFormData] = useState({ name: '', email: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      // Simulated API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      console.log('Submitted:', formData);
+      disclosure.onClose();
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleOpen = () => {
+    setFormData({ name: '', email: '' }); // Reset form
+    disclosure.onOpen();
+  };
+
+  return (
+    <Flex direction="column" gap="4">
+      <Button onClick={handleOpen}>Open Form Modal</Button>
+      <Text>Modal is: {disclosure.isOpen ? 'Open' : 'Closed'}</Text>
+
+      <Modal
+        ariaTitle="User Information"
+        ariaDescription="Enter your details"
+        element="form"
+        onSubmit={handleSubmit}
+        disclosure={disclosure}
+      >
+        <ModalHeader>Enter User Details</ModalHeader>
+        <ModalBody>
+          <Stack gap="4">
+            <FormField htmlFor="name" label="Name">
+              <Input
+                id="name"
+                value={formData.name}
+                onChange={e =>
+                  setFormData(prev => ({
+                    ...prev,
+                    name: e.target.value
+                  }))
+                }
+              />
+            </FormField>
+            <FormField htmlFor="email" label="Email">
+              <Input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={e =>
+                  setFormData(prev => ({
+                    ...prev,
+                    email: e.target.value
+                  }))
+                }
+              />
+            </FormField>
+          </Stack>
+        </ModalBody>
+        <ModalFooter
+          primaryButton={{
+            children: isSubmitting ? 'Logging...' : 'Console log data',
+            type: 'submit',
+            disabled: isSubmitting || !formData.name || !formData.email
+          }}
+          secondaryButton={{
+            children: 'Cancel',
+            onClick: disclosure.onClose,
+            disabled: isSubmitting
+          }}
+        />
+      </Modal>
+    </Flex>
+  );
+}
+```
+
+## Best Practices
+
+- Always provide aria labels
+- Include clear action buttons
+- Consider mobile viewports
+- Implement proper error handling
+
+## Technical Considerations
+
+- Built on Radix UI Dialog
+- Supports external state control
+- Polymorphic components
+- Responsive layouts
+- Accessible by default
+- Z-index management
+- Error boundary support

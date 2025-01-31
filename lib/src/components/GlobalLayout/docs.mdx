@@ -1,0 +1,234 @@
+import {
+  Box,
+  Button,
+  CalloutMessage,
+  Drawer,
+  GlobalLayout,
+  Header,
+  IconsByName,
+  Spinner,
+  Stack
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A root layout component for applications, managing global layout structure with
+header, navigation drawers, and content areas.
+
+## Basic Usage
+
+```tsx
+import { Drawer, GlobalLayout } from '@peopleticker/magnit-design/components';
+import { useDisclosure } from '@peopleticker/magnit-design/hooks';
+
+function AppLayout() {
+  const navDrawer = useDisclosure(true);
+
+  return (
+    <GlobalLayout
+      header={
+        <Header
+          menuIsOpen={navDrawer.isOpen}
+          onMenuToggle={navDrawer.onToggle}
+          logo={<img src="/logo.svg" alt="Company Logo" />}
+        >
+          <Stack direction="row" spacing="4">
+            <Button variant="nav">
+              <IconsByName name="Settings" />
+            </Button>
+            <Button variant="nav">
+              <IconsByName name="Bell" />
+            </Button>
+          </Stack>
+        </Header>
+      }
+      drawer={
+        <Drawer
+          variant="inlineNavExpand"
+          isOpen={navDrawer.isOpen}
+          onClose={navDrawer.onClose}
+          width={240}
+        >
+          <Stack spacing="4">
+            <Button variant="nav">Dashboard</Button>
+            <Button variant="nav">Settings</Button>
+            <Button variant="nav">Profile</Button>
+          </Stack>
+        </Drawer>
+      }
+      backgroundColor="neutral100"
+    >
+      "MAIN CONTENT"
+      {/* If using react-router-dom, This would be <Outlet> */}
+    </GlobalLayout>
+  );
+}
+```
+
+## Props
+
+<PropsTable
+  defaultElement="main"
+  omitSprinkles={['element', 'height', 'flex', 'overflowY', 'maxWidth']}
+  componentSpecificProps={[
+    {
+      name: 'header',
+      type: 'ReactNode',
+      required: true,
+      description: 'Fixed header component'
+    },
+    {
+      name: 'drawer',
+      type: 'ReactNode',
+      description: 'Optional side drawer/navigation'
+    },
+    {
+      name: 'headerHeight',
+      type: 'number',
+      default: '72',
+      description: 'Height of header in pixels'
+    }
+  ]}
+/>
+
+## Complex Application Example (Using [React Router Dom](https://www.npmjs.com/package/react-router-dom))
+
+```tsx
+function AppLayout() {
+  const navDrawer = useDisclosure(true);
+  const userMenuModal = useDisclosure();
+  const { isAuthenticated, user } = useAuth();
+  const navigate = useNavigate();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+
+  return (
+    <GlobalLayout
+      header={
+        <Header
+          userName={user.name}
+          onMenuToggle={navDrawer.onToggle}
+          menuIsOpen={navDrawer.isOpen}
+          onProfileClick={userMenuModal.onOpen}
+        />
+      }
+      // DesktopNavDrawer and MobileNavDrawer are for examples use only.
+      // Below is an example of building a nav drawer
+      drawer={
+        <>
+          <DesktopNavDrawer
+            isOpen={navDrawer.isOpen}
+            onClose={navDrawer.onClose}
+            userRole={user.role}
+            items={navigationItems}
+          />
+          // MobileNavDrawer is for example use only
+          <MobileNavDrawer
+            isOpen={navDrawer.isOpen}
+            onClose={navDrawer.onClose}
+            userRole={user.role}
+          />
+        </>
+      }
+      backgroundColor="neutral100"
+    >
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
+          <Outlet />
+        </Suspense>
+      </ErrorBoundary>
+
+      <UserMenuModal
+        isOpen={userMenuModal.isOpen}
+        onClose={userMenuModal.onClose}
+        onLogout={() => {
+          logout();
+          navigate('/login');
+        }}
+      />
+    </GlobalLayout>
+  );
+}
+```
+
+## Navigation Drawer Example
+
+```tsx
+function Example() {
+  const navDrawer = useDisclosure();
+  const pathname = '/dashboard'; // Simulating useLocation
+
+  const NAV_ITEMS = [
+    { label: 'Dashboard', path: '/dashboard', icon: <Icons.Dashboard /> },
+    { label: 'Reports', path: '/reports', icon: <Icons.Chart /> },
+    { label: 'Settings', path: '/settings', icon: <Icons.Settings /> }
+  ];
+
+  return (
+    <Drawer
+      variant="inlineNavExpand"
+      {...navDrawer}
+      display={{ mobile: 'block', desktop: 'none' }}
+    >
+      {NAV_ITEMS.map(({ label, path, icon }) => (
+        <Button
+          key={path}
+          variant="nav"
+          width="full"
+          minHeight="12"
+          paddingY="2"
+          paddingX="2"
+          display="flex"
+          gap="2"
+          alignItems="center"
+          justifyContent="flex-start"
+          icon={icon}
+          isHighlighted={pathname === path}
+          onClick={navDrawer.onClose}
+        >
+          {label}
+        </Button>
+      ))}
+    </Drawer>
+  );
+}
+```
+
+## Technical Details
+
+- Handles viewport dimensions using `width="fullVW"` and `height="fullVH"`
+- Manages header offset with `paddingTop` and height calculations
+- Uses nested Flex/Box components for layout structure:
+- Root wrapper with column direction
+- Content wrapper with row direction for drawer/main content
+- Main container with column direction for content
+- Maintains proper overflow handling at each level
+- Uses IDs for key sections:
+- `global-site-wrapper`: Root container
+- `global-content-wrapper`: Content below header
+- `global-main-container`: Main content area
+- Key props:
+- `header`: Required header component
+- `drawer`: Optional drawer component
+- `headerHeight`: Configurable header height (default 72px)
+
+## Layout Structure
+
+```
+|------------------------|
+|        Header          |
+|------------------------|
+|        |               |
+| Drawer |    Main       |
+|        |   Content     |
+|        |               |
+|        |               |
+|------------------------|
+```
+
+<CalloutMessage fontSize="base">
+  Main content area has overflow: 'auto' to contain scrolling within the main
+  element rather than the document body. This creates a scrollable content
+  region constrained by the viewport height minus the header.
+</CalloutMessage>

@@ -1,0 +1,110 @@
+import { Box, Container } from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+# Container Component
+
+A responsive layout component that provides consistent padding and max-width
+constraints across different viewport sizes.
+
+## Usage
+
+```tsx
+import { Container } from '@peopleticker/magnit-design/components';
+
+<Container>
+  <Content />
+</Container>;
+```
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  componentSpecificProps={[
+    {
+      name: 'size',
+      type: '"sm" | "md" | "lg" | "xl" | "full"',
+      default: 'md',
+      description: 'Controls the max-width of the container'
+    }
+  ]}
+/>
+
+## Examples
+
+### Basic Usage
+
+```tsx live
+<Container>
+  <Box backgroundColor="neutral200" padding="4">
+    Default container content
+  </Box>
+</Container>
+```
+
+### Size Variants
+
+```tsx live
+<Flex direction="column" gap="4">
+  <Container size="sm">
+    <Box backgroundColor="primary200" padding="4">
+      Small container
+    </Box>
+  </Container>
+
+  <Container size="lg">
+    <Box backgroundColor="primary200" padding="4">
+      Large container
+    </Box>
+  </Container>
+
+  <Container size="full">
+    <Box backgroundColor="primary200" padding="4">
+      Full-width container
+    </Box>
+  </Container>
+</Flex>
+```
+
+### Custom Padding
+
+```tsx live
+<Container
+  paddingX={{
+    mobile: '4',
+    tablet: '6',
+    desktop: '8'
+  }}
+>
+  <Box backgroundColor="neutral200" padding="4">
+    Custom responsive padding
+  </Box>
+</Container>
+```
+
+### As Different Elements
+
+```tsx live
+<Container element="section">
+  <Box backgroundColor="neutral200" padding="4">
+    Container as section element
+  </Box>
+</Container>
+```
+
+## Technical Considerations
+
+- Centers content horizontally
+- Applies responsive padding by default
+- Supports all Box props
+- Uses flexbox for vertical content alignment
+- Maintains proper spacing with nested containers
+- Handles overflowing content
+- Supports polymorphic elements
+
+## Best Practices
+
+- Use consistent sizes across similar page sections
+- Consider content width for readability
+- Maintain consistent padding patterns
+- Nest containers carefully to avoid unintended spacing

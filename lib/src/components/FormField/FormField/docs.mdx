@@ -1,0 +1,169 @@
+import {
+  Button,
+  FormField,
+  Input
+} from '@peopleticker/magnit-design/components';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A wrapper component that provides consistent layout and accessibility features
+for form inputs.
+
+## Usage
+
+```tsx
+import { FormField, Input } from '@peopleticker/magnit-design/components';
+
+<FormField label="Email Address" htmlFor="email" required>
+  <Input id="email" />
+</FormField>;
+```
+
+## Props
+
+<PropsTable
+  defaultElement="div"
+  componentSpecificProps={[
+    {
+      name: 'htmlFor',
+      type: 'string',
+      required: true,
+      description: 'ID of the form control this label is associated with'
+    },
+    {
+      name: 'label',
+      type: 'string',
+      description: 'Label text for the form field'
+    },
+    {
+      name: 'hideLabel',
+      type: 'boolean',
+      default: 'false',
+      description: 'Visually hides label while maintaining accessibility'
+    },
+    {
+      name: 'required',
+      type: 'boolean',
+      default: 'false',
+      description: 'Marks field as required'
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      default: 'false',
+      description: 'Disables the form field'
+    },
+    {
+      name: 'helperText',
+      type: 'string',
+      description: 'Help text below label'
+    },
+    {
+      name: 'hintText',
+      type: 'string',
+      description: 'Hint text below form control'
+    },
+    {
+      name: 'errorMessage',
+      type: 'string',
+      description: 'Error message to display'
+    },
+    {
+      name: 'labelRightSideContent',
+      type: 'ReactNode',
+      description: 'Content displayed on right side of label'
+    },
+    {
+      name: 'disableErrorScrolling',
+      type: 'boolean',
+      default: 'false',
+      description: 'Disables auto-scroll to errors'
+    }
+  ]}
+/>
+
+## Examples
+
+### Basic Usage
+
+```tsx live
+<FormField
+  label="Username"
+  htmlFor="username"
+  helperText="Choose a unique username"
+>
+  <Input id="username" />
+</FormField>
+```
+
+### Required Field
+
+```tsx live
+<FormField
+  label="Password"
+  htmlFor="password"
+  required
+  helperText="Must be at least 8 characters"
+>
+  <Input id="password" type="password" />
+</FormField>
+```
+
+### With Error State
+
+```tsx live
+<FormField
+  label="Email"
+  htmlFor="email"
+  required
+  errorMessage="Please enter a valid email address"
+>
+  <Input id="email" type="email" />
+</FormField>
+```
+
+### With Right Side Content
+
+```tsx live
+<FormField
+  label="Profile Picture"
+  htmlFor="avatar"
+  labelRightSideContent={
+    <Button variant="link" size="sm">
+      Clear
+    </Button>
+  }
+>
+  <Input id="avatar" type="file" />
+</FormField>
+```
+
+### Disabled State
+
+```tsx live
+<FormField
+  label="Account Type"
+  htmlFor="account-type"
+  disabled
+  helperText="Contact admin to change"
+>
+  <Input disabled />
+</FormField>
+```
+
+## Best Practices
+
+- Use clear, descriptive labels
+- Provide helper text for complex fields
+- Display actionable error messages
+- Maintain consistent spacing
+- Associate labels with controls using htmlFor
+- Consider mobile viewport spacing
+
+## Accessibility
+
+- Semantic HTML structure
+- Proper label association
+- Screen reader support
+- Keyboard navigation
+- Error message announcements
+- Support for hidden labels

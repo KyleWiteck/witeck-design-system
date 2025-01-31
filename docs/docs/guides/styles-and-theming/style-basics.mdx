@@ -1,0 +1,154 @@
+---
+title: Styling Basics
+sidebar_position: 1
+description:
+  Learn the basics of styling with the Box component and explore its wide range
+  of style properties to create custom layouts and designs.
+---
+
+Learn the basics of styling with the `Box` component and explore its wide range
+of style properties to create custom layouts and designs.
+
+## Fundaments
+
+Styling is a fundamental aspect of creating visually appealing and cohesive user
+interfaces. In this section, we will explore the basics of styling within our
+design system, focusing on key concepts and techniques to help you achieve the
+desired look and feel for your applications.
+
+Throughout this documentation, we will cover various aspects of styling,
+including layout, spacing, typography, colors, and more. By understanding these
+fundamental principles, you will be able to create visually stunning and
+consistent designs.
+
+While working with our design system, you will frequently encounter the `Box`
+component, which serves as a versatile building block for styling and layout.
+The `Box` component provides a wide range of style props that can be applied to
+customize the appearance of components. It is also the core of all the design
+libraries components. We will explore these style props in detail and learn how
+to use them effectively.
+
+Let's dive into the styling basics and discover the tools and techniques that
+will empower you to create beautifully designed user interfaces. If you have any
+questions or need further assistance, feel free to ask. Let's get started!
+
+## Styling Props
+
+Achieve personalized designs by applying specific styling props to Magnit Design
+Library components, allowing for seamless customization. It is recommended to
+prioritize the use of Magnit Design Library's built-in styling props for
+customization before exploring alternative styling approaches.
+
+```tsx live
+<Box width="18" height="18" marginX="auto" backgroundColor="primary" />
+```
+
+This simple code snippet demonstrates the usage of styling props, allowing you
+to effortlessly customize your components.
+
+## Responsive Props
+
+The library components supports responsive props, which allow you to define
+different property values for different breakpoints. This enables you to create
+responsive and adaptive layouts that adjust to different screen sizes and
+devices.
+
+### Object Form
+
+You can define responsive props using an object with breakpoints as keys and
+corresponding values. ([Breakpoints](/docs/utils-api#breakpoints)) For example:
+
+```tsx live
+<Box
+  backgroundColor={{ mobile: 'error', tablet: 'success', desktop: 'primary' }}
+  boxSize="20"
+/>
+```
+
+In the example above, the **backgroundColor** prop is defined as an object. It
+specifies different values for the mobile, tablet, and desktop breakpoints.
+
+### Array Form
+
+Alternatively, you can define responsive props using an array, where each
+element represents the value for a specific breakpoint. For example:
+
+```tsx live
+<Box backgroundColor={['error', 'success', 'primary']} boxSize="20" />
+```
+
+In the example above, the **backgroundColor** prop is defined as an array. The
+values in the array correspond to the values for the mobile, tablet, and desktop
+breakpoints, respectively.
+
+## Using ClassName
+
+You can override component styling by using plain CSS and class names with the
+`className` prop. Here's a simple example:
+
+:::warning
+
+It is important to consider using **className** as a last resort when styling
+components. When using **className**, it is recommended to check with the design
+team or follow their guidelines to ensure that any customizations align with the
+Magnit brand and design parameters. This ensures a consistent and cohesive user
+experience. Collaborating with the design department helps maintain the overall
+design vision and ensures that your customization efforts adhere to the Magnit
+brand guidelines.
+
+:::
+
+```tsx
+<Box className="custom-class" />
+```
+
+In this example, the **className** prop is set to custom-class, allowing you to
+apply custom styles to the `Box` component.
+
+By adding your own CSS rules for the custom-class class, you can fully customize
+the appearance of the component.
+
+Take advantage of the **className** prop to apply your own styling and achieve
+the desired look and feel for your components.
+
+It is important to consider using **className** as a last resort when styling
+components. It's recommended to make use of as many available style props as
+possible before adding a className. This approach helps to minimize the amount
+of CSS added to your project. Even when adding a **className**, it is advisable
+to only apply the missing styles using that class name.
+
+```tsx
+<Box padding="8" className="custom-class" />
+```
+
+```css
+/* Bad */
+.custom-class {
+  padding: 8px;
+  :before {
+    content: '';
+  }
+}
+
+/* Good */
+.custom-class {
+  :before {
+    content: '';
+  }
+}
+```
+
+## Summary
+
+The style props in our component libraries offer a powerful, and flexible way to
+customize the appearance of your user interfaces.
+
+You can easily apply spacing, typography, colors, and more to create visually
+appealing designs. These intuitive style props allow you to achieve your desired
+look while maintaining consistency. Explore the range of sprinkles available and
+unlock the potential for stunning and unique user experiences. If you have
+questions or need guidance, we're here to help. Let's embark on this styling
+journey together and elevate your interfaces with sprinkles!
+
+Find out more on the possible styke props in the
+[Sprinkles Docs](/docs/styles-and-theming/sprinkles)

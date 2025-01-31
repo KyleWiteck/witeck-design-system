@@ -1,0 +1,147 @@
+import Link from '@docusaurus/Link';
+import {
+  Card,
+  Flex,
+  Footer,
+  PageContainer,
+  Stack,
+  Text
+} from '@peopleticker/magnit-design/components';
+import { FormDepCallout } from '@site/src/components/FormDepCallout';
+import { PropsTable } from '@site/src/components/PropsTable';
+
+Form control component for single selection options.
+
+<FormDepCallout />
+
+## Props
+
+<PropsTable
+  defaultElement="input"
+  componentSpecificProps={[
+    {
+      name: 'id',
+      type: 'string',
+      required: true,
+      description: 'Unique identifier for the radio input'
+    },
+    {
+      name: 'label',
+      type: 'ReactNode',
+
+      description: 'Label content rendered in a Text span element'
+    },
+    {
+      name: 'labelProps',
+      type: 'Omit<FlexProps<"label">, "align" | "textTransform" | "gap">',
+      description: (
+        <Text>
+          Props for the label container{' '}
+          <Link to="/docs/guides/components/flex">More on `FlexProps`</Link>
+        </Text>
+      )
+    },
+    {
+      name: 'labelTextProps',
+      type: 'Omit<TextProps<"span">, "fontSize" | "lineHeight" | "variant">',
+      description: (
+        <Text>
+          Props for the label text element{' '}
+          <Link to="/docs/guides/components/text">More on `TextProps`</Link>
+        </Text>
+      )
+    },
+    {
+      name: 'size',
+      type: '"sm" | "md" | "lg"',
+      default: 'md',
+      description: 'Size of the radio button'
+    },
+    {
+      name: 'hasError',
+      type: 'boolean',
+      default: 'false',
+      description: 'Applies error styling'
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      default: 'false',
+      description: 'Disables the radio input'
+    }
+
+]} />
+
+## Basic Usage
+
+```tsx live
+function BasicRadio() {
+  return (
+    <Stack gap="2">
+      <Radio id="option1" name="group" label="Option 1" />
+      <Radio id="option2" name="group" label="Option 2" />
+    </Stack>
+  );
+}
+```
+
+## Form Integration
+
+```tsx live
+function RadioForm() {
+  const [value, setValue] = useState('');
+
+  return (
+    <form>
+      <Stack gap="4">
+        <Radio
+          id="radio1"
+          name="options"
+          value="option1"
+          checked={value === 'option1'}
+          onChange={e => setValue(e.target.value)}
+          label="First Option"
+        />
+        <Radio
+          id="radio2"
+          name="options"
+          value="option2"
+          checked={value === 'option2'}
+          onChange={e => setValue(e.target.value)}
+          label="Second Option"
+          hasError={!value}
+        />
+      </Stack>
+    </form>
+  );
+}
+```
+
+## States
+
+```tsx live
+<Stack gap="3">
+  <Radio id="default" label="Default" name="States" />
+  <Radio id="checked" label="Checked" checked name="States" />
+  <Radio id="error" label="Error" hasError name="States" />
+  <Radio id="disabled" label="Disabled" disabled name="States" />
+</Stack>
+```
+
+## Best Practices
+
+- Use unique IDs for each radio button
+- Group related options with same `name` prop
+- Provide clear, concise labels
+- Handle form validation appropriately
+- Consider keyboard navigation
+- Use disabled state sparingly
+
+## Technical Details
+
+- Built on native radio input
+- ARIA-compliant
+- Supports form validation
+- Customizable styling
+- RTL support
+- Keyboard accessible
