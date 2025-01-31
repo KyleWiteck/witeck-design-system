@@ -2,8 +2,8 @@
   "name": "@KyleWiteck/witeck-design",
   "version": "0.0.1",
   "license": "UNLICENSED",
-  "author": "Magnit - Kyle Witeck & Francisco Veracoechea",
-  "description": "The Magnit React Design Library node module",
+  "author": "Kyle Witeck",
+  "description": "The React Design Library node module",
   "type": "module",
   "node": ">=18",
   "sideEffects": [

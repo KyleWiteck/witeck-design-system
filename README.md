@@ -194,15 +194,6 @@ import Doc from '../../../../lib/src/components/Stack/docs.mdx';
 <Doc />
 ```
 
-## Contact
-
-For any inquiries or to reach out to the maintainers, please use the following
-contact details:
-
-- Kyle Witeck - kyle.witeck@magnit.com
-- Francisco Veracoechea - Francisco.Veracoechea@magnitglobal.com
-- Reporting Manager: Muhammad Shoaib - muhammad.shoaib@magnitglobal.com
-
 ## Publish React Lib
 
 ### Step 1: Create a GitHub Personal Access Token

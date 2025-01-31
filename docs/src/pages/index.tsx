@@ -1,6 +1,6 @@
+import { Button, Flex, Stack, Text } from '@KyleWiteck/witeck-design/components';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import { Button, Flex, Icons, Stack, Text } from '@KyleWiteck/witeck-design/components';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Layout from '@theme/Layout';
 
@@ -19,7 +19,6 @@ function HomepageHeader() {
       backgroundColor="primary100"
       gap="4"
     >
-      <Icons.MagnitIconLogo boxSize="20" />
       <Stack textAlign="center" alignItems="center" gap="0.5">
         <Text variant="display" element="h1" fontWeight="medium" className="hero__title">
           {siteConfig.title}

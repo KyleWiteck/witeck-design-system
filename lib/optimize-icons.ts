@@ -57,9 +57,6 @@ async function optimizeIcons() {
   const icons = await fs.readdir('assets/icons');
 
   for (const icon of icons) {
-    // Ignore magnit icons
-    if (icon.startsWith('magnit')) continue;
-
     const svgPath = `assets/icons/${icon}`;
     const svgString = await fs.readFile(svgPath, { encoding: 'utf8' });
     const optimizedSvg = await optimizeSvg(svgString, svgPath);

@@ -87,14 +87,6 @@ function Example() {
         aria-label="Home"
         alignItems="center"
       >
-        <IconsByName
-          name="MagnitFullLogo"
-          color="magnitPrimary"
-          width={{ mobile: '28', tablet: '36' }}
-          height={{ mobile: 'auto', tablet: 'full' }}
-          role="img"
-          alt="magnit logo"
-        />
         <Text
           element="span"
           variant="micro"
@@ -116,27 +108,6 @@ function Example() {
     <IconsByName name="Notifications" />
   </Button>
 </Header>
-```
-
-## With Custom Height
-
-```tsx live
-<Header
-  headerHeight="80px"
-  // `position` is used to keep this demonstration in its container.
-  // By default the position is set to fixed.
-  position="relative"
-  logo={
-    <IconsByName
-      name="MagnitFullLogo"
-      color="magnitPrimary"
-      width={{ mobile: '28', tablet: '36' }}
-      height={{ mobile: 'auto', tablet: 'full' }}
-      role="img"
-      alt="magnit logo"
-    />
-  }
-/>
 ```
 
 ## Technical Details
