@@ -89,7 +89,7 @@ function BoxImpl(props: BoxProps, forwardedRef: ForwardedRef<Element>) {
 }
 
 /**
- * Box is the most foundational component in the Magnit Design Library, upon which all other components are built.
+ * Box is the most foundational component in the Witeck Design Library, upon which all other components are built.
  *
  * @description This is a highly flexible component that forms the foundation of our design components.
  * By default, it renders as a div element, making it a flexible starting point for designing and laying out content.

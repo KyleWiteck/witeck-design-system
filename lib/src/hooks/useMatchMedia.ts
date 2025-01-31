@@ -1,7 +1,6 @@
-import { breakPoints } from '@KyleWiteck/witeck-design/utils';
 import { useLayoutEffect, useState } from 'react';
 
-import { isKeyOf } from '../utils';
+import { breakPoints, isKeyOf } from '../utils';
 
 /**
  * Callback function type that gets executed when the media query matches.

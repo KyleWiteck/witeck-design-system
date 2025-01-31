@@ -1,6 +1,6 @@
-# Magnit Design Monorepo
+# Witeck Design Monorepo
 
-This monorepo project, Magnit Design, includes:
+This monorepo project, Witeck Design, includes:
 
 - The design library
 - A Vite design library testing environment

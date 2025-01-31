@@ -1,5 +1,5 @@
 // Tooltip.tsx
-// TODO: flush out the rest of the functionality later based on https://www.figma.com/file/ypU12lwDF5IzUQsC2GUryd/Magnit-Design-System-1.0?node-id=4307%3A39055&mode=dev
+// TODO: flush out the rest of the functionality later based on https://www.figma.com/file/ypU12lwDF5IzUQsC2GUryd/witeck-design-System-1.0?node-id=4307%3A39055&mode=dev
 import * as RadixTooltip from '@radix-ui/react-tooltip';
 import { TooltipProps as RadixTooltipProps } from '@radix-ui/react-tooltip';
 import { ReactNode, useEffect, useRef, useState } from 'react';

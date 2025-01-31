@@ -3,20 +3,20 @@ import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
 
 const config: Config = {
-  title: 'Magnit Design',
+  title: 'Witeck Design',
   tagline: 'Brand Consistent, Scalable, and Accessible UI Library.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://peopleticker.github.io',
+  url: 'https://KyleWiteck.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/magnit-design/',
+  baseUrl: '/witeck-design/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'peopleticker', // Usually your GitHub org/user name.
-  projectName: 'magnit-design', // Usually your repo name.
+  organizationName: 'KyleWiteck', // Usually your GitHub org/user name.
+  projectName: 'witeck-design', // Usually your repo name.
   trailingSlash: false,
 
   onBrokenLinks: 'warn',
@@ -146,9 +146,9 @@ const config: Config = {
     // Replace with your project's social card
     // image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'Magnit Design',
+      title: 'Witeck Design',
       logo: {
-        alt: 'Magnit Design',
+        alt: 'Witeck Design',
         src: 'img/logo.svg'
       },
       items: [
@@ -168,7 +168,7 @@ const config: Config = {
           position: 'right'
         },
         {
-          href: 'https://github.com/peopleticker/magnit-design',
+          href: 'https://github.com/KyleWiteck/witeck-design',
           label: 'GitHub',
           position: 'right'
         }
