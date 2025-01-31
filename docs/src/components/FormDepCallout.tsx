@@ -1,4 +1,4 @@
-import { Button, CalloutMessage, Text } from '@peopleticker/magnit-design/components';
+import { Button, CalloutMessage, Text } from '@KyleWiteck/witeck-design/components';
 
 export function FormDepCallout() {
   return (

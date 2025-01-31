@@ -1,4 +1,4 @@
-import { Box, Stack, Text } from '@peopleticker/magnit-design/components';
+import { Box, Stack, Text } from '@KyleWiteck/witeck-design/components';
 import ComposableFeature from '@site/static/img/undraw_building_blocks_re_5ahy.svg';
 import ProductivityFeature from '@site/static/img/undraw_data_re_80ws.svg';
 import ConsistencyFeature from '@site/static/img/undraw_design_notes_re_eklr.svg';

@@ -1,6 +1,6 @@
-import { Box, Flex, Stack, Text } from '@peopleticker/magnit-design/components';
-import * as ESMIcons from '@peopleticker/magnit-design/icons';
-import { IconProps, MagnitFullLogo2Icon, MagnitFullLogoIcon, MagnitLogoIcon } from '@peopleticker/magnit-design/icons';
+import { Box, Flex, Stack, Text } from '@KyleWiteck/witeck-design/components';
+import * as ESMIcons from '@KyleWiteck/witeck-design/icons';
+import { IconProps, MagnitFullLogo2Icon, MagnitFullLogoIcon, MagnitLogoIcon } from '@KyleWiteck/witeck-design/icons';
 
 export function IconsDemo() {
   return (

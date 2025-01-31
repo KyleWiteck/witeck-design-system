@@ -411,7 +411,7 @@ This is what [Sprinkles](/docs/guides/styles-and-theming/sprinkles) are built on
 #### Example
 
 ```ts
-import { themeValues } from '@peopleticker/magnit-design/utils';
+import { themeValues } from '@KyleWiteck/witeck-design/utils';
 
 const styles = {
   padding: themeValues.space[4],

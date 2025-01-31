@@ -1,6 +1,6 @@
 import Link from '@docusaurus/Link';
-import { Stack, Text } from '@peopleticker/magnit-design/components';
-import { themeValues } from '@peopleticker/magnit-design/utils';
+import { Stack, Text } from '@KyleWiteck/witeck-design/components';
+import { themeValues } from '@KyleWiteck/witeck-design/utils';
 import { PropsWithChildren, ReactNode } from 'react';
 
 interface PropsDataRowProps {

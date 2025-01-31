@@ -1,5 +1,5 @@
-import { Button, ButtonDropdownWrapper, Input, Stack, Text } from '@peopleticker/magnit-design/components';
-import { useDisclosure } from '@peopleticker/magnit-design/hooks';
+import { Button, ButtonDropdownWrapper, Input, Stack, Text } from '@KyleWiteck/witeck-design/components';
+import { useDisclosure } from '@KyleWiteck/witeck-design/hooks';
 
 export default function ButtonDropdownTest() {
   const disclosure = useDisclosure();

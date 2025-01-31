@@ -1,5 +1,5 @@
 import { useHistory, useLocation } from '@docusaurus/router';
-import { Card, DataGrid } from '@peopleticker/magnit-design/components';
+import { Card, DataGrid } from '@KyleWiteck/witeck-design/components';
 import { useEffect, useState } from 'react';
 
 const defaultPageSize = 8;

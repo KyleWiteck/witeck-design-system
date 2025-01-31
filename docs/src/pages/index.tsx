@@ -1,6 +1,6 @@
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import { Button, Flex, Icons, Stack, Text } from '@peopleticker/magnit-design/components';
+import { Button, Flex, Icons, Stack, Text } from '@KyleWiteck/witeck-design/components';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Layout from '@theme/Layout';
 

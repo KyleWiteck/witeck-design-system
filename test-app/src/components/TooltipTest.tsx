@@ -1,4 +1,4 @@
-import { Flex, Tooltip } from '@peopleticker/magnit-design/components';
+import { Flex, Tooltip } from '@KyleWiteck/witeck-design/components';
 
 export function TooltipTest() {
   return (

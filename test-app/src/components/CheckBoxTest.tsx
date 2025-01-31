@@ -1,4 +1,4 @@
-import { Checkbox } from '@peopleticker/magnit-design/components';
+import { Checkbox } from '@KyleWiteck/witeck-design/components';
 import { useForm } from 'react-hook-form';
 
 type FormValues = {

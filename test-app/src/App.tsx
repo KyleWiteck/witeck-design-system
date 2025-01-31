@@ -1,4 +1,4 @@
-import { Button, NotFoundUI, Stack } from '@peopleticker/magnit-design/components';
+import { Button, NotFoundUI, Stack } from '@KyleWiteck/witeck-design/components';
 
 import './App.css';
 import { AccordionTest } from './components/AccordionTest';

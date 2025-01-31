@@ -1,4 +1,4 @@
-import { Box, Button, Card, Center, Container, Flex, Icons, Stack, Text } from '@peopleticker/magnit-design/components';
+import { Box, Button, Card, Center, Container, Flex, Icons, Stack, Text } from '@KyleWiteck/witeck-design/components';
 
 export function Demo() {
   return (

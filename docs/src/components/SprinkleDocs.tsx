@@ -1,7 +1,7 @@
 import Link from '@docusaurus/Link';
-import { Box, BoxProps, Flex, Text } from '@peopleticker/magnit-design/components';
-import { __SECRET_INTERNAL_PROPERTIES_DONT_USE__ as properties } from '@peopleticker/magnit-design/theme';
-import { SHORTHANDS, themeValues } from '@peopleticker/magnit-design/utils';
+import { Box, BoxProps, Flex, Text } from '@KyleWiteck/witeck-design/components';
+import { __SECRET_INTERNAL_PROPERTIES_DONT_USE__ as properties } from '@KyleWiteck/witeck-design/theme';
+import { SHORTHANDS, themeValues } from '@KyleWiteck/witeck-design/utils';
 import { useEffect, useRef, useState } from 'react';
 
 export function ColorsTable() {

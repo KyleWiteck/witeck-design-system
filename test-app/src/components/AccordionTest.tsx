@@ -1,4 +1,4 @@
-import { Accordion, Stack, Text } from '@peopleticker/magnit-design/components';
+import { Accordion, Stack, Text } from '@KyleWiteck/witeck-design/components';
 
 export function AccordionTest() {
   return (

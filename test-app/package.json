@@ -15,7 +15,7 @@
     "yarn": "not set up, use npm"
   },
   "dependencies": {
-    "@peopleticker/magnit-design": "*",
+    "@KyleWiteck/witeck-design": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.2"

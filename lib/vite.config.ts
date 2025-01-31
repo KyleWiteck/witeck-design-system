@@ -22,7 +22,7 @@ export default defineConfig({
     copyPublicDir: false,
     sourcemap: true,
     lib: {
-      name: '@peopleticker/magnit-design',
+      name: '@KyleWiteck/witeck-design',
       formats: ['es'],
       entry: {
         components: resolve(__dirname, 'src/components/index.ts'),

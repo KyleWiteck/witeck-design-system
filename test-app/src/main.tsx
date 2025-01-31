@@ -1,5 +1,5 @@
-import '@peopleticker/magnit-design/global.css';
-import { themeClass } from '@peopleticker/magnit-design/theme';
+import '@KyleWiteck/witeck-design/global.css';
+import { themeClass } from '@KyleWiteck/witeck-design/theme';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 

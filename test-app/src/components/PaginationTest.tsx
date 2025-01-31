@@ -1,4 +1,4 @@
-import { Pagination } from '@peopleticker/magnit-design/components';
+import { Pagination } from '@KyleWiteck/witeck-design/components';
 import { useState } from 'react';
 
 export default function PaginationTest() {

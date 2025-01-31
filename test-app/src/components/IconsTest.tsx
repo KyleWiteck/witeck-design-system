@@ -1,5 +1,5 @@
-import { Flex, Icons, Stack, Text } from '@peopleticker/magnit-design/components';
-import { GearIcon, HomeIcon, MailIcon, MenuIcon, UserIcon } from '@peopleticker/magnit-design/icons';
+import { Flex, Icons, Stack, Text } from '@KyleWiteck/witeck-design/components';
+import { GearIcon, HomeIcon, MailIcon, MenuIcon, UserIcon } from '@KyleWiteck/witeck-design/icons';
 
 export function IconsTest() {
   return (

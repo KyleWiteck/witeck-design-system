@@ -1,4 +1,4 @@
-import { Button, ChipRadioButton, ChipRadioGroup, Flex } from '@peopleticker/magnit-design/components';
+import { Button, ChipRadioButton, ChipRadioGroup, Flex } from '@KyleWiteck/witeck-design/components';
 import { useState } from 'react';
 
 export function ChipRadioTest() {

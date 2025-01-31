@@ -1,4 +1,4 @@
-import { Button, Stack, Text } from '@peopleticker/magnit-design/components';
+import { Button, Stack, Text } from '@KyleWiteck/witeck-design/components';
 
 function FooterWrapper(): JSX.Element {
   return (

@@ -1,4 +1,4 @@
-import { breakPoints } from '@peopleticker/magnit-design/utils';
+import { breakPoints } from '@KyleWiteck/witeck-design/utils';
 import { useLayoutEffect, useState } from 'react';
 
 import { isKeyOf } from '../utils';

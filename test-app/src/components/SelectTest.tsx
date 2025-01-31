@@ -1,5 +1,5 @@
-import { Center, ComboBox, Icons, Select, SelectOptionLabel, Stack } from '@peopleticker/magnit-design/components';
-import { addUniqueOptionBasedOnKey, filterOptionsBySearchTerm } from '@peopleticker/magnit-design/utils';
+import { Center, ComboBox, Icons, Select, SelectOptionLabel, Stack } from '@KyleWiteck/witeck-design/components';
+import { addUniqueOptionBasedOnKey, filterOptionsBySearchTerm } from '@KyleWiteck/witeck-design/utils';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 

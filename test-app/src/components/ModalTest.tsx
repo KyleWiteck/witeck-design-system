@@ -7,7 +7,7 @@ import {
   ModalHeader,
   Stack,
   Text
-} from '@peopleticker/magnit-design/components';
+} from '@KyleWiteck/witeck-design/components';
 
 import ButtonDropdownTest from './ButtonDropdownTest';
 import SelectTest from './SelectTest';

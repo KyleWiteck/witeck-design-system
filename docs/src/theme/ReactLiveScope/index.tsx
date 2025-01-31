@@ -1,7 +1,7 @@
-import * as Components from '@peopleticker/magnit-design/components';
-import * as Hooks from '@peopleticker/magnit-design/hooks';
-import * as Icons from '@peopleticker/magnit-design/icons';
-import * as Theme from '@peopleticker/magnit-design/theme';
+import * as Components from '@KyleWiteck/witeck-design/components';
+import * as Hooks from '@KyleWiteck/witeck-design/hooks';
+import * as Icons from '@KyleWiteck/witeck-design/icons';
+import * as Theme from '@KyleWiteck/witeck-design/theme';
 import React from 'react';
 
 // Add react-live imports you need here

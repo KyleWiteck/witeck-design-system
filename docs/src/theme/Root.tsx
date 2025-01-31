@@ -1,5 +1,5 @@
-import { Stack } from '@peopleticker/magnit-design/components';
-import { themeClass } from '@peopleticker/magnit-design/theme';
+import { Stack } from '@KyleWiteck/witeck-design/components';
+import { themeClass } from '@KyleWiteck/witeck-design/theme';
 import { useEffect } from 'react';
 
 // Adds theme class to app wrapper

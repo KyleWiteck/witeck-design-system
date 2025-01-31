@@ -673,7 +673,7 @@ export const SHORTHANDS = {
  *
  * @example
  * ```ts
- * import { themeValues } from '@peopleticker/magnit-design/utils';
+ * import { themeValues } from '@KyleWiteck/witeck-design/utils';
  *
  * const styles = {
  *   padding: themeValues.space[4],

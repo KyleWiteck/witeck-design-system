@@ -1,4 +1,4 @@
-import { CalloutMessage } from '@peopleticker/magnit-design/components';
+import { CalloutMessage } from '@KyleWiteck/witeck-design/components';
 
 export function CalloutMesasgeTest() {
   return (
