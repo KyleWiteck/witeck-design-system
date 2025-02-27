@@ -1,6 +1,6 @@
-import { MouseEvent, PropsWithChildren, Ref, createContext, useContext, useId, useRef } from 'react';
+import { MouseEvent, PropsWithChildren, useId, useRef } from 'react';
 
-import { isKeyOf } from '../../utils';
+import { DataGridFilterContext, isKeyOf } from '../../utils';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { Stack } from '../Stack';
@@ -8,19 +8,6 @@ import { Text } from '../Text';
 import { DataGridItem, DataGridProps, FormFilterValues } from './utils';
 
 const NonFilterParams = ['search', 'page', 'direction', 'sortBy', 'pageSize'];
-
-type DataGridFilterContextType = {
-  formId: string;
-  formRef: Ref<HTMLFormElement | null>;
-};
-
-const DataGridFilterContext = createContext({});
-
-export function useDataGridFiltersContext() {
-  const ctx = useContext(DataGridFilterContext) as DataGridFilterContextType;
-  if (!ctx) throw new Error('No DataGridFilterContext found.');
-  return ctx;
-}
 
 export function DataGridFilterForm<T extends DataGridItem>(props: PropsWithChildren<DataGridProps<T>>) {
   const {

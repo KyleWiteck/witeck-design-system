@@ -1,6 +1,16 @@
 import { PropsTable } from '@site/src/components/PropsTable';
 
-Error components provide a structured way to display error messages with a
+Empty states are designed to prevent confusion when the primary contents of a
+page or component cannot be displayed.
+
+Use when:
+
+1. Component or part of UI has no items or data to show;
+2. Display for friendly tips;
+3. When a user hasn’t interacted with a feature yet;
+4. A problem displaying data occurred.
+
+These components provide a structured way to display error messages with a
 headline, optional message, image, and configurable action buttons. They are
 designed for both basic and advanced use cases, supporting two layout variants:
 
@@ -81,6 +91,8 @@ image, reducing the need for manual setup.
 - **NotAuthenticatedUI**: Displays "Authentication Required" when a user is not
   logged in.
 - **UnknownErrorUI**: Displays a generic error message for unexpected failures.
+- **DoneUI**: Used to confirm task completion or indicate that everything is up
+  to date.
 
 ### Import
 
@@ -90,6 +102,7 @@ import {
   NotAuthenticatedUI,
   NotFoundUI,
   UnknownErrorUI
+  DoneUI
 } from '@KyleWiteck/witeck-design/components';
 ```
 

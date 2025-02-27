@@ -34,7 +34,7 @@ export * from './Spinner';
 export * from './Stack';
 export * from './Text';
 export * from './Table';
-export * from './Error';
+export * from './EmptyState';
 export * from './CardSection';
 export * from './DataGrid';
 export * from './Tabs';

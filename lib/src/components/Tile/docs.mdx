@@ -1,0 +1,73 @@
+A container component that displays a title, subtitle, and content area. It
+supports different background color variants and an optional tooltip.
+
+## Features
+
+- Supports predefined background colors.
+- Displays a title and subtitle.
+- Optionally includes a tooltip.
+- Customizable via `BoxProps`.
+
+### Props
+
+| Prop           | Type                                                             | Default     | Description                              |
+| -------------- | ---------------------------------------------------------------- | ----------- | ---------------------------------------- |
+| `variant`      | `"yellow" \| "red" \| "blue" \| "neutral" \| "white" \| "green"` | `"neutral"` | Background color variant.                |
+| `title`        | `ReactNode`                                                      | `undefined` | Title text displayed in the header.      |
+| `subTitle`     | `ReactNode`                                                      | `undefined` | Subtitle text displayed below the title. |
+| `toolTipProps` | `TooltipProps`                                                   | `undefined` | Props for the tooltip component.         |
+
+---
+
+## InlineTile
+
+A compact tile component designed to display a number, label, and optional icon
+with different color themes.
+
+### Features
+
+- Supports different color variants.
+- Displays a number and label.
+- Optionally includes an icon.
+
+### Props
+
+| Prop      | Type                                                  | Default     | Description                           |
+| --------- | ----------------------------------------------------- | ----------- | ------------------------------------- |
+| `variant` | `"yellow" \| "red" \| "blue" \| "neutral" \| "green"` | `"blue"`    | Background color variant.             |
+| `number`  | `string`                                              | `undefined` | The number displayed in the tile.     |
+| `label`   | `ReactNode`                                           | `undefined` | The label displayed below the number. |
+| `icon`    | `ReactNode`                                           | `undefined` | Icon displayed next to the number.    |
+
+## Usage
+
+```ts
+import { InlineTile, Tile } from '@KyleWiteck/witeck-design/components';
+```
+
+### Basic
+
+```tsx live
+<Tile title="Total Sales" subTitle="This Month">
+  $25,000
+</Tile>
+```
+
+### With Toolip
+
+```tsx live
+<Tile
+  title="Revenue"
+  subTitle="Last Quarter"
+  variant="green"
+  toolTipProps={{ content: 'Revenue includes all sources of income' }}
+>
+  $120,000
+</Tile>
+```
+
+### InlineTile
+
+```tsx live
+<InlineTile number="15" label="Pending Orders" />
+```

@@ -1,8 +1,7 @@
 // tooltipStyles.ts
+import { themeValues } from '@KyleWiteck/witeck-design/utils';
 import { style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
-
-import { themeValues } from '../../utils';
 
 export const tooltipContainerHover = style({
   selectors: {

@@ -1,4 +1,4 @@
-import { MutableRefObject, ReactNode, createContext, useContext } from 'react';
+import { MutableRefObject, ReactNode, Ref, createContext, useContext } from 'react';
 
 /**
  * Context for sharing ref values across components.
@@ -55,3 +55,42 @@ export const RefProvider = <T,>({ children, refValue }: RefProviderProps<T>) => 
  * ```
  */
 export const useRefValue = <T,>() => useContext(RefContext) as MutableRefObject<T | null>;
+
+/**
+ * Type definition for the DataGrid filter context.
+ * This context stores metadata related to the filtering form.
+ */
+export type DataGridFilterContextType = {
+  /**
+   * Unique identifier for the filter form.
+   * This ID is used to associate form elements and manage submissions.
+   */
+  formId: string;
+
+  /**
+   * React reference to the filter form element.
+   * This allows direct access to the form for programmatic interactions.
+   */
+  formRef: Ref<HTMLFormElement | null>;
+};
+
+/**
+ * Context for managing DataGrid filters.
+ * Provides access to filtering form data and operations within the DataGrid.
+ */
+export const DataGridFilterContext = createContext({});
+
+/**
+ * Hook to access the DataGrid filter context.
+ * This allows components to retrieve and use the filter form metadata.
+ *
+ * @throws {Error} If the context is not available, indicating that the component is
+ * used outside a valid DataGridFilterContext provider.
+ *
+ * @returns {DataGridFilterContextType} The current state of the DataGrid filter context.
+ */
+export function useDataGridFiltersContext() {
+  const ctx = useContext(DataGridFilterContext) as DataGridFilterContextType;
+  if (!ctx) throw new Error('No DataGridFilterContext found.');
+  return ctx;
+}

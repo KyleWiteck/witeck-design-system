@@ -1,6 +1,6 @@
 import { breakPoints } from '../../utils';
 import { Button } from '../Button';
-import { NotFoundUI } from '../Error';
+import { NotFoundUI } from '../EmptyState';
 import { Flex } from '../Flex';
 import { Pagination } from '../Pagination';
 import { Skeleton } from '../Skeleton';

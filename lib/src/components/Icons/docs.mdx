@@ -7,7 +7,10 @@ import {
   Stack,
   Text
 } from '@KyleWiteck/witeck-design/components';
-import { IconsDemo } from '@site/src/components/IconsDemo';
+import {
+  IconsDemo,
+  NonCurrentColorIcons
+} from '@site/src/components/IconsDemo';
 import { PropsTable } from '@site/src/components/PropsTable';
 
 A set of icons that are used internally in the design system and exposed for use
@@ -48,7 +51,20 @@ function Example() {
 
 ## All Available Icons
 
+<Stack gap="10">
+
 <IconsDemo />
+
+:::info
+
+The following SVG icons have their own colors, that means `color` props has no
+effect on them.
+
+:::
+
+<NonCurrentColorIcons />
+
+</Stack>
 
 ## Styling an Icon
 

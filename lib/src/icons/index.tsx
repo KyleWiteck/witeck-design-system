@@ -1,6 +1,6 @@
 
 /**
-* Witeck Design System Icons
+* Magnit Design System Icons
 *
 * AUTO-GENERATED FILE DO NOT MODIFY MANUALLY
 *
@@ -34,6 +34,11 @@ import DoubleForwardArrowSVG from "../../assets/icons/double-forward-arrow.svg?r
 import DownloadSVG from "../../assets/icons/download.svg?react";
 import DragSVG from "../../assets/icons/drag.svg?react";
 import EditSVG from "../../assets/icons/edit.svg?react";
+import EmptyConnectionSVG from "../../assets/icons/empty-connection.svg?react";
+import EmptyDataSVG from "../../assets/icons/empty-data.svg?react";
+import EmptyDoneSVG from "../../assets/icons/empty-done.svg?react";
+import EmptyRecordsSVG from "../../assets/icons/empty-records.svg?react";
+import EmptyUsersSVG from "../../assets/icons/empty-users.svg?react";
 import ErrorSVG from "../../assets/icons/error.svg?react";
 import FeedbackSVG from "../../assets/icons/feedback.svg?react";
 import FirstPageSVG from "../../assets/icons/first-page.svg?react";
@@ -48,6 +53,8 @@ import InfoSVG from "../../assets/icons/info.svg?react";
 import LastPageSVG from "../../assets/icons/last-page.svg?react";
 import LocationSVG from "../../assets/icons/location.svg?react";
 import LogoutSVG from "../../assets/icons/logout.svg?react";
+import MagnitFullLogoSVG from "../../assets/icons/magnit-full-logo.svg?react";
+import MagnitLogoSVG from "../../assets/icons/magnit-logo.svg?react";
 import MailSVG from "../../assets/icons/mail.svg?react";
 import MenuSVG from "../../assets/icons/menu.svg?react";
 import MoreSVG from "../../assets/icons/more.svg?react";
@@ -91,6 +98,11 @@ export const DoubleForwardArrowIcon = createStyledIcon({ name: 'DoubleForwardArr
 export const DownloadIcon = createStyledIcon({ name: 'DownloadIcon', svg: DownloadSVG });
 export const DragIcon = createStyledIcon({ name: 'DragIcon', svg: DragSVG });
 export const EditIcon = createStyledIcon({ name: 'EditIcon', svg: EditSVG });
+export const EmptyConnectionIcon = createStyledIcon({ name: 'EmptyConnectionIcon', svg: EmptyConnectionSVG });
+export const EmptyDataIcon = createStyledIcon({ name: 'EmptyDataIcon', svg: EmptyDataSVG });
+export const EmptyDoneIcon = createStyledIcon({ name: 'EmptyDoneIcon', svg: EmptyDoneSVG });
+export const EmptyRecordsIcon = createStyledIcon({ name: 'EmptyRecordsIcon', svg: EmptyRecordsSVG });
+export const EmptyUsersIcon = createStyledIcon({ name: 'EmptyUsersIcon', svg: EmptyUsersSVG });
 export const ErrorIcon = createStyledIcon({ name: 'ErrorIcon', svg: ErrorSVG });
 export const FeedbackIcon = createStyledIcon({ name: 'FeedbackIcon', svg: FeedbackSVG });
 export const FirstPageIcon = createStyledIcon({ name: 'FirstPageIcon', svg: FirstPageSVG });
@@ -105,6 +117,8 @@ export const InfoIcon = createStyledIcon({ name: 'InfoIcon', svg: InfoSVG });
 export const LastPageIcon = createStyledIcon({ name: 'LastPageIcon', svg: LastPageSVG });
 export const LocationIcon = createStyledIcon({ name: 'LocationIcon', svg: LocationSVG });
 export const LogoutIcon = createStyledIcon({ name: 'LogoutIcon', svg: LogoutSVG });
+export const MagnitFullLogoIcon = createStyledIcon({ name: 'MagnitFullLogoIcon', svg: MagnitFullLogoSVG });
+export const MagnitLogoIcon = createStyledIcon({ name: 'MagnitLogoIcon', svg: MagnitLogoSVG });
 export const MailIcon = createStyledIcon({ name: 'MailIcon', svg: MailSVG });
 export const MenuIcon = createStyledIcon({ name: 'MenuIcon', svg: MenuSVG });
 export const MoreIcon = createStyledIcon({ name: 'MoreIcon', svg: MoreSVG });

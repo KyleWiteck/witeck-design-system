@@ -3,18 +3,40 @@ import typescript from '@rollup/plugin-typescript';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'node:path';
-import { defineConfig } from 'vite';
+import { Plugin, defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import svgr from 'vite-plugin-svgr';
 
+function ssrCompatPlugin(): Plugin {
+  return {
+    name: 'ssr-compat',
+    enforce: 'pre' as const,
+    transform(code, id) {
+      if (/\.(png|jpe?g|gif|svg|webp)$/.test(id)) {
+        return {
+          code: `
+            let url = '';
+            if (typeof window !== 'undefined') {
+              url = new URL('${id}', import.meta.url).pathname;
+            }
+            export default url;
+          `,
+          map: null
+        };
+      }
+    }
+  };
+}
+
 export default defineConfig({
   plugins: [
+    ssrCompatPlugin(),
     react(),
     vanillaExtractPlugin({ identifiers: 'short' }),
     svgr(),
     dts({ tsconfigPath: './tsconfig.build.json', insertTypesEntry: true }),
     libAssetsPlugin({
-      include: /\.(woff|woff2|png)$/,
+      include: /\.(woff|woff2)$/,
       exclude: /\.(css|svg)$/
     })
   ],

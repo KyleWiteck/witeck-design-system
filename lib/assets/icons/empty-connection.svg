@@ -1,0 +1,40 @@
+<svg viewBox="0 0 81 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#clip0_4294_41737)">
+    <g clip-path="url(#clip1_4294_41737)">
+      <mask id="mask0_4294_41737" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="10" width="78" height="78">
+        <circle cx="38.9961" cy="49.1009" r="38.5" fill="#F7F7F8"/>
+      </mask>
+      <g mask="url(#mask0_4294_41737)">
+        <path d="M76.9961 48.9349C76.9961 69.9217 59.9829 86.9349 38.9961 86.9349C18.0093 86.9349 0.996094 69.9217 0.996094 48.9349C0.996094 27.9481 18.0093 10.9349 38.9961 10.9349C59.9829 10.9349 76.9961 27.9481 76.9961 48.9349Z" fill="#F7F7F8" stroke="#E3E5E8"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4549 56.556L19.7141 51.5451L40.925 69.5738L36.6658 74.5847C33.8044 77.9512 28.7556 78.3606 25.3891 75.4992L16.3694 67.8327C13.0029 64.9713 12.5935 59.9225 15.4549 56.556ZM21.0094 50.0212C20.1677 49.3058 18.9056 49.4082 18.1902 50.2498L13.931 55.2607C10.3542 59.4689 10.866 65.7798 15.0742 69.3566L19.011 72.7029C18.7798 72.7371 18.5595 72.8522 18.3962 73.0444L11.9198 80.6638C11.5621 81.0847 11.6133 81.7158 12.0341 82.0734C12.4549 82.4311 13.086 82.3799 13.4437 81.9591L19.9201 74.3396C20.0834 74.1475 20.1614 73.9115 20.158 73.6778L24.0938 77.0231C28.302 80.5999 34.6129 80.0881 38.1897 75.88L42.4489 70.869C43.1642 70.0274 43.0619 68.7652 42.2203 68.0499L21.0094 50.0212Z" fill="#BABEC4"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M37.0728 35.1697C38.4071 35.2275 39.4952 36.3642 39.5031 37.7085L39.5625 45.8696L42.397 43.4812C44.2414 41.9272 47.1531 43.3453 47.2173 45.8289L47.6015 58.6891C47.6362 60.0344 46.5831 61.1 45.2492 61.0694C43.9153 61.0387 42.8058 59.9233 42.771 58.578L42.495 49.8996L39.5768 52.3584C37.7119 53.9298 34.7703 52.4615 34.7556 49.9519L34.671 37.4992C34.6632 36.1549 35.7385 35.1119 37.0728 35.1697Z" fill="#293F96" fill-opacity="0.04" stroke="#293F96" stroke-opacity="0.5" stroke-linecap="round" stroke-dasharray="2 2"/>
+      </g>
+    </g>
+    <g clip-path="url(#clip2_4294_41737)">
+      <g filter="url(#filter0_b_4294_41737)">
+        <path d="M73.6499 31.4829L69.3907 36.4938C69.0331 36.9147 68.402 36.9658 67.9812 36.6082L46.7703 18.5795C46.3495 18.2218 46.2983 17.5907 46.656 17.1699L50.9151 12.1589C54.1342 8.37162 59.8141 7.91101 63.6014 11.1301L72.6211 18.7966C76.4084 22.0157 76.869 27.6956 73.6499 31.4829Z" fill="#293F96" fill-opacity="0.08"/>
+        <path d="M73.6499 31.4829L69.3907 36.4938C69.0331 36.9147 68.402 36.9658 67.9812 36.6082L46.7703 18.5795C46.3495 18.2218 46.2983 17.5907 46.656 17.1699L50.9151 12.1589C54.1342 8.37162 59.8141 7.91101 63.6014 11.1301L72.6211 18.7966C76.4084 22.0157 76.869 27.6956 73.6499 31.4829Z" stroke="#BABEC4" stroke-width="2"/>
+      </g>
+      <path d="M69.1833 13.6995L78.8979 2.27023" stroke="#BABEC4" stroke-width="2" stroke-linecap="round"/>
+      <path d="M55.5526 41.9938L63.1281 33.0812" stroke="#BABEC4" stroke-width="2" stroke-linecap="round"/>
+      <path d="M43.6695 31.8928L51.245 22.9802" stroke="#BABEC4" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  </g>
+  <defs>
+    <filter id="filter0_b_4294_41737" x="43.4178" y="5.98747" width="35.3747" height="33.8588" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feGaussianBlur in="BackgroundImageFix" stdDeviation="1"/>
+      <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4294_41737"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4294_41737" result="shape"/>
+    </filter>
+    <clipPath id="clip0_4294_41737">
+      <rect width="80.5088" height="87.6009" fill="white" transform="translate(0.496094)"/>
+    </clipPath>
+    <clipPath id="clip1_4294_41737">
+      <rect width="77" height="77" fill="white" transform="translate(0.496094 10.6009)"/>
+    </clipPath>
+    <clipPath id="clip2_4294_41737">
+      <rect width="35.2267" height="41.2306" fill="white" transform="translate(45.8611) rotate(3.93108)"/>
+    </clipPath>
+  </defs>
+</svg>

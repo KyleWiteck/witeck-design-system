@@ -324,7 +324,7 @@ export const DrawerFloatingToggleButton = forwardRef<HTMLButtonElement, DrawerFl
       <Button
         ref={ref}
         variant="round"
-        size="sm"
+        size="square"
         border="1px"
         height="12"
         width="12"
@@ -342,7 +342,6 @@ export const DrawerFloatingToggleButton = forwardRef<HTMLButtonElement, DrawerFl
             borderRadius="full"
             marginRight={isOpen ? '0.5' : undefined}
             marginLeft={isOpen ? undefined : '0.5'}
-            boxSize="4"
             className={toggleButtonRotateClass}
           />
         }

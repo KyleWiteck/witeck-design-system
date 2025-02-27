@@ -1,4 +1,3 @@
-import Close from '../../../assets/icons/Close.svg?react';
 import ArrowDropDown from '../../../assets/icons/arrow-drop-down.svg?react';
 import ArrowDropUp from '../../../assets/icons/arrow-drop-up.svg?react';
 import ArrowRight from '../../../assets/icons/arrow-right.svg?react';
@@ -9,6 +8,7 @@ import CheckboxIndeterminate from '../../../assets/icons/checkbox-indeterminate.
 import Checkbox from '../../../assets/icons/checkbox.svg?react';
 import ChevronDown from '../../../assets/icons/chevron-down.svg?react';
 import ChevronUp from '../../../assets/icons/chevron-up.svg?react';
+import Close from '../../../assets/icons/close.svg?react';
 import DoubleForwardArrow from '../../../assets/icons/double-forward-arrow.svg?react';
 import Drag from '../../../assets/icons/drag.svg?react';
 import Error from '../../../assets/icons/error.svg?react';
@@ -20,6 +20,8 @@ import ImagePlaceholder from '../../../assets/icons/image-placeholder.svg?react'
 import Info from '../../../assets/icons/info.svg?react';
 import LastPage from '../../../assets/icons/last-page.svg?react';
 import Logout from '../../../assets/icons/logout.svg?react';
+import MagnitFullLogo from '../../../assets/icons/magnit-full-logo.svg?react';
+import MagnitIconLogo from '../../../assets/icons/magnit-logo.svg?react';
 import Mail from '../../../assets/icons/mail.svg?react';
 import Menu from '../../../assets/icons/menu.svg?react';
 import Notifications from '../../../assets/icons/notifications.svg?react';
@@ -36,6 +38,8 @@ import { Icon, createStyledIcon } from '../../icons/createStyledIcon';
 // with "currentColor" instead of using a hexadecimal value. This will enable the icon to inherit or
 // pick up the color through the "color" prop.
 const IconsObject = {
+  MagnitFullLogo: createStyledIcon({ name: 'MagnitFullLogo', svg: MagnitFullLogo }),
+  MagnitIconLogo: createStyledIcon({ name: 'MagnitIconLogo', svg: MagnitIconLogo }),
   Menu: createStyledIcon({ name: 'Menu', svg: Menu }),
   Plus: createStyledIcon({ name: 'Plus', svg: Plus }),
   Home: createStyledIcon({ name: 'Home', svg: Home }),

@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 
+import { Icon } from '../../icons';
 import { Button, ButtonProps } from '../Button';
 import { Center, CenterProps } from '../Center';
 import { Flex } from '../Flex';
@@ -16,11 +17,8 @@ export type NoVariantButtonProps =
   | Omit<ButtonProps<'button'>, 'variant'>
   | ((requireProps: RequiredActionButtonProps) => ReactNode);
 
-export interface ErrorBaseProps {
-  image: {
-    src: string;
-    alt: string;
-  };
+export interface EmptyStateProps {
+  icon: Icon;
   headline: string;
   message?: ReactNode;
   noMessage?: boolean;
@@ -31,10 +29,10 @@ export interface ErrorBaseProps {
   variant?: 'base' | 'small';
 }
 
-export function ErrorBase(props: ErrorBaseProps) {
+export function EmptyState(props: EmptyStateProps) {
   const {
     message,
-    image,
+    icon: IconComponent,
     headline,
     containerProps = {},
     primaryAction,
@@ -44,10 +42,7 @@ export function ErrorBase(props: ErrorBaseProps) {
     variant = 'base'
   } = props;
 
-  const content = message ?? 'We apologize for the inconvenience. Please try again later.';
-
   const Wrapper = variant === 'base' ? Stack : Flex;
-  const imgSize = variant === 'base' ? 85 : 50;
   const textAlign = variant === 'base' ? 'center' : 'left';
 
   return (
@@ -58,7 +53,7 @@ export function ErrorBase(props: ErrorBaseProps) {
       {...containerProps}
     >
       <Wrapper gap={variant === 'base' ? '6' : '4'} maxWidth="125" margin="auto" alignItems="center" justify="center">
-        <img src={image.src} alt={image.alt} width={imgSize} height={imgSize} />
+        <IconComponent boxSize={variant === 'base' ? '20' : '12'} color="neutral500" />
         <Stack gap="0" alignItems={variant === 'base' ? 'center' : 'stretch'} width="fitContent" color="neutral500">
           <Text
             variant={variant === 'base' ? 'subtitle1' : 'caption'}
@@ -69,14 +64,14 @@ export function ErrorBase(props: ErrorBaseProps) {
           >
             {headline}
           </Text>
-          {!noMessage && (
+          {!noMessage && message && (
             <ReactNodeStringHandler
               element="p"
               variant={variant === 'base' ? 'body2' : 'caption'}
               textAlign={textAlign}
               color="inherit"
             >
-              {content}
+              {message}
             </ReactNodeStringHandler>
           )}
         </Stack>

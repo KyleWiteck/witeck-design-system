@@ -314,7 +314,7 @@ const colorOptions: {
 // hsl(357, 92%, 47%)
 /** @hidden */
 export const brandColors = {
-  masterPrimary: '#293F96',
+  magnitPrimary: '#293F96',
   primary: colorOptions.baseColors.primary500,
   secondary: colorOptions.baseColors.secondary500,
   tertiary: colorOptions.baseColors.tertiary500,

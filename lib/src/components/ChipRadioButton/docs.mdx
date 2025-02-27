@@ -1,0 +1,89 @@
+import { PropsTable } from '@site/src/components/PropsTable';
+
+A radio button styled as a chip component. It supports keyboard navigation,
+accessibility, and can be used inside a ChipRadioGroup.
+
+## Features
+
+- Styled as a chip component for a modern UI.
+- Fully accessible with aria-checked`, keyboard support, and roving tabindex.
+- Should be used inside `ChipRadioGroup` for managing selection.
+- **Only supports controlled** usage, via `checked` and `onChange` props.
+
+## Props
+
+### ChipRadioButton
+
+<PropsTable
+  defaultElement="input"
+  componentSpecificProps={[
+    {
+      name: 'children',
+      type: 'ReactNode',
+      description: 'Content to be displayed inside the chip button.'
+    },
+    {
+      name: 'labelContainerProps',
+      type: 'Omit<ChipProps, "ref">',
+      description:
+        'Additional props for the Chip container wrapping the radio button.'
+    }
+  ]}
+/>
+
+### ChipRadioGroup
+
+The `ChipRadioGroup` is a container component that manages a group of
+`ChipRadioButton` components. It ensures only one chip can be selected at a
+time, following the WAI-ARIA Radio Group pattern.
+
+<PropsTable
+  defaultElement="div"
+  componentSpecificProps={[
+    {
+      name: 'name',
+      type: 'string',
+      description:
+        'Specifies the name for the radio group, used for form submission.'
+    },
+    {
+      name: 'onChange',
+      type: 'React.ChangeEventHandler<HTMLInputElement>',
+      description: 'Callback fired when the selected chip changes.'
+    },
+    {
+      name: 'isMultiSelectable',
+      type: 'boolean',
+      description: 'Allows multiple chips to be selected when set to true.'
+    },
+    {
+      name: 'fullWidth',
+      type: 'boolean',
+      description: 'Expands the group to take the full width of its container.'
+    }
+  ]}
+/>
+
+## Usage
+
+```tsx live
+function Component() {
+  const [value, setValue] = useState('1');
+  return (
+    <ChipRadioGroup
+      name="chip-radio-test"
+      onChange={e => setValue(e.target.value)}
+    >
+      <ChipRadioButton value="1" checked={value === '1'}>
+        First
+      </ChipRadioButton>
+      <ChipRadioButton value="2" checked={value === '2'}>
+        Second
+      </ChipRadioButton>
+      <ChipRadioButton value="3" checked={value === '3'}>
+        Third
+      </ChipRadioButton>
+    </ChipRadioGroup>
+  );
+}
+```

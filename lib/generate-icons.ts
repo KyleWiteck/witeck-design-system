@@ -17,7 +17,7 @@ function toPascalCase(str: string, suffix: 'Icon' | 'SVG') {
 
 let template = `
 /**
-* Witeck Design System Icons
+* Magnit Design System Icons
 *
 * AUTO-GENERATED FILE DO NOT MODIFY MANUALLY
 *
